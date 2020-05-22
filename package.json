@@ -1,0 +1,32 @@
+{
+  "name": "shonsub",
+  "version": "1.0.0",
+  "description": "A website for ShonSub - Social Community For Anime",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "devStart": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elkanagit/ShonSub.git"
+  },
+  "author": "Elkana",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/elkanagit/ShonSub/issues"
+  },
+  "homepage": "https://github.com/elkanagit/ShonSub#readme",
+  "dependencies": {
+    "body-parse": "^0.1.0",
+    "ejs": "^3.0.2",
+    "express": "^4.17.1",
+    "express-ejs-layouts": "^2.5.0",
+    "mongoose": "^5.9.9",
+    "serve-favicon": "^2.5.0"
+  },
+  "devDependencies": {
+    "dotenv": "^8.2.0",
+    "nodemon": "^2.0.3"
+  }
+}
