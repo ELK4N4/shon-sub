@@ -1,0 +1,57 @@
+<header class="top">
+    <div class="sign-section">
+        <div class="sign-name"><%= data.user.name %></div>
+        <% if(!data.user.verified) { %>
+            <ul class="signs">
+                <li class="sign-item sign-in"><a href=/login>התחבר</a></li>
+                <li class="sign-item register"><a href=/register>הרשם</a></li>
+            </ul>
+        <% } else { %>  
+            <ul class="signs">
+                <li class="sign-item sign-in"><a href=/auth/logout>התנתק</a></li>
+                <li class="sign-item register"><a href=#>הגדרות</a></li>
+            </ul>
+        <% } %>
+    </div>
+    <ul class="menu">
+        <% if(data.page.name == 'home') { %>
+
+            <li class="menu-item active"><a href=/>בית</a></li>
+            <li class="menu-item"><a href=/animes>אנימות</a></li>
+            <li class="menu-item"><a href=#>אודות</a></li>
+            <li class="menu-item"><a href=#>פורום</a></li>
+
+        <% } else if(data.page.name == 'animes'){ %>  
+
+            <li class="menu-item"><a href=/>בית</a></li>
+            <li class="menu-item active"><a href=/animes>אנימות</a></li>
+            <li class="menu-item"><a href=#>אודות</a></li>
+            <li class="menu-item"><a href=#>פורום</a></li>
+        
+        <% } else if(data.page.name == 'about'){ %>  
+
+            <li class="menu-item"><a href=/>בית</a></li>
+            <li class="menu-item"><a href=/animes>אנימות</a></li>
+            <li class="menu-item active"><a href=#>אודות</a></li>
+            <li class="menu-item"><a href=#>פורום</a></li>
+
+        <% } else if(data.page.name == 'forum'){ %>  
+
+            <li class="menu-item"><a href=/>בית</a></li>
+            <li class="menu-item"><a href=/animes>אנימות</a></li>
+            <li class="menu-item"><a href=#>אודות</a></li>
+            <li class="menu-item active"><a href=#>פורום</a></li>
+
+        <% } else { %>  
+
+            <li class="menu-item"><a href=/>בית</a></li>
+            <li class="menu-item"><a href=/animes>אנימות</a></li>
+            <li class="menu-item"><a href=#>אודות</a></li>
+            <li class="menu-item"><a href=#>פורום</a></li>
+    
+        <% } %> 
+    </ul>
+    <div class="logo"><a href=/><strong>S</strong>hon<strong>S</strong>ub</a></div>
+</header>
+
+<div class="down-page"></div>

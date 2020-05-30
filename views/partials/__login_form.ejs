@@ -1,0 +1,23 @@
+<form action="/auth/login" method="POST">
+    <div class="container">
+      <h1>Login</h1>
+
+      <hr>
+
+      <label for="email"><b>Email</b></label>
+      <input type="text" placeholder="Enter Email" name="email" id="email" required>
+  
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="password" id="password" required>
+      
+      <label for="remember"><b>Remember me</b></label>
+      <input type="checkbox" id="remember" name="remember" value="true" checked>
+
+      <hr>
+      <button type="submit" class="loginbtn">Login</button>
+    </div>
+  
+    <div class="container signin">
+      <p>Don't have an account? <a href="/register">Register</a>.</p>
+    </div>
+  </form>
