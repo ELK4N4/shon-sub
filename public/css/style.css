@@ -1,3 +1,182 @@
+:root {
+    --primary-color: #c90812;
+    --header-height: 5rem;
+}
+
+@font-face {
+    font-family: logo-font;
+    src: url(../fonts/anime-ace/animeace.ttf);
+}
+
 body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ------------ HEADER -------------- */
+
+header {
+    position: fixed;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    background: var(--primary-color);
+}
+
+.top {
+    padding: 0;
+    margin: 0;
+    height: var(--header-height);
+    display: inline-grid;
+    grid-template-areas: 'logo menu sign-section';
+    grid-template-columns: 30% 1fr 30%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row-reverse;
+}
+
+.down-page {
+    display: block;
+    height: var(--header-height);
+}
+
+.sign-section {
+    grid-area: sign-section;
+    margin: auto;
+    display: grid;
+    grid-template-areas: 'sign-name'
+                         'signs';
+    grid-template-rows: 50% 1fr;
+    align-items: center;
+}
+
+.sign-name {
+    grid-area: sign-name;
+    margin: 0.2rem auto;
+    padding: 0.3rem 1.5rem;
+    border: 1.5px solid white;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    position: relative;
+    color: white;
+    background-color: var(--primary-color);
     font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.9rem;
+    text-shadow: 0px 0px 10px black;
+}
+
+.signs {
+    grid-area: signs;
+    padding: 0;
+    margin: auto;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.sign-item {
+    display: inline-block;
+}
+
+.sign-item > a {
+    padding: 0.3rem 1.5rem;
+    border: 1.5px solid white;
+    font-size: 0.9rem;
+    font-weight: 600;
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: none;
+    transition: text-shadow .3s;
+}
+
+.sign-item > a:hover {
+    text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8);
+}
+
+.sign-in a{
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 20px;
+    color: white;
+    background-color: var(--primary-color);
+}
+
+.register a{
+    border-bottom-left-radius: 20px;
+    border-top-left-radius: 20px;
+    color: var(--primary-color);
+    background-color: white;
+    
+}
+
+.menu {
+    grid-area: menu;
+    padding: 0;
+    margin: auto; /*remove it in small screens*/
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+.menu-item {
+    display: inline-block;
+    margin: 0 1vw;
+}
+
+.menu-item a{
+    padding: 0.3rem 1rem;
+    border-top: 2px solid white;
+    border-bottom: 2px solid white;
+    border-radius: 2px;
+    font-weight: 600;
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: none;
+    color: white;
+    background-color: var(--primary-color);
+    font-size: 1.1rem;
+    transition: border-radius .3s,
+                color .3s,
+                background-color .3s;
+}
+
+.menu-item a:hover{
+    border-radius: 5px;
+    color: var(--primary-color);
+    background-color: white;
+}
+
+.logo {
+    grid-area: logo;
+    display: inline-block;
+    margin: auto;
+}
+
+.logo a{
+    font-family: logo-font;
+    font-size: 2rem;
+    text-decoration: none;
+    color: white;
+    text-shadow: 2px 2px 4px #000000;
+}
+
+.active a{
+    background-color: white;
+    color: var(--primary-color);
+    border-radius: 5px;
+}
+
+/* /////////////////////////////////// */
+
+
+
+
+/* ------------ FOOTER -------------- */
+footer {
+    background-color: var(--primary-color);
+    height: 3rem;
+    display: flex;
+    align-items: center;
+}
+
+.co {
+    margin: 0 4vw;
+    color: white;
 }

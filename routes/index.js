@@ -2,8 +2,15 @@ const express = require('express');
 const router = express.Router();
 
 
+
 router.get('/', (req, res) => {
-    res.render('index.ejs', {name: "index"});
+    data = {
+        page: {
+            name: 'home'
+        },
+        user: req.user
+    }
+    res.render('index.ejs', data);
 
     console.log('---------------------\n New user connected! \n---------------------');
 });

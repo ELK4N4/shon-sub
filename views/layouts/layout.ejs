@@ -3,10 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BookSite</title>
+    <meta http-equiv='cache-control' content='no-cache'>
+    <meta http-equiv='expires' content='0'>
+    <meta http-equiv='pragma' content='no-cache'> <!--PAY ATTENTION: we don't save a cache!!!-->
+    <title>ShonSub</title>
     <link href="css/style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+    <%- include('../partials/header.ejs') %>
     <%- body %>
+    <%- include('../partials/footer.ejs') %>
+
+    <script src="js/script.js"></script>
 </body>
 </html>
