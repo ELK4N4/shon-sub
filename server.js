@@ -11,7 +11,7 @@ const verifyUser = require('./routes/auth/verifyToken');
 
 /* Import Routers */
 const indexRouter = require('./routes/index.js');
-const animesRouter = require('./routes/animes.js');
+const projectsRouter = require('./routes/projects.js');
 const loginRouter = require('./routes/login.js');
 const registerRouter = require('./routes/register.js');
 const authRouter = require('./routes/auth/auth.js');
@@ -32,10 +32,10 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(verifyUser);
 
-
 /* DataBase */
 
 const mongoose = require('mongoose');
+mongoose.set('useFindAndModify', false);
 mongoose.connect(DATABASE_URL, { useUnifiedTopology: true, useNewUrlParser: true });
 const db = mongoose.connection;
 db.on('error', error => console.log(error));
@@ -45,10 +45,11 @@ db.once('open', () => {console.log('Mongoose is connected');});
 
 /* Middleware */
 app.use('/', indexRouter);
-app.use('/animes', animesRouter);
+app.use('/projects', projectsRouter); //פרוייקטים
 app.use('/login', loginRouter);
 app.use('/register', registerRouter);
 app.use('/auth', authRouter);
+
 
 /* Server Listening */
 app.listen(PORT, '0.0.0.0', () => {

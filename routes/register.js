@@ -1,18 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const verify = require('./auth/verifyToken');
+const getData = require('../data');
 
 router.get('/', async (req, res) => {
 
-    data = {
-        page: {
-            name: 'login'
-        },
-        user: {
-            name: "אורח"
-        }
-    }
-    res.render('register.ejs', data);
+    const data = await getData('register', req.user);
+    res.render('register.ejs', {data});
 });
 
 router.get('/bla', (req, res) => {

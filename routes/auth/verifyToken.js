@@ -6,7 +6,8 @@ module.exports = async function (req,res,next) {
 
     const guestUser = {
         name: "אורח",
-        verified: false
+        verified: false,
+        role: 'guest'
     };
 
     if(!token) {

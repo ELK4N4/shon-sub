@@ -1,23 +1,28 @@
-<form action="/auth/login" method="POST">
-    <div class="container">
-      <h1>Login</h1>
+<form class="fixed-form login-form-width" id="login-form" action="/auth/login" method="POST">
 
-      <hr>
+  <a class="close-button closeForm" href="javascript:void(0)" onclick="closeForm(registerForm)"><i class="fas fa-times-circle"></i></a>
 
-      <label for="email"><b>Email</b></label>
-      <input type="text" placeholder="Enter Email" name="email" id="email" required>
-  
-      <label for="psw"><b>Password</b></label>
-      <input type="password" placeholder="Enter Password" name="password" id="password" required>
-      
-      <label for="remember"><b>Remember me</b></label>
-      <input type="checkbox" id="remember" name="remember" value="true" checked>
+  <h1>התחבר</h1>
 
-      <hr>
-      <button type="submit" class="loginbtn">Login</button>
+  <div class="flexed-container">
+
+    <div class="input-container">
+      <input type="text" placeholder="מייל" name="email" required>
     </div>
-  
-    <div class="container signin">
-      <p>Don't have an account? <a href="/register">Register</a>.</p>
+
+    <div class="input-container">
+      <input type="password" placeholder="סיסמה" name="password" required>
     </div>
-  </form>
+
+    <div class="input-container">
+      <label for="name"><b>זכור אותי</b></label>
+      <input type="checkbox" name="remember" value="true" checked>
+    </div>
+    
+
+    <button type="submit" class="primary-button">התחבר</button>
+    <p class="switch-log">אין לך חשבון? <a href="#" onclick="register()">הירשם</a></p>
+  </div>
+
+  </div>
+</form>

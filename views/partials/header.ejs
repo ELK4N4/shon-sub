@@ -1,10 +1,13 @@
+<% const navMenu = [ {name: 'home',hebName: 'ראשי'}, {name: 'projects',hebName: 'פרוייקטים',dropDown: true},{name: 'about',hebName: 'אודות',},{name: 'forum',hebName: 'פורום',} ] %>
+
+
 <header class="top">
     <div class="sign-section">
         <div class="sign-name"><%= data.user.name %></div>
         <% if(!data.user.verified) { %>
             <ul class="signs">
-                <li class="sign-item sign-in"><a href=/login>התחבר</a></li>
-                <li class="sign-item register"><a href=/register>הרשם</a></li>
+                <li class="sign-item sign-in"><a href="javascript:void(0)" onclick="login()">התחבר</a></li>
+                <li class="sign-item register"><a href="javascript:void(0)" onclick="register()">הרשם</a></li>
             </ul>
         <% } else { %>  
             <ul class="signs">
@@ -14,44 +17,36 @@
         <% } %>
     </div>
     <ul class="menu">
-        <% if(data.page.name == 'home') { %>
 
-            <li class="menu-item active"><a href=/>בית</a></li>
-            <li class="menu-item"><a href=/animes>אנימות</a></li>
-            <li class="menu-item"><a href=#>אודות</a></li>
-            <li class="menu-item"><a href=#>פורום</a></li>
+        <% navMenu.forEach(item => { %>
 
-        <% } else if(data.page.name == 'animes'){ %>  
+            <% if(item.name === 'projects') { %> 
+                <div class="dropdown-projects">
+                    <% if(item.name === data.page.name) { %>
+                        <li class="menu-item active"><a href=/projects><i class="fas fa-sort-down" style="position:relative; bottom: 0.1rem;"></i> פרוייקטים</i></a></li>
+                    <% } else { %>
+                        <li class="menu-item"><a href=/projects><i class="fas fa-sort-down" style="position:relative; bottom: 0.1rem;"></i> פרוייקטים</i></a></li>
+                    <% } %>
+                    <div class="dropdown-content">
+                        <% data.allProjects.activeProjects.forEach(project => { %>
+                            <a href="/projects/<%= project.name.replace(/ /g,"-") %>"><%= project.name.replace(/-/g," ") %></a>
+                        <% }); %>
+                        <% data.allProjects.doneProjects.forEach(project => { %>
+                            <a href="/projects/<%= project.name.replace(/ /g,"-") %>"><%= project.name.replace(/-/g," ") %></a>
+                        <% }); %>
+                        <% if(data.user.role.includes('admin')) { %>
+                            <a href="javascript:void(0)" onclick="newProject()"><strong>+ פרוייקט חדש</strong></a>
+                        <% } %>
+                    </div>
+                </div>
+            <% } else if(item.name === data.page.name) { %>
+                <li class="menu-item active"><a href=/<%= item.name %>><%= item.hebName%></a></li>
+            <% } else { %>
+                <li class="menu-item"><a href=/<%= item.name %>><%= item.hebName%></a></li>
+            <% } %>
 
-            <li class="menu-item"><a href=/>בית</a></li>
-            <li class="menu-item active"><a href=/animes>אנימות</a></li>
-            <li class="menu-item"><a href=#>אודות</a></li>
-            <li class="menu-item"><a href=#>פורום</a></li>
-        
-        <% } else if(data.page.name == 'about'){ %>  
+        <% }); %>
 
-            <li class="menu-item"><a href=/>בית</a></li>
-            <li class="menu-item"><a href=/animes>אנימות</a></li>
-            <li class="menu-item active"><a href=#>אודות</a></li>
-            <li class="menu-item"><a href=#>פורום</a></li>
-
-        <% } else if(data.page.name == 'forum'){ %>  
-
-            <li class="menu-item"><a href=/>בית</a></li>
-            <li class="menu-item"><a href=/animes>אנימות</a></li>
-            <li class="menu-item"><a href=#>אודות</a></li>
-            <li class="menu-item active"><a href=#>פורום</a></li>
-
-        <% } else { %>  
-
-            <li class="menu-item"><a href=/>בית</a></li>
-            <li class="menu-item"><a href=/animes>אנימות</a></li>
-            <li class="menu-item"><a href=#>אודות</a></li>
-            <li class="menu-item"><a href=#>פורום</a></li>
-    
-        <% } %> 
     </ul>
     <div class="logo"><a href=/><strong>S</strong>hon<strong>S</strong>ub</a></div>
 </header>
-
-<div class="down-page"></div>

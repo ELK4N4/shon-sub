@@ -7,13 +7,34 @@
     <meta http-equiv='expires' content='0'>
     <meta http-equiv='pragma' content='no-cache'> <!--PAY ATTENTION: we don't save a cache!!!-->
     <title>ShonSub</title>
-    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <!-- CCS -->
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
+    <link href="/css/projects.css" rel="stylesheet" type="text/css">
+    <% if(data.user.role.includes("admin")) { %> 
+        <link href="/css/admin.css" rel="stylesheet" type="text/css">
+    <% } %>
+    <!-- SCRIPTS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/66d330ff96.js" crossorigin="anonymous"></script>
 </head>
 <body>
+
+    <div id="blur" class="closeForm"></div>
+    <%- include('../partials/__login_form.ejs') %> 
+    <%- include('../partials/__register_form.ejs') %> 
+    <%- include('../projects/__new_project_form.ejs') %>
+    <%- include('../projects/__edit_project_form.ejs') %>
     <%- include('../partials/header.ejs') %>
-    <%- body %>
+    <main>
+        <div class="content">
+            <%- body %>
+        </div>
+    </main>
     <%- include('../partials/footer.ejs') %>
 
-    <script src="js/script.js"></script>
+    <% if(data.user.role.includes("admin")) { %> 
+        <script src="/js/admin.js"></script>
+    <% } %>
+    <script src="/js/script.js"></script>
 </body>
 </html>
