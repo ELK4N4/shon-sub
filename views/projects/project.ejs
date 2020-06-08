@@ -1,0 +1,19 @@
+<h1><%= project.name.replace(/-/g," ") %></h1>
+<img class="project-img" src="<%= project.coverImagePath %>" height="300px" alt="<%= project.name %>">
+<% if(data.user.role.includes("admin")) { %>
+    <%- include('./__add_episode_form.ejs') %>
+<% } %>
+<% if(project.episodes.length === 0) { %>
+    <h2>אין פרקים כרגע</h2>
+<% } %>
+
+<div class="flex-container">
+<% project.episodes.forEach(episode => { %>
+    <button class="settings-button" type="button" onclick="deleteEpisode('<%= episode.episodeNumber %>')"><i class="fas fa-cog"></i></button></button>
+    <a href=/projects/<%= project.name %>/<%= episode.episodeNumber %>>
+        <h2><%= episode.episodeName.replace(/-/g," ") %></h2>
+        <img class="episode-img" src="<%= episode.coverImagePath %>" height="100px" alt="<%= episode.name %>">
+        <h2><%= episode.episodeNumber %> פרק</h2>
+    </a>
+<% }); %>
+</div>

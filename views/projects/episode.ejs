@@ -1,0 +1,17 @@
+<h1><%= project.name %></h1>
+<% if(data.user.role.includes("admin")) { %>
+    <button type="button" onclick="deleteEpisode('')">מחק פרק</button>
+<% } %>
+
+
+<div class="episode-details">
+    <h2><%= episode.episodeName %> :<%= episode.episodeNumber %> פרק</h2>
+    <h3>צפיות: <%= episode.views %></h3>
+</div>
+
+<div class="container">
+    <div class="watch">
+        <iframe height="100px" src="<%= episode.link %>" frameborder="0" allowfullscreen=""></iframe>
+    </div>
+</div>
+

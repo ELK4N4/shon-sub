@@ -1,0 +1,21 @@
+<form action="/projects/<%= project.name %>" method="POST" enctype="multipart/form-data">
+    <div class="container">
+      <h2>New Episode</h2>
+
+      <hr>
+
+      <label for="name"><b>Episode Name</b></label>
+      <input type="text" placeholder="Enter Episode Name" name="episodeName" required>
+  
+      <label for="link"><b>Episode Link</b></label>
+      <input type="text" placeholder="Enter Episode Link" name="link" required>
+      
+      <label for="episodesNumber"><b>Episode Number</b></label>
+      <input type="number" id="episodeNumber" name="episodeNumber" required>
+
+      <input type="file" name="cover">
+
+      <hr>
+      <button type="submit" class="newepsbtn">Add Episode</button>
+    </div>
+</form>

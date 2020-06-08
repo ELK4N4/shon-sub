@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+.cover-img-container {
+	position: relative;
+  object-fit: contain;
+  background-color:black;
+  transform: scale(1);
+  transition: transform .5s ease;
+  overflow:hidden;
+  background-color:black;
+  overflow: hidden;
+}
+
+.image {
+  object-fit: contain;
+}
+
+.project-img-size {
+	width:200px;
+  	height:300px;
+}
+
+.episode-img-size {
+	width:300px;
+  	height:200px;
+}
+
+.clicked {
+	cursor: pointer;
+	transform: scale(1);
+    transition: transform .5s ease;
+}
+
+.clicked:hover{
+	transform: scale(1.05);
+}
+
+h2 {
+	display: inline;
+    padding: 0;
+    margin: 0;
+}
+
+.img-text {
+	display: inline;
+    position: absolute;
+    color: white;
+    top: 0px;
+    transform: translate(0px, -100px);
+    width: 100%;
+    max-height: 28%;
+  	overflow: hidden;
+    background-color: rgba(0,0,0,0.7);
+    transition: transform .5s ease;
+    text-align: center;
+}
+
+.text-on-point {
+	transform: translate(0px, 0px);
+}
+
+.cover-img-container:hover .img-text {
+    transform: translate(0px, 0px);
+}
+
+</style>
+</head>
+<body>
+
+
+<h2>object-fit: contain:</h2>
+<div class="cover-img-container project-img-size pointer clicked">
+  <img class="image project-img-size" src="https://www.w3schools.com/tags/img_girl.jpg" alt="Paris">
+  <div class="img-text">
+    <h2>סאגת ויsa df sda f sda
+     sda 
+     d
+     a sdfda dd asdfda dfasd fdssaלנלד</h2>
+  </div>
+</div>
+
+<br>
+
+<div class="cover-img-container episode-img-size">
+  <img class="image episode-img-size" src="https://css-tricks.com/wp-content/uploads/2018/10/01-container.svg" alt="Paris">
+  <div class="img-text text-on-point">
+    <h2></h2>
+  </div>
+</div>
+
+</body>
+</html>

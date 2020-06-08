@@ -1,0 +1,112 @@
+.cover-img-container {
+    position: relative;
+    object-fit: contain;
+    background-color:black;
+    transform: scale(1);
+    overflow: hidden;
+    background-color:black;
+    box-shadow: 0px 0px 20px black;
+    transition: box-shadow .5s ease,
+                transform .5s ease;
+}
+
+.project-item {
+    margin: 2rem 1rem;
+}
+
+.image-contains {
+    object-fit: contain;
+}
+
+.project-img-size {
+	width:200px;
+  	height:300px;
+}
+
+.episode-img-size {
+	width:300px;
+  	height:200px;
+}
+
+.clicked {
+	cursor: pointer;
+	transform: scale(1);
+    transition: box-shadow .5s ease,
+                transform .5s ease;
+}
+
+.clicked:hover{
+    transform: scale(1.05);
+}
+
+.clicked:active{
+    transform: scale(0.95);
+}
+
+.img-text-top {
+	display: inline;
+    position: absolute;
+    color: white;
+    top: 0;
+    left: 0;
+    padding: 0.3rem 0;
+    transform: translate(0px, -90px);
+    width: 100%;
+    max-height: 28%;
+  	overflow: hidden;
+    background-color: rgba(0,0,0,0.7);
+    transition: transform .4s ease;
+    text-align: center;
+}
+
+.img-text-bottom {
+	display: inline;
+    position: absolute;
+    color: white;
+    bottom: 0;
+    left: 0;
+    padding: 0.3rem 0;
+    transform: translate(0px, -90px);
+    width: 100%;
+    max-height: 28%;
+  	overflow: hidden;
+    background-color: rgba(0,0,0,0.7);
+    transition: transform .4s ease;
+    text-align: center;
+}
+
+
+
+.img-text-bottom {
+	display: inline;
+    position: absolute;
+    color: white;
+    bottom: 0;
+    left: 0;
+    padding: 0.3rem 0;
+    transform: translate(0px, 90px);
+    width: 100%;
+    max-height: 28%;
+  	overflow: hidden;
+    background-color: rgba(0,0,0,0.7);
+    transition: transform .4s ease;
+    text-align: center;
+}
+
+.edit-text {
+    color: rgb(36, 36, 36);
+    background-color: white;
+    padding: 0.7rem 0;
+}
+
+.text-on-point {
+	transform: translate(0px, 0px);
+}
+
+.cover-img-container:hover .img-text-top {
+    transform: translate(0px, 0px);
+}
+
+.cover-img-container:hover .img-text-bottom {
+    transform: translate(0px, 0px);
+}
