@@ -1,19 +1,89 @@
-<h1><%= project.name.replace(/-/g," ") %></h1>
-<img class="project-img" src="<%= project.coverImagePath %>" height="300px" alt="<%= project.name %>">
+<div class="project-details">
+
+    <div class="project-img">
+        <div class="cover-img-container project-img-size">
+            <img class="image-contains project-img-size" src="<%= project.coverImagePath %>" alt="<%= project.name.replace(/-/g," ") %>">
+        
+            <div class="img-text-bottom text-on-point edit-text edit-project">
+                <h3><i class="fas fa-pen"></i> ערוך</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="project-showcase">
+        <div class="secondary-button new-episode-btn">+ הוסף פרק</div>
+
+        <div class="project-title">
+            <h1><%= project.name.replace(/-/g," ") %></h1>
+        </div>
+        <div class="project-summary">
+            <h3>תקציר</h3>
+            <p><%= project.summary %></p>
+        </div>
+    </div>
+
+    <div class="project-tiny-details">
+        <div class="project-detail">
+            <h3> &nbsp;:שם באנגלית</h3>
+            <p>  &nbsp; <%= project.englishName %></p>
+        </div>
+
+        <div class="project-detail">
+            <h3> &nbsp;:שם ביפנית</h3>
+            <p>  &nbsp; <%= project.japaneseName %></p>
+        </div>
+
+        <div class="project-detail">
+            <h3> &nbsp;:מספר פרקים</h3>
+            <p>  &nbsp; <%= project.episodesNumber %></p>
+        </div>
+
+        <div class="project-detail">
+            <h3> &nbsp;:ז'אנר</h3>
+            <p>  &nbsp; <%= project.genre %></p>
+        </div>
+
+    </div>
+</div>
+
+<h1 class="projects-title">פרקים</h1>
+
 <% if(data.user.role.includes("admin")) { %>
-    <%- include('./__add_episode_form.ejs') %>
+    <%- include('./__new_episode_form.ejs') %>
+    <%- include('./__edit_episode_form.ejs') %>
 <% } %>
 <% if(project.episodes.length === 0) { %>
     <h2>אין פרקים כרגע</h2>
 <% } %>
 
-<div class="flex-container">
+<div class="flexed-container">
 <% project.episodes.forEach(episode => { %>
-    <button class="settings-button" type="button" onclick="deleteEpisode('<%= episode.episodeNumber %>')"><i class="fas fa-cog"></i></button></button>
-    <a href=/projects/<%= project.name %>/<%= episode.episodeNumber %>>
-        <h2><%= episode.episodeName.replace(/-/g," ") %></h2>
-        <img class="episode-img" src="<%= episode.coverImagePath %>" height="100px" alt="<%= episode.name %>">
-        <h2><%= episode.episodeNumber %> פרק</h2>
-    </a>
+
+    <div class="episode-item">
+
+        <div class="cover-img-container episode-img-size clicked">
+            <a href=/projects/<%= project.name.replace(/ /g,"-") %>/<%= episode.episodeNumber %>>
+                <img class="image-contains episode-img-size" src="<%= episode.coverImagePath %>" alt="<%= episode.episodeName %>">
+                <div class="img-text-top text-on-point">
+                    <h3><%= episode.episodeNumber %> פרק</h3>
+                </div>
+            </a>
+    
+            <div class="img-text-bottom text-on-point edit-text edit-episode">
+                <h3><i class="fas fa-pen"></i> ערוך</h3>
+            </div>
+        </div>
+
+
+        <form class="episode-fields" hidden>
+            <input name="episodeNumber" value="<%= episode.episodeNumber %>">
+            <input name="episodeName" value="<%= episode.episodeName %>">
+            <input name="link" value="<%= episode.link %>">
+        </form>
+    
+    </div>
+    
 <% }); %>
 </div>
+
+

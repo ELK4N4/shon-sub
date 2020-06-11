@@ -14,18 +14,22 @@
     margin: 2rem 1rem;
 }
 
+.episode-item {
+    margin: 1rem 1rem;
+}
+
 .image-contains {
     object-fit: contain;
 }
 
 .project-img-size {
-	width:200px;
-  	height:300px;
+	width: 200px;
+  	height: 300px;
 }
 
 .episode-img-size {
-	width:300px;
-  	height:200px;
+	width: 200px;
+    height: 130px;
 }
 
 .clicked {
@@ -49,10 +53,10 @@
     color: white;
     top: 0;
     left: 0;
-    padding: 0.3rem 0;
+    padding: .5rem;
     transform: translate(0px, -90px);
     width: 100%;
-    max-height: 28%;
+    max-height: 35%;
   	overflow: hidden;
     background-color: rgba(0,0,0,0.7);
     transition: transform .4s ease;
@@ -65,28 +69,10 @@
     color: white;
     bottom: 0;
     left: 0;
-    padding: 0.3rem 0;
+    padding: .5rem;
     transform: translate(0px, -90px);
     width: 100%;
-    max-height: 28%;
-  	overflow: hidden;
-    background-color: rgba(0,0,0,0.7);
-    transition: transform .4s ease;
-    text-align: center;
-}
-
-
-
-.img-text-bottom {
-	display: inline;
-    position: absolute;
-    color: white;
-    bottom: 0;
-    left: 0;
-    padding: 0.3rem 0;
-    transform: translate(0px, 90px);
-    width: 100%;
-    max-height: 28%;
+    max-height: 35%;
   	overflow: hidden;
     background-color: rgba(0,0,0,0.7);
     transition: transform .4s ease;
@@ -94,9 +80,16 @@
 }
 
 .edit-text {
+    max-height: 100%;
+    cursor: pointer;
     color: rgb(36, 36, 36);
     background-color: white;
     padding: 0.7rem 0;
+    transition: .2s ease;
+}
+
+.edit-text:hover {
+    padding: 1.1rem 0;
 }
 
 .text-on-point {
@@ -109,4 +102,88 @@
 
 .cover-img-container:hover .img-text-bottom {
     transform: translate(0px, 0px);
+}
+
+/* PROJECT */
+.project-details {
+    position: relative;
+    top: -3rem;
+    margin-bottom: 5rem;
+}
+
+.project-img {
+    position: absolute;
+    top: 4rem;
+    right: 3rem;
+    transform: scale(1.2);
+}
+
+.project-showcase {
+    min-height: 18rem;
+    padding-top: 4rem;
+    padding-bottom: 1rem;
+    padding-right: 19rem;
+    background-color: var(--primary-color);
+    box-shadow: 0px 0px 20px black;
+}
+
+.project-showcase h1 {
+    display: inline-block;
+    margin: 1rem 0;
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+    color: white;
+    background-color: white;
+    border-radius: 200px;
+    color: black;
+    padding: .4rem 1.5rem;
+    box-shadow: 0px 0px 20px black;
+}
+
+.project-summary {
+    margin-right: 1rem;
+}
+
+.project-showcase h3 {
+    margin-bottom: .4rem;
+    display: block;
+    color: white;
+    text-shadow: 0px 0px 10px #000000;
+
+}
+.project-showcase p {
+    color: white;
+}
+
+.project-tiny-details {
+    display: flex;
+    flex-direction: row-reverse;
+    flex-wrap: wrap;
+    padding: .5rem 0;
+    padding-right: 20rem;
+    padding-left: 2rem;
+    max-width: 70rem;
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.project-detail {
+    display: flex;
+    flex-direction: row-reverse;
+    flex-wrap: nowrap;
+    margin: .3rem;
+}
+
+.episode-form-width {
+    max-width: 20rem;
+}
+
+.new-episode-btn {
+    position: relative;
+    top: -2rem;
+    left: 2rem;
+}
+
+.episodes-container {
+    position: relative;
+    top: 1rem;
 }

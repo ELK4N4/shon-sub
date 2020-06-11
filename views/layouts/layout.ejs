@@ -17,13 +17,24 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/66d330ff96.js" crossorigin="anonymous"></script>
 </head>
-<body>
+
+<% if(typeof project === "object") { %>
+    <body style="background-image: url('<%= project.coverImagePath.replace(/\\/g, "/") %>') !important;
+                                            background-position: top;
+                                            background-size: 800px; !important;">
+<% } else { %> 
+    <body style="background-image: url('https://m.media-amazon.com/images/M/MV5BN2UwOTMwMjMtZTE5MS00YmY4LTg4YjAtZDE3ZTg3YTU5MmQ2XkEyXkFqcGdeQXVyODEyMDIxNDY@._V1_.jpg'); !important;">
+<% } %>
 
     <div id="blur" class="closeForm"></div>
     <%- include('../partials/__login_form.ejs') %> 
     <%- include('../partials/__register_form.ejs') %> 
     <%- include('../projects/__new_project_form.ejs') %>
     <%- include('../projects/__edit_project_form.ejs') %>
+    <% if(data.page.name === "project") { %> 
+        <%- include('../projects/__new_episode_form.ejs') %>
+        <%- include('../projects/__edit_episode_form.ejs') %>
+    <% } %> 
     <%- include('../partials/header.ejs') %>
     <main>
         <div class="content">

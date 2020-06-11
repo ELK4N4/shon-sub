@@ -38,13 +38,22 @@ const removeImage = function(uploadPath, deletedItem) {
 router.get('/:episode', async (req, res) => {
     const data = await getData('projects', req.user);
     
+
     const project = await Project.findOne({name: req.project});
     if(!project){
         return res.status(404).send('Project Not Found');
     }
-    const episode = project.episodes.find(episode => episode.episodeNumber == req.params.episode);
+    const episode = project.episodes.find(episode => {
+        if(episode.episodeNumber == req.params.episode) {
+            episode.views++;
+            return true;
+        }
+        return false
+    });
+
 
     if(episode) {
+        await project.save();
         return res.status(200).render('projects/episode.ejs',{data, project, episode});
     }
 
@@ -53,7 +62,6 @@ router.get('/:episode', async (req, res) => {
 
 //POST new episode to exist project - adminOnly
 router.post('/', uploadEpisode.single('cover'), async (req, res) => {
-
     const fileName = req.file != null ? req.file.filename : null;
 
     const newEpisode = {
@@ -63,8 +71,12 @@ router.post('/', uploadEpisode.single('cover'), async (req, res) => {
         coverImageName: fileName
     };
 
+    
 
-    const project = await Project.findOne({name: req.project});
+
+    const projectName = req.project;
+
+    const project = await Project.findOne({name: projectName});
     if(!project){
         removeImage(uploadEpisodesPath, newEpisode);
         return res.status(404).send('Project Not Found');
@@ -77,7 +89,6 @@ router.post('/', uploadEpisode.single('cover'), async (req, res) => {
         return res.status(404).send('Episode ' + req.body.episodeNumber + ' is exist');
     }
 
-    
 
     project.episodes.push(newEpisode);
 
@@ -117,9 +128,11 @@ router.delete('/:episode', async (req, res) => {
 router.put('/:episode', uploadEpisode.single('cover'), async (req, res) => {
     const project = await Project.findOne({name: req.project});
 
+    console.log(req.body);
+
     let newEpisode = req.body;
     if(req.file) {
-        newEpisode.fileName = req.file.fileName;
+        newEpisode.coverImageName = req.file.filename;
     }
 
     if(!project){
@@ -127,19 +140,21 @@ router.put('/:episode', uploadEpisode.single('cover'), async (req, res) => {
         return res.status(404).send('Project Not Found');
     }
 
-    let episode = project.episodes.find(episode => episode.episodeNumber == req.params.episode);
+    let epidoseExist = project.episodes.find(episode => episode.episodeNumber == req.params.episode);
 
-    if(!episode) {
+    if(!epidoseExist) {
         removeImage(uploadEpisodesPath, newEpisode);
         return res.status(404).send('Episode ' + req.params.episode + ' not found');
     }
 
     
     
-    const updatedEpisode = Object.assign(episode, newEpisode);
+    const updatedEpisode = Object.assign(epidoseExist, newEpisode);
+
+   
 
     const checkEpisode = await Project.updateOne(
-        { "name" : req.params.project, "episodes.episodeNumber": req.params.episode }, 
+        { "name" : req.project, "episodes.episodeNumber": req.params.episode }, 
         { "$set": { "episodes.$": updatedEpisode }}
     );
 

@@ -51,7 +51,7 @@ router.get('/new-project', adminOnly, async (req, res) => {
 
 //GET all episodes of exist project
 router.get('/:project', async (req, res) => {
-    const data = await getData('projects', req.user);
+    const data = await getData('project', req.user);
     
     const projectName = req.params.project.replace(/-/g," ");
 
@@ -67,7 +67,6 @@ router.get('/:project', async (req, res) => {
 //POST new project - adminOnly
 router.post('/', adminOnly, uploadProject.single('cover'), async (req, res) => {
     
-
     const fileName = req.file != null ? req.file.filename : null;
     const project = new Project({
         name: req.body.name,
@@ -110,14 +109,14 @@ router.post('/', adminOnly, uploadProject.single('cover'), async (req, res) => {
 
 //DELETE exist project - adminOnly
 router.delete('/:project', async (req, res) => {
-    const deletedProject = await Project.findOneAndRemove({ name: req.params.project });
-
+    const projectName = req.params.project.replace(/-/g," ");
+    const deletedProject = await Project.findOneAndRemove({ name: projectName });
     if (deletedProject) {
         removeImage(uploadProjectsPath, deletedProject);
-        res.send("deleted");
+        res.status(200).send(deletedProject);
     }
     else {
-        res.send("error");
+        res.status(401).send("error");
     }
 });
 
@@ -125,12 +124,13 @@ router.delete('/:project', async (req, res) => {
 router.put('/:project', uploadProject.single('cover'), async (req, res) => {
     let updatedProject = req.body;
     if(req.file) {
-        updatedProject.fileName = req.file.fileName;
+        updatedProject.coverImageName = req.file.filename;
     }
 
     const projectName = req.params.project.replace(/-/g," ");
 
     updatedProject = await Project.findOneAndUpdate({name: projectName}, updatedProject, {new: true});
+
     if(!updatedProject){
         return res.status(404).send('Project Not Found');
     }
@@ -145,7 +145,8 @@ router.put('/:project', uploadProject.single('cover'), async (req, res) => {
 
 episodesRouter = require('./episodes');
 router.use('/:project/', (req, res, next) => {
-    req.project = req.params.project;
+    const projectName = req.params.project.replace(/-/g," ");
+    req.project = projectName;
     next();
   }, episodesRouter);
 

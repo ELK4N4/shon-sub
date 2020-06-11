@@ -35,9 +35,10 @@ body {
     padding: 0;
     box-sizing: border-box;
     height: 100%;
-    background-image: url("https://m.media-amazon.com/images/M/MV5BN2UwOTMwMjMtZTE5MS00YmY4LTg4YjAtZDE3ZTg3YTU5MmQ2XkEyXkFqcGdeQXVyODEyMDIxNDY@._V1_.jpg");
-    background-repeat: repeat; /* Do not repeat the image */
+    background-image: none;
+    background-position: center;
 }
+
 
 h1,h2,h3,p,a {
     display: inline;
@@ -58,10 +59,11 @@ h2 {
 
 h3 {
     font-size: 1.2rem;
+    margin: 0 0rem;
 }
 
 p {
-    font-size: 1rem;
+    font-size: 1.1rem;
     font-weight: 100;
 }
 
@@ -129,6 +131,31 @@ a {
     border: 3px solid var(--primary-color);
 }
 
+.secondary-button {
+    border-radius: 200px;
+    margin: 0 .4rem;
+    float: left;
+    font-size: 1rem;
+    font-weight: bold;
+    outline: none;
+    border: 3px solid var(--primary-color);
+    cursor: pointer;
+    background-color: var(--secondary-color);
+    color: var(--primary-color);;
+    padding: .7rem 1rem;
+    text-align: center;
+    text-decoration: none;
+    transition: color .2s linear,
+                border .4s linear,       
+                background-color .2s linear;
+}
+
+.secondary-button:hover{
+    color: var(--secondary-color);
+    background-color: var(--primary-color);
+    border: 3px solid var(--secondary-color);
+}
+
 .light-button {
     border-radius: 200px;
     margin: 0 .4rem;
@@ -161,7 +188,7 @@ a {
     outline: none;
     border: 0px solid var(--primary-color);
     cursor: pointer;
-    background-color: #f44336;;
+    background-color: #d41a0d;;
     color: white;
     padding: .7rem 1rem;
     text-align: center;
@@ -447,7 +474,7 @@ form .switch-log {
     flex-wrap: wrap;
     justify-content: center;
     align-items: space-between;
-    padding-top: .3rem;
+    padding-top: 0rem;
 }
 
 .new-project-form-width {
@@ -507,6 +534,10 @@ input[type=checkbox]:checked:after {
 	top: -1px;
 	left: 2px;
 	color: white;
+}
+
+.float-right {
+    float: right;
 }
 
 .summary-area {
@@ -640,8 +671,29 @@ footer {
 
 /* /////////////////////////////////// */
 /* ------------ EPISODE -------------- */
+.episode-page {
+    position: relative;
+    top: -3rem;
+}
+
 .episode-details {
-    text-align: right;
+    padding: 1rem 3rem;
+    width: 100%;
+    background-color: #000000;
+    color: white;
+    box-shadow: 0px 0px 20px white;
+}
+
+.episode-details .project-title {
+    padding: .3rem .8rem;
+    border-radius: 200px;
+    display: inline-block;
+    background-color:rgba(255, 255, 255, 0.3);
+    color: black;
+}
+
+.episode-details h2{
+    text-shadow: 0px 0px 10px #000000;
 }
 
 .watch {

@@ -1,0 +1,42 @@
+<form class="fixed-form episode-form-width" id="edit-episode-form" action="/projects/<%= project.name %>" method="POST" enctype="multipart/form-data">
+  
+    <a class="close-button closeForm" href="javascript:void(0)"><i class="fas fa-times-circle"></i></a>
+    
+    <h1>ערוך פרק</h1>
+    <div class="flexed-container">
+
+
+        <div class="input-container">
+            <label for="episodeName"><b>שם פרק</b></label>
+            <br>
+            <br>
+            <input type="text" placeholder="שם פרק" name="episodeName" dir="rtl" required>
+        </div>
+
+        <div class="input-container">
+            <label for="link"><b>לינק</b></label>
+            <br>
+            <br>
+            <input type="text" placeholder="לינק" name="link" dir="rtl" required>
+        </div>
+
+        
+        <div class="input-container">
+            <label for="episodesNumber"><b>מספר פרק</b></label>
+            <br>
+            <br>
+            <input type="number" placeholder="מספר פרק" name="episodeNumber" dir="rtl" required>
+        </div>
+        
+        
+
+        <div class="input-container">
+            <input type="file" name="cover" dir="rtl">
+        </div>
+
+    </div>
+
+    <button class="warning-button delete-episode float-right" type="button">מחק פרק</button>
+    <button class="confirm-button update-episode" type="submit">שמור</button>
+    <button class="light-button closeForm" type="button">ביטול</button>
+</form>
