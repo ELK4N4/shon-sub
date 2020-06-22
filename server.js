@@ -29,7 +29,7 @@ app.set('views', __dirname + '/views');
 app.set('layout', 'layouts/layout');
 app.use(expressLayout);
 app.use(express.static('public'));
-app.use(favicon(__dirname + '/public/images/favicon.ico'));
+app.use(favicon(__dirname + '/public/images/favicon.png'));
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());
