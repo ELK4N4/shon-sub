@@ -51,7 +51,9 @@ router.post('/register', async (req, res) => {
         return res.status(400).send('Email already exist');
     }
 
-    const usernameExist = await User.findOne({name: { $regex : new RegExp(req.body.name, 'i') }}); //Check if the username is exist with ignoring sensitive case
+    
+    let regexName =  `^${req.body.name}$`;
+    const usernameExist = await User.findOne( {name: { $regex: regexName, $options:'i' } }); //Check if the username is exist with ignoring case sensitive
 
     if(usernameExist) {
         return res.status(400).send('Username already exist');

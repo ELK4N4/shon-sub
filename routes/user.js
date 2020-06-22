@@ -4,6 +4,8 @@ const getData = require('../data');
 const User = require('../models/User');
 const bcrypt = require('bcryptjs');
 const isAdmin = require('./auth/isAdmin');
+const adminOnly = require('./auth/adminOnly');
+const ownerOnly = require('./auth/ownerOnly');
 
 
 router.get('/', async (req, res) => {
@@ -65,7 +67,7 @@ router.get('/admins', async (req, res) => {
 
 
 
-router.post('/admins', async (req, res) => {
+router.post('/admins', ownerOnly, async (req, res) => {
 
     const user = await User.findOne( {name: req.body.name } ); //Check if the username is exist with ignoring case sensitive
     
@@ -80,7 +82,7 @@ router.post('/admins', async (req, res) => {
 
 });
 
-router.delete('/admins', async (req, res) => {
+router.delete('/admins', ownerOnly, async (req, res) => {
 
     const user = await User.findOne( {name: req.body.name } ); //Check if the username is exist with ignoring case sensitive
     

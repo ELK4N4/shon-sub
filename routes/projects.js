@@ -110,7 +110,7 @@ router.post('/', adminOnly, uploadProject.single('cover'), async (req, res) => {
 });
 
 //DELETE exist project - adminOnly
-router.delete('/:project', async (req, res) => {
+router.delete('/:project', adminOnly, async (req, res) => {
     const projectName = req.params.project.replace(/-/g," ");
     const deletedProject = await Project.findOneAndRemove({ name: projectName });
     if (deletedProject) {
@@ -123,7 +123,7 @@ router.delete('/:project', async (req, res) => {
 });
 
 //UPDATE project - adminOnly
-router.put('/:project', uploadProject.single('cover'), async (req, res) => {
+router.put('/:project', adminOnly, uploadProject.single('cover'), async (req, res) => {
     console.log(req.body);
     delete req.body.image; //the client send AJAX call with "image" property that isn't needed
 

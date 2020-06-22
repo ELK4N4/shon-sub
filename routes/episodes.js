@@ -61,7 +61,7 @@ router.get('/:episode', async (req, res) => {
 });
 
 //POST new episode to exist project - adminOnly
-router.post('/', uploadEpisode.single('cover'), async (req, res) => {
+router.post('/', adminOnly, uploadEpisode.single('cover'), async (req, res) => {
     const fileName = req.file != null ? req.file.filename : null;
 
     const newEpisode = {
@@ -98,7 +98,7 @@ router.post('/', uploadEpisode.single('cover'), async (req, res) => {
 });
 
 //DELETE episode from exist project - adminOnly
-router.delete('/:episode', async (req, res) => {
+router.delete('/:episode', adminOnly, async (req, res) => {
     const project = await Project.findOne({name: req.project});
     if(!project){
         return res.status(404).send('Project Not Found');
@@ -125,7 +125,7 @@ router.delete('/:episode', async (req, res) => {
 
 
 //UPDATE episode - adminOnly
-router.put('/:episode', uploadEpisode.single('cover'), async (req, res) => {
+router.put('/:episode', adminOnly, uploadEpisode.single('cover'), async (req, res) => {
     delete req.body.image;
 
     const project = await Project.findOne({name: req.project});
