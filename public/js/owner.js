@@ -7,6 +7,10 @@ $(document).ready(function(){
           admins.forEach(admin => {
             $(".admins-list").append(`<li><span class='admin-name'>${admin.name}</span> <i class="fas fa-times-circle remove-admin-btn"></i>`);
           });
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+          alert(thrownError);
+          alert(xhr.responseText);
         }
     });
 
@@ -58,6 +62,10 @@ $(document).on('click', '.remove-admin-btn', function() {
         dataType: 'json',
         success: function(result) {
             adminElement.remove();
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+          alert(thrownError);
+          alert(xhr.responseText);
         }
     });
     return true;

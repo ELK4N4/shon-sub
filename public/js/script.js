@@ -84,6 +84,10 @@ $(document).ready(function(){
         success: function(result) {
           console.log(result);
           location.reload();
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+          alert(thrownError);
+          alert(xhr.responseText);
         }
     });
     return true;

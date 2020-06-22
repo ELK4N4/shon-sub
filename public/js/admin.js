@@ -50,6 +50,10 @@ $(document).ready(function(){
             processData: false, // NEEDED, DON'T OMIT THIS
             success: function(result) {
                 location.reload();
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert(thrownError);
+                alert(xhr.responseText);
             }
         });
         return true;
@@ -66,6 +70,10 @@ $(document).ready(function(){
             type: 'DELETE',
             success: function(result) {
                 location.replace('/projects');
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert(thrownError);
+                alert(xhr.responseText);
             }
         });
         return true;
@@ -118,6 +126,10 @@ $(document).ready(function(){
             processData: false, // NEEDED, DON'T OMIT THIS
             success: function(result) {
                 location.reload();
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert(thrownError);
+                alert(xhr.responseText);
             }
         });
         return true;
@@ -133,6 +145,10 @@ $(document).ready(function(){
             type: 'DELETE',
             success: function(result) {
                 location.reload();
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert(thrownError);
+                alert(xhr.responseText);
             }
         });
         return true;

@@ -126,10 +126,12 @@ router.delete('/:project', adminOnly, async (req, res) => {
 router.put('/:project', adminOnly, uploadProject.single('cover'), async (req, res) => {
     delete req.body.image; //the client send AJAX call with "image" property that isn't needed
 
+    const fileName = req.file != null ? req.file.filename : null;
+
     const projectName = req.params.project.replace(/-/g," ");
     const {error} = validation.projectValidation(req.body);
     if(error) {
-        removeImage(uploadProjectsPath, req.file.filename);
+        removeImage(uploadProjectsPath, fileName);
         return res.status(400).send(error.details[0].message);
     }
 
