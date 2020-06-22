@@ -12,6 +12,7 @@ const verifyUser = require('./routes/auth/verifyToken');
 /* Import Routers */
 const indexRouter = require('./routes/index.js');
 const projectsRouter = require('./routes/projects.js');
+const userRouter = require('./routes/user.js');
 const loginRouter = require('./routes/login.js');
 const registerRouter = require('./routes/register.js');
 const authRouter = require('./routes/auth/auth.js');
@@ -46,9 +47,17 @@ db.once('open', () => {console.log('Mongoose is connected');});
 /* Middleware */
 app.use('/', indexRouter);
 app.use('/projects', projectsRouter); //פרוייקטים
+app.use('/user', userRouter); //הגדרות
 app.use('/login', loginRouter);
 app.use('/register', registerRouter);
 app.use('/auth', authRouter);
+
+const getData = require('./data');
+app.use(async function(req, res, next) {
+    const data = await getData('404', req.user);
+    res.render('404.ejs', {data});
+});
+
 
 
 /* Server Listening */

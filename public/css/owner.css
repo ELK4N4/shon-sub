@@ -1,0 +1,33 @@
+.remove-admins {
+    display: block;
+    text-align: center;
+    margin-top: 1rem;
+    margin-top: 4rem;
+    padding: 0rem;;
+}
+
+
+.admins-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.admins-list li{
+    background-color: rgb(238, 238, 238);
+    padding: 1.5rem;
+}
+
+.admins-list li:hover{
+    background-color: rgb(216, 216, 216);
+}
+
+
+.remove-admin-btn {
+    font-size: 1.3rem;
+}
+
+.remove-admin-btn:hover {
+    cursor: pointer;
+    color: rgb(180, 37, 37);
+}

@@ -22,22 +22,36 @@ const loginValidation = (data) => {
     return loginSchema.validate(data);
 };
 
-//New Project Validation
-const newProjectValidation = (data) => {
+//Project Validation
+const projectValidation = (data) => {
     const projectSchema = Joi.object({
         name: Joi.string().min(2).max(30).required(),
-        englishName: Joi.string(),
-        japaneseName: Joi.string(),
-        genre: Joi.string(),
+        englishName: Joi.string().allow(''),
+        japaneseName: Joi.string().allow(''),
+        genre: Joi.string().allow(''),
         process: Joi.string().min(2).max(20).required(),
-        episodesNumber: Joi.number(),
-        summary: Joi.string(),
-        coverImageName: Joi.string()
+        episodesNumber: Joi.number().allow(''),
+        summary: Joi.string().allow(''),
+        coverImageName: Joi.string().allow('')
     });
 
     return projectSchema.validate(data);
 };
 
+//Episode Validation
+const episodeValidation = (data) => {
+    const episodeSchema = Joi.object({
+        episodeName: Joi.string().min(2).max(30).required(),
+        episodeNumber: Joi.number().required(),
+        link: Joi.string().required(),
+        coverImageName: Joi.string()
+    });
+
+    return episodeSchema.validate(data);
+};
+
 module.exports.loginValidation = loginValidation;
 module.exports.registerValidation = registerValidation;
-module.exports.newProjectValidation = newProjectValidation;
+module.exports.newProjectValidation = projectValidation;
+module.exports.projectValidation = projectValidation;
+module.exports.episodeValidation = episodeValidation;

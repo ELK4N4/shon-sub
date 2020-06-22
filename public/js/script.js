@@ -1,24 +1,34 @@
 const loginForm = document.getElementById("login-form");
 const registerForm = document.getElementById("register-form");
-const newProjectForm = document.getElementById("new-project-form");
-const editProjectForm = document.getElementById("edit-project-form");
-const newEpisodeForm = document.getElementById("new-episode-form");
-const editEpisodeForm = document.getElementById("edit-episode-form");
 const blur = document.getElementById("blur");
 
-let projectName;
-let episodeNumber;
+function closeAllForms() {
+  blur.classList.add("invisible");
+  blur.classList.remove("visible");
+  $(".fixed-form").addClass("invisible");
+  $(".fixed-form").removeClass("visible");
+}
+
+window.onscroll = function() {
+  scrollFunction()
+};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
+    document.documentElement.style.setProperty('--header-height', '5rem');
+  } else {
+    document.documentElement.style.setProperty('--header-height', '6.5rem');
+  }
+}
 
 $(document).ready(function(){
 
   $(".closeForm").click(function(){
+    closeAllForms();
+    /*
     if($(this).attr("id") == "blur") {
-        $(loginForm).addClass("invisible");
-        $(loginForm).removeClass("visible");
-        $(registerForm).addClass("invisible");
-        $(registerForm).removeClass("visible");
-        $(newProjectForm).addClass("invisible");
-        $(newProjectForm).removeClass("visible");
+        $(".fixed-form").addClass("invisible");
+        $(".fixed-form").removeClass("visible");
         blur.classList.add("invisible");
         blur.classList.remove("visible");
     } 
@@ -27,169 +37,60 @@ $(document).ready(function(){
         $(this).parent().removeClass("visible");
         blur.classList.add("invisible");
         blur.classList.remove("visible");
-      }
-  });
-
-  $(".edit-project").click(function(){
-
-
-    var values = $(this).parent().parent().find('.project-fields').serializeArray();
-    values.forEach(value => {
-        $(`#edit-project-form input[name=${value.name}]`).val(value.value);
-        $(`#edit-project-form textarea[name=${value.name}`).val(value.value);
-        $(`#edit-project-form select[name=${value.name}`).val(value.value);
-    });
-
-    projectName = $(`#edit-project-form input[name=name]`).val();
-
-    $("#edit-project-form").addClass("visible");
-    $("#edit-project-form").removeClass("invisible");
+    }
+    */
   });
 
 
+  $("#register-form").submit(function(e){
+    let pass = $("#pass").val();
+    let confirmPass = $("#confirm-pass").val();
+    console.log(confirmPass);
+    console.log(confirmPass);
+    if(pass !== confirmPass) {
+      $("#message").html('הסיסמאות אינן תואמות, הקש שנית').css('color', 'red')
+      e.preventDefault();
+    } else {
+      $("#message").html('');
+      $(this).submit();
+    }
+  });
 
-  $(".update-project").click(function(e){
+
+  $("#update-profile-form").submit(function(e){
     e.preventDefault();
-    let link = projectName.replace(/ /g,"-");
-
-    var form = $("#edit-project-form")[0]; // Need to use standard javascript object here
-    var formData = new FormData(form);
-
-    formData.getAll('name');
-    // Attach file
-    formData.append('image', $('input[type=file]')[0].files[0]);
-
-    $.ajax({
-        url: '/projects/' + link,
-        type: 'PUT',
-        data: formData,
-        contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
-        processData: false, // NEEDED, DON'T OMIT THIS
-        success: function(result) {
-            location.reload();
-        }
-    });
-    return true;
-
-  });
-
-
-  $(".delete-project").click(function(e){
-    e.preventDefault();
-    let link = projectName.replace(/ /g,"-");
-    console.log(link);
-    $.ajax({
-        url: '/projects/' + link,
-        type: 'DELETE',
-        success: function(result) {
-            location.reload();
-        }
-    });
-    return true;
-
-  });
-
-  $(".new-episode-btn").click(function(){
-    $("#new-episode-form").addClass("visible");
-    $("#new-episode-form").removeClass("invisible");
-  });
-
-
-  $(".edit-episode").click(function(){
-
-
-    var values = $(this).parent().parent().find('.episode-fields').serializeArray();
-    values.forEach(value => {
-        $(`#edit-episode-form input[name=${value.name}]`).val(value.value);
-        $(`#edit-episode-form textarea[name=${value.name}`).val(value.value);
-        $(`#edit-episode-form select[name=${value.name}`).val(value.value);
-    });
-
-    episodeNumber = $(`#edit-episode-form input[name=episodeNumber]`).val();
-    console.log(episodeNumber);
-
-    $("#edit-episode-form").addClass("visible");
-    $("#edit-episode-form").removeClass("invisible");
-  });
-
-
-
-  $(".update-episode").click(function(e){
-    e.preventDefault();
-    let link = `${window.location.pathname}/${episodeNumber}`;
-    var form = $("#edit-episode-form")[0]; // Need to use standard javascript object here
-    var formData = new FormData(form);
-
-    formData.getAll('name');
-    // Attach file
-    formData.append('image', $('input[type=file]')[0].files[0]);
-
-    $.ajax({
-        url: link,
-        type: 'PUT',
-        data: formData,
-        contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
-        processData: false, // NEEDED, DON'T OMIT THIS
-        success: function(result) {
-            location.reload();
-        }
-    });
-    return true;
-
-  });
-
-
-  $(".delete-episode").click(function(e){
-    e.preventDefault();
-    let link = `${window.location.pathname}/${episodeNumber}`;
-    $.ajax({
-        url: link,
-        type: 'DELETE',
-        success: function(result) {
-            location.reload();
-        }
-    });
-    return true;
-
-  });
-
-  $(".new-episode-btn").click(function(){
-    $("#new-episode-form").addClass("visible");
-    $("#new-episode-form").removeClass("invisible");
-  });
-
-
-  /*
-  $(".add-episode").click(function(e){
-    //e.preventDefault();
     
+    var form = $("#update-profile-form")[0]; // Need to use standard javascript object here
+    var formData = new FormData(form);
 
-    let link = window.location.pathname;
-    console.log(link);
+    // important! - body-parser don't support formData object //
+    
+    let data ={}
+    //convert formData to a object
+    for (let [key, value] of formData.entries()) { 
+      data[key] = value;
+    }
+
+    if(data.password == '') {
+      delete data.password;
+    }
+
     $.ajax({
-        url: link,
-        type: 'POST',
-        cache: false,
-        contentType: false,
-        processData: false,
-        data: $('#new-episode-form').serialize(),
+        url: '/user/profile',
+        type: 'PUT',
+        data: JSON.stringify(data),
+        contentType: 'application/json',
+        dataType: 'json',
         success: function(result) {
-            location.reload();
+          console.log(result);
+          location.reload();
         }
     });
     return true;
 
   });
-  */
 
 });
-
-function showForm(form) {
-    form.classList.add("invisible");
-    form.classList.remove("visible");
-    blur.classList.add("invisible");
-    blur.classList.remove("visible");
-};
 
 
 function login() {
@@ -210,14 +111,25 @@ function register() {
     blur.classList.remove("invisible");
 };
 
-function newProject() {
-    newProjectForm.classList.add("visible");
-    newProjectForm.classList.remove("invisible");
-    loginForm.classList.add("invisible");
-    loginForm.classList.remove("visible");
-    registerForm.classList.add("invisible");
-    registerForm.classList.remove("visible");
-    blur.classList.add("visible");
-    blur.classList.remove("invisible");
-};
 
+ // Declare all variables
+ let i, tabcontent, tablinks;
+
+ // Get all elements with class="tabcontent" and hide them
+ tabcontent = document.getElementsByClassName("tab-content");
+ tabcontent[0].style.display = "block";
+function openTab(evt, tabName) {
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+
+  // Get all elements with class="tablinks" and remove the class "active"
+  tablinks = document.getElementsByClassName("tab-btn");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+
+  // Show the current tab, and add an "active" class to the link that opened the tab
+  document.getElementById(tabName).style.display = "block";
+  evt.currentTarget.className += " active";
+}

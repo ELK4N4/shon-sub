@@ -94,7 +94,7 @@ router.post('/', uploadEpisode.single('cover'), async (req, res) => {
 
     await project.save();
 
-    res.send(newEpisode);
+    res.status(200).redirect(`/projects/${projectName}`);
 });
 
 //DELETE episode from exist project - adminOnly
@@ -126,6 +126,8 @@ router.delete('/:episode', async (req, res) => {
 
 //UPDATE episode - adminOnly
 router.put('/:episode', uploadEpisode.single('cover'), async (req, res) => {
+    delete req.body.image;
+
     const project = await Project.findOne({name: req.project});
 
     console.log(req.body);

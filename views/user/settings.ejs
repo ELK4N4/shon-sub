@@ -1,0 +1,67 @@
+<h1 class="title">הגדרות</h1>
+
+<div class="tabs-container">
+    <div class="tabs">
+        <button class="tab-btn active" onclick="openTab(event, 'user-profile')"><h3>פרטי משתמש</h3></button>
+        <% if(user.owner) { %> 
+            <button class="tab-btn" onclick="openTab(event, 'admins')"><h3>אדמינים</h3></button>
+        <% } %> 
+    </div>
+
+    <div id="user-profile" class="tab-content">
+        <form class="" id="update-profile-form">
+            <br>
+            <h1>עדכון פרטי משתמש</h1>
+            <br>
+            <div class="flex-container">
+        
+                <div class="input-container">
+                    <label for="name"><b>שם משתמש</b></label>
+                    <br>
+                    <input type="text" placeholder="שם משתמש" name="name" dir="rtl" value="<%= data.user.name %>" required>
+                </div>
+        
+                <div class="input-container">
+                    <label for="password"><b>סיסמא</b></label>
+                    <br>
+                    <input type="password" placeholder="סיסמא" name="password" dir="rtl">
+                </div>
+                
+            </div>
+            <button class="primary-button update-profile" type="submit">עדכן</button>
+        
+        </form>
+    </div>
+
+
+    <% if(user.owner) { %> 
+        <div id="admins" class="tab-content">
+            
+
+            <form class="" id="add-admin-form" action="/user/admins" method="POST">
+                <h1>עדכון אדמינים</h1>
+                <br>
+                <br>
+                <h2>הוסף אדמינים</h2>
+
+                <div class="">
+                    <div class="input-container">
+                        <label for="name"><b>שם משתמש</b></label>
+                        <br>
+                        <input type="text" placeholder="שם משתמש" name="name" dir="rtl" required>
+                    </div>
+                    
+                </div>
+                <button class="confirm-button" type="submit">הוסף</button>
+            </form>
+
+            <div class="remove-admins">
+                <h2>הסר אדמינים</h2>
+                <ul class="admins-list">
+
+                </ul>
+            </div>
+        </div>
+    <% } %> 
+</div>
+

@@ -5,6 +5,7 @@ const validation = require('../../validation');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
+
 //Login
 router.post('/login', async (req, res) => {
     const {error} = validation.loginValidation(req.body);
@@ -48,6 +49,12 @@ router.post('/register', async (req, res) => {
 
     if(emailExist) {
         return res.status(400).send('Email already exist');
+    }
+
+    const usernameExist = await User.findOne({name: { $regex : new RegExp(req.body.name, 'i') }}); //Check if the username is exist with ignoring sensitive case
+
+    if(usernameExist) {
+        return res.status(400).send('Username already exist');
     }
 
     //Hash Password

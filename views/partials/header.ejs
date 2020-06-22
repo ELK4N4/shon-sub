@@ -1,18 +1,18 @@
-<% const navMenu = [ {name: 'home',hebName: 'ראשי'}, {name: 'projects',hebName: 'פרוייקטים',dropDown: true},{name: 'about',hebName: 'אודות',},{name: 'forum',hebName: 'פורום',} ] %>
+<% let navMenu = [ {name: 'home',hebName: 'ראשי'}, {name: 'projects',hebName: 'פרוייקטים',dropDown: true},{name: 'about',hebName: 'אודות',},{name: 'forum',hebName: 'פורום',} ] %>
 
 
 <header class="top">
-    <div class="sign-section">
-        <div class="sign-name"><%= data.user.name %></div>
+    <div class="user-section">
+        <div class="user-name"><%= data.user.name %></div>
         <% if(!data.user.verified) { %>
-            <ul class="signs">
-                <li class="sign-item sign-in"><a href="javascript:void(0)" onclick="login()">התחבר</a></li>
-                <li class="sign-item register"><a href="javascript:void(0)" onclick="register()">הרשם</a></li>
+            <ul class="user-options">
+                <li class="option-item sign-in"><a href="javascript:void(0)" onclick="login()">התחבר</a></li>
+                <li class="option-item register"><a href="javascript:void(0)" onclick="register()">הרשם</a></li>
             </ul>
         <% } else { %>  
-            <ul class="signs">
-                <li class="sign-item sign-in"><a href=/auth/logout>התנתק</a></li>
-                <li class="sign-item register"><a href=#>הגדרות</a></li>
+            <ul class="user-options">
+                <li class="option-item sign-in"><a href=/auth/logout>התנתק</a></li>
+                <li class="option-item register"><a href=/user/settings>הגדרות</a></li>
             </ul>
         <% } %>
     </div>
@@ -34,8 +34,8 @@
                         <% data.allProjects.doneProjects.forEach(project => { %>
                             <a href="/projects/<%= project.name.replace(/ /g,"-") %>"><%= project.name.replace(/-/g," ") %></a>
                         <% }); %>
-                        <% if(data.user.role.includes('admin')) { %>
-                            <a href="javascript:void(0)" onclick="newProject()"><strong>+ פרוייקט חדש</strong></a>
+                        <% if(data.user.admin) { %>
+                            <a href="javascript:void(0)" class="new-project-btn"><strong>+ פרוייקט חדש</strong></a>
                         <% } %>
                     </div>
                 </div>
@@ -48,5 +48,5 @@
         <% }); %>
 
     </ul>
-    <div class="logo"><a href=/><strong>S</strong>hon<strong>S</strong>ub</a></div>
+    <div class="logo"><a href=/><strong>S</strong>hon<strong>S</strong>ub<span class="beta">BETA</span></a></div>
 </header>

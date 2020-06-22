@@ -1,0 +1,24 @@
+main {
+    background: linear-gradient(to bottom,var(--primary-color)  0%,  #000000 100%);
+}
+
+.not-found-title {
+    position: absolute;
+    position: absolute;
+    left: 50%;
+    top: 60%;
+    transform: translate(-50%, -50%);
+    font-family: logo-font3;
+    font-size: 15rem;
+    color: white;
+    text-align: center;
+    text-shadow: 0px 0px 20px black;
+}
+
+.not-found-subtitle {
+    font-size: 2rem;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    text-shadow: 0px 0px 10px black;
+    
+}

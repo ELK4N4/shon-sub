@@ -23,7 +23,6 @@ const episodeSchema = new mongoose.Schema({
     },
     addedBy: {
         type: mongoose.Schema.Types.ObjectId,
-        require: true,
         ref: 'User'
     },
     createdAt: {

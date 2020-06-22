@@ -17,11 +17,11 @@ const uploadProject = multer({
 });
 
 const fs = require('fs');
-const removeImage = function(uploadPath, deletedItem) {
-    if(deletedItem.coverImageName) {
-        fs.unlink(path.join(uploadPath, deletedItem.coverImageName), (err) => {
+const removeImage = function(uploadPath, fileName) {
+    if(fileName) {
+        fs.unlink(path.join(uploadPath, fileName), (err) => {
             if (err) {
-                console.log("failed to delete local image:"+err);
+                console.log("failed to delete local image:" + err);
             } else {
                 console.log('successfully deleted local image');                                
             }
@@ -68,6 +68,13 @@ router.get('/:project', async (req, res) => {
 router.post('/', adminOnly, uploadProject.single('cover'), async (req, res) => {
     
     const fileName = req.file != null ? req.file.filename : null;
+
+    const {error} = validation.projectValidation(req.body);
+    if(error) {
+        removeImage(uploadProjectsPath, fileName);
+        return res.status(400).send(error.details[0].message);
+    }
+
     const project = new Project({
         name: req.body.name,
         englishName: req.body.englishName,
@@ -79,29 +86,24 @@ router.post('/', adminOnly, uploadProject.single('cover'), async (req, res) => {
         addedBy: req.user._id,
         coverImageName: fileName
     });
-    
-    const {error} = validation.newProjectValidation(req.body);
-    if(error) {
-        removeImage(uploadProjectsPath, project);
-        return res.status(400).send(error.details[0].message);
-    }
+
     if(!req.user.verified) {
-        removeImage(uploadProjectsPath, project);
+        removeImage(uploadProjectsPath, fileName);
         return res.status(404).send("Not found");
     }
     const projectExist = await Project.findOne({name: req.body.name});
 
     if(projectExist) {
-        removeImage(uploadProjectsPath, project);
+        removeImage(uploadProjectsPath, fileName);
         return res.status(400).send('Project already exist');
     }
 
 
     try {
         const savedProject = await project.save();
-        res.status(200).redirect('/');
+        res.status(200).redirect('/projects');
     } catch(err) {
-        removeImage(uploadProjectsPath, project);
+        removeImage(uploadProjectsPath, fileName);
         res.status(400).send(err);
     }
 
@@ -112,7 +114,7 @@ router.delete('/:project', async (req, res) => {
     const projectName = req.params.project.replace(/-/g," ");
     const deletedProject = await Project.findOneAndRemove({ name: projectName });
     if (deletedProject) {
-        removeImage(uploadProjectsPath, deletedProject);
+        removeImage(uploadProjectsPath, deletedProject.coverImageName);
         res.status(200).send(deletedProject);
     }
     else {
@@ -122,12 +124,20 @@ router.delete('/:project', async (req, res) => {
 
 //UPDATE project - adminOnly
 router.put('/:project', uploadProject.single('cover'), async (req, res) => {
+    console.log(req.body);
+    delete req.body.image; //the client send AJAX call with "image" property that isn't needed
+
+    const projectName = req.params.project.replace(/-/g," ");
+    const {error} = validation.projectValidation(req.body);
+    if(error) {
+        removeImage(uploadProjectsPath, req.file.filename);
+        return res.status(400).send(error.details[0].message);
+    }
+
     let updatedProject = req.body;
     if(req.file) {
         updatedProject.coverImageName = req.file.filename;
     }
-
-    const projectName = req.params.project.replace(/-/g," ");
 
     updatedProject = await Project.findOneAndUpdate({name: projectName}, updatedProject, {new: true});
 
@@ -148,7 +158,7 @@ router.use('/:project/', (req, res, next) => {
     const projectName = req.params.project.replace(/-/g," ");
     req.project = projectName;
     next();
-  }, episodesRouter);
+}, episodesRouter);
 
 
 module.exports = router;

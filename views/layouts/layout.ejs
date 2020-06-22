@@ -10,8 +10,14 @@
     <!-- CCS -->
     <link href="/css/style.css" rel="stylesheet" type="text/css">
     <link href="/css/projects.css" rel="stylesheet" type="text/css">
-    <% if(data.user.role.includes("admin")) { %> 
+    <% if(data.user.admin) { %> 
         <link href="/css/admin.css" rel="stylesheet" type="text/css">
+    <% } %>
+    <% if(data.user.owner) { %> 
+        <link href="/css/owner.css" rel="stylesheet" type="text/css">
+    <% } %>
+    <% if(data.page.name === "404") { %> 
+        <link href="/css/404.css" rel="stylesheet" type="text/css">
     <% } %>
     <!-- SCRIPTS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -21,20 +27,18 @@
 <% if(typeof project === "object") { %>
     <body style="background-image: url('<%= project.coverImagePath.replace(/\\/g, "/") %>') !important;
                                             background-position: top;
-                                            background-size: 800px; !important;">
+                                            background-size: 800px !important;">
 <% } else { %> 
-    <body style="background-image: url('https://m.media-amazon.com/images/M/MV5BN2UwOTMwMjMtZTE5MS00YmY4LTg4YjAtZDE3ZTg3YTU5MmQ2XkEyXkFqcGdeQXVyODEyMDIxNDY@._V1_.jpg'); !important;">
+    <body style="background-image: url('https://m.media-amazon.com/images/M/MV5BN2UwOTMwMjMtZTE5MS00YmY4LTg4YjAtZDE3ZTg3YTU5MmQ2XkEyXkFqcGdeQXVyODEyMDIxNDY@._V1_.jpg') !important;">
 <% } %>
 
     <div id="blur" class="closeForm"></div>
     <%- include('../partials/__login_form.ejs') %> 
-    <%- include('../partials/__register_form.ejs') %> 
-    <%- include('../projects/__new_project_form.ejs') %>
-    <%- include('../projects/__edit_project_form.ejs') %>
-    <% if(data.page.name === "project") { %> 
-        <%- include('../projects/__new_episode_form.ejs') %>
-        <%- include('../projects/__edit_episode_form.ejs') %>
-    <% } %> 
+    <%- include('../partials/__register_form.ejs') %>
+    <% if(data.user.admin) { %> 
+        <%- include('../projects/__new_project_form.ejs') %>
+        <%- include('../projects/__edit_project_form.ejs') %>
+    <% } %>
     <%- include('../partials/header.ejs') %>
     <main>
         <div class="content">
@@ -43,8 +47,11 @@
     </main>
     <%- include('../partials/footer.ejs') %>
 
-    <% if(data.user.role.includes("admin")) { %> 
+    <% if(data.user.admin) { %> 
         <script src="/js/admin.js"></script>
+    <% } %>
+    <% if(data.user.owner) { %> 
+        <script src="/js/owner.js"></script>
     <% } %>
     <script src="/js/script.js"></script>
 </body>

@@ -4,7 +4,7 @@
 
   <h1>צור חשבון</h1>
 
-  <div class="flexed-container">
+  <div class="flex-container">
 
 
 
@@ -18,12 +18,17 @@
     </div>
 
     <div class="input-container">
-      <input type="password" placeholder="סיסמה" name="password" required>
+      <input type="password" placeholder="סיסמה" id="pass" name="password" required>
+    </div>
+
+    <div class="input-container">
+      <input type="password" placeholder="אימות סיסמה" id="confirm-pass" required>
+      <span id="message"></span>
     </div>
     
 
     <button type="submit" class="primary-button">הירשם</button>
-    <p class="switch-log">יש לך כבר חשבון? <a href="#" onclick="login()">התחבר</a></p>
+    <p class="switch-log">יש לך כבר חשבון? <a href="javascript:void(0)" onclick="login()">התחבר</a></p>
 
   </div>
   

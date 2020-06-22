@@ -1,8 +1,8 @@
 const jwt = require('jsonwebtoken');
-const isAdmin = require('./isAdmin');
+const isOwner = require('./isOwner');
 
 module.exports = async function (req,res,next) {
-    if(!isAdmin(req.user)) {
+    if(!isOwner(req.user)) {
         return res.status(403).redirect('/');
     }
     next();
