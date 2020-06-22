@@ -21,11 +21,13 @@
             &nbsp; &nbsp;
             <p><i class="fas fa-clock"></i> פורסם בתאריך: <%= episode.createdAt.toLocaleDateString().replace(/-/g, "/") %></i></p>
             &nbsp; &nbsp;
-            <br>
-            <br>
-            <p><i class="fas fa-user-edit"></i> פוסט: </i></p>
-            <br>
-            <p dir="rtl"><%= episode.post %></i></p>
+            <% if (episode.post) { %> 
+                <br>
+                <br>
+                <p><i class="fas fa-user-edit"></i> פוסט: </i></p>
+                <br>
+                <p dir="rtl"><%= episode.post %></i></p>
+            <% } %> 
         </div>
     </div>
 
