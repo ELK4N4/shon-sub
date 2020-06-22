@@ -10,12 +10,14 @@ const episodeSchema = new mongoose.Schema({
     episodeName: {
         type: String,
         require: true,
-        min: 2,
-        max: 30
+        min: 2
     },
     link: {
         type: String,
         require: true
+    },
+    post: {
+        type: String
     },
     views: {
         type: Number,

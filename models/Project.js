@@ -7,8 +7,7 @@ const projectSchema = new mongoose.Schema({
     name: {
         type: String,
         require: true,
-        min: 2,
-        max: 30
+        min: 2    
     },
     englishName: {
         type: String,
@@ -19,18 +18,15 @@ const projectSchema = new mongoose.Schema({
     process: {
         type: String,
         require: true,
-        min: 1,
-        max: 10
+        min: 1
     },
     addedBy: {
         type: mongoose.Schema.Types.ObjectId,
         min: 2,
-        max: 30,
         ref: 'User'
     },
     episodesNumber: {
-        type: Number,
-        min: 2
+        type: Number
     },
     genre: {
         type: String

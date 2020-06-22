@@ -37,7 +37,7 @@
             <div class="secondary-button new-episode-btn">+ הוסף פרק</div>
         <% } %> 
 
-        <div class="project-title">
+        <div class="project-title" dir="rtl">
             <h1><%= project.name.replace(/-/g," ") %></h1>
         </div>
         <div class="project-summary" dir="rtl">
@@ -113,6 +113,7 @@
             <input name="episodeNumber" value="<%= episode.episodeNumber %>">
             <input name="episodeName" value="<%= episode.episodeName %>">
             <input name="link" value="<%= episode.link %>">
+            <input name="post" value="<%= episode.post %>">
         </form>
         <% } %> 
     

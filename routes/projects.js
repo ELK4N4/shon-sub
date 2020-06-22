@@ -124,7 +124,6 @@ router.delete('/:project', adminOnly, async (req, res) => {
 
 //UPDATE project - adminOnly
 router.put('/:project', adminOnly, uploadProject.single('cover'), async (req, res) => {
-    console.log(req.body);
     delete req.body.image; //the client send AJAX call with "image" property that isn't needed
 
     const projectName = req.params.project.replace(/-/g," ");

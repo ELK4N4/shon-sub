@@ -25,11 +25,11 @@ const loginValidation = (data) => {
 //Project Validation
 const projectValidation = (data) => {
     const projectSchema = Joi.object({
-        name: Joi.string().min(2).max(30).required(),
+        name: Joi.string().min(2).required(),
         englishName: Joi.string().allow(''),
         japaneseName: Joi.string().allow(''),
         genre: Joi.string().allow(''),
-        process: Joi.string().min(2).max(20).required(),
+        process: Joi.string().min(2).required(),
         episodesNumber: Joi.number().allow(''),
         summary: Joi.string().allow(''),
         coverImageName: Joi.string().allow('')
@@ -41,9 +41,10 @@ const projectValidation = (data) => {
 //Episode Validation
 const episodeValidation = (data) => {
     const episodeSchema = Joi.object({
-        episodeName: Joi.string().min(2).max(30).required(),
+        episodeName: Joi.string().min(2).required(),
         episodeNumber: Joi.number().required(),
-        link: Joi.string().required(),
+        link: Joi.string().uri().required(),
+        post: Joi.string().allow(''),
         coverImageName: Joi.string()
     });
 

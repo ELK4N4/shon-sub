@@ -28,7 +28,7 @@
                     <% } else { %>
                         <li class="menu-item"><a href=/projects><i class="fas fa-sort-down" style="position:relative; bottom: 0.1rem;"></i> פרוייקטים</i></a></li>
                     <% } %>
-                    <div class="dropdown-content">
+                    <div class="dropdown-content" dir="rtl">
                         <% data.allProjects.activeProjects.forEach(project => { %>
                             <a href="/projects/<%= project.name.replace(/ /g,"-") %>"><%= project.name.replace(/-/g," ") %></a>
                         <% }); %>
@@ -36,7 +36,7 @@
                             <a href="/projects/<%= project.name.replace(/ /g,"-") %>"><%= project.name.replace(/-/g," ") %></a>
                         <% }); %>
                         <% if(data.user.admin) { %>
-                            <a href="javascript:void(0)" class="new-project-btn"><strong>+ פרוייקט חדש</strong></a>
+                            <a href="javascript:void(0)" class="new-project-btn"><strong>פרוייקט חדש +</strong></a>
                         <% } %>
                     </div>
                 </div>

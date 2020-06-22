@@ -14,7 +14,7 @@
 
                 <div class="project-item">
 
-                    <div class="cover-img-container project-img-size clicked">
+                    <div class="cover-img-container project-img-size clicked" dir="rtl">
                         <a href=/projects/<%= project.name.replace(/ /g,"-") %>>
                             <img class="image-contains project-img-size" src="<%= project.coverImagePath %>" alt="<%= project.name.replace(/-/g," ") %>">
                             <div class="img-text-top">
@@ -31,7 +31,7 @@
                         </div>
 
                         <% if(data.user.admin) { %>
-                        <form class="project-fields" hidden>
+                        <form class="project-fields" dir="rtl" hidden>
                             <input name="name" value="<%= project.name.replace(/-/g," ") %>">
                             <input name="englishName" value="<%= project.englishName %>">
                             <input name="japaneseName" value="<%= project.japaneseName %>">
@@ -63,7 +63,7 @@
     
                     <div class="project-item">
     
-                        <div class="cover-img-container project-img-size clicked">
+                        <div class="cover-img-container project-img-size clicked" dir="rtl">
                             <a href=/projects/<%= project.name.replace(/ /g,"-") %>>
                                 <img class="image-contains project-img-size" src="<%= project.coverImagePath %>" alt="<%= project.name.replace(/-/g," ") %>">
                                 <div class="img-text-top">
@@ -112,7 +112,7 @@
                     <div class="project-item">
     
                         
-                            <div class="cover-img-container project-img-size clicked">
+                            <div class="cover-img-container project-img-size clicked" dir="rtl">
                                 <a href=/projects/<%= project.name.replace(/ /g,"-") %>>
                                     <img class="image-contains project-img-size" src="<%= project.coverImagePath %>" alt="<%= project.name.replace(/-/g," ") %>">
                                     <div class="img-text-top">
@@ -161,7 +161,7 @@
                     <div class="project-item">
     
                         
-                            <div class="cover-img-container project-img-size clicked">
+                            <div class="cover-img-container project-img-size clicked" dir="rtl">
                                 <a href=/projects/<%= project.name %>>
                                     <img class="image-contains project-img-size" src="<%= project.coverImagePath %>" alt="<%= project.name.replace(/-/g," ") %>">
                                     <div class="img-text-top">

@@ -80,7 +80,6 @@ $(document).ready(function(){
 
     $(".edit-episode").click(function(){
 
-
         var values = $(this).parent().parent().find('.episode-fields').serializeArray();
         values.forEach(value => {
             $(`#edit-episode-form input[name=${value.name}]`).val(value.value);
@@ -89,7 +88,7 @@ $(document).ready(function(){
         });
 
         episodeNumber = $(`#edit-episode-form input[name=episodeNumber]`).val();
-        console.log(episodeNumber);
+        
 
         $("#edit-episode-form").addClass("visible");
         $("#edit-episode-form").removeClass("invisible");
@@ -99,7 +98,11 @@ $(document).ready(function(){
 
     $(".update-episode").click(function(e){
         e.preventDefault();
+
         let link = `${window.location.pathname}/${episodeNumber}`;
+        if(window.location.pathname.split('/')[3]) {
+            link = `${window.location.pathname.split('/')[0]}/${window.location.pathname.split('/')[1]}/${window.location.pathname.split('/')[2]}/${episodeNumber}`;
+        }
         var form = $("#edit-episode-form")[0]; // Need to use standard javascript object here
         var formData = new FormData(form);
 

@@ -18,11 +18,11 @@ const uploadEpisode = multer({
     }
 });
 const fs = require('fs');
-const removeImage = function(uploadPath, deletedItem) {
-    if(deletedItem.coverImageName) {
-        fs.unlink(path.join(uploadPath, deletedItem.coverImageName), (err) => {
+const removeImage = function(uploadPath, fileName) {
+    if(fileName) {
+        fs.unlink(path.join(uploadPath, fileName), (err) => {
             if (err) {
-                console.log("failed to delete local image:"+err);
+                console.log("failed to delete local image:" + err);
             } else {
                 console.log('successfully deleted local image');                                
             }
@@ -43,6 +43,7 @@ router.get('/:episode', async (req, res) => {
     if(!project){
         return res.status(404).send('Project Not Found');
     }
+
     const episode = project.episodes.find(episode => {
         if(episode.episodeNumber == req.params.episode) {
             episode.views++;
@@ -54,7 +55,39 @@ router.get('/:episode', async (req, res) => {
 
     if(episode) {
         await project.save();
-        return res.status(200).render('projects/episode.ejs',{data, project, episode});
+
+
+        let episodeIndex = project.episodes.findIndex(episode => {
+            if(episode.episodeNumber == req.params.episode) {
+                return true;
+            }
+            return false
+        });;
+
+        let recommendedEpisodes = [];
+        let counter = 1;
+        let rotations = 0;
+        while(counter <= 4 && rotations < project.episodes.length) {
+            let index = counter;
+
+            if (project.episodes[episodeIndex + index]) {
+                recommendedEpisodes.push(project.episodes[episodeIndex + index]);
+            }
+            if (project.episodes[episodeIndex - index]) {
+                recommendedEpisodes.push(project.episodes[episodeIndex - index]);
+            }
+            if (project.episodes[episodeIndex - index] || project.episodes[episodeIndex + index]) {
+                counter++;
+            }
+            rotations++;
+        }
+        recommendedEpisodes.sort(function(a, b){
+            return b.episodeNumber - a.episodeNumber
+        });
+
+        recommendedEpisodes.reverse();
+
+        return res.status(200).render('projects/episode.ejs',{data, project, episode, recommendedEpisodes});
     }
 
     return res.status(404).send('Episode Not Found');
@@ -62,7 +95,14 @@ router.get('/:episode', async (req, res) => {
 
 //POST new episode to exist project - adminOnly
 router.post('/', adminOnly, uploadEpisode.single('cover'), async (req, res) => {
+
     const fileName = req.file != null ? req.file.filename : null;
+
+    const {error} = validation.episodeValidation(req.body);
+    if(error) {
+        removeImage(uploadEpisodesPath, fileName);
+        return res.status(400).send(error.details[0].message);
+    }
 
     const newEpisode = {
         episodeName: req.body.episodeName,
