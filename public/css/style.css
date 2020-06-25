@@ -717,12 +717,13 @@ footer {
 }
 
 .co {
-    margin-left: 4vw;
+    margin: 0 4vw;
     color: var(--secondary-color);
+    text-align: left;
 }
 
 .users-count {
-    margin-right: 4vw;
+    margin: 0 4vw;
     color: var(--secondary-color);
     text-align: right;
 }
