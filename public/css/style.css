@@ -713,11 +713,18 @@ footer {
     height: 3rem;
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 
 .co {
     margin: 0 4vw;
     color: var(--secondary-color);
+}
+
+.users-count {
+    margin: 0 4vw;
+    color: var(--secondary-color);
+    text-align: right;
 }
 
 

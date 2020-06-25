@@ -1,4 +1,5 @@
 const Project = require('./models/Project');
+const User = require('./models/User');
 let data = {};
 
 
@@ -8,13 +9,19 @@ module.exports = async (pageName, user) => {
     const freezeProjects = await Project.find({process: "freeze"});
     const plannedProjects = await Project.find({process: "planned"});
     const allProjects = {activeProjects, doneProjects, freezeProjects, plannedProjects};
+    const usersCount = await User.countDocuments({});
     
+    if(!typeof usersCount === 'number') {
+        usersCount = 'Error';
+    }
+
     data = {
         page: {
             name: pageName
         },
         user: user,
-        allProjects: allProjects
+        allProjects: allProjects,
+        usersCount: usersCount
     }
     return data;
 }
