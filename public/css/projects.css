@@ -261,6 +261,12 @@
         margin-bottom: 2rem;
     }
 
+    .project-summary {
+        padding: 0;
+        padding-bottom: 1rem;
+        margin: 1rem;
+    }
+
     .project-tiny-details {
         display: flex;
         flex-direction: row-reverse;
