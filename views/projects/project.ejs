@@ -6,33 +6,37 @@
 
 <div class="project-details">
 
-    <div class="project-img">
-        <div class="cover-img-container project-img-size">
-            <img class="image-contains project-img-size" src="<%= project.coverImagePath %>" alt="<%= project.name.replace(/-/g," ") %>">
-        
-            <% if(data.user.admin) { %>
-                <div class="img-text-bottom text-on-point edit-text edit-project">
-                    <h3><i class="fas fa-pen"></i> ערוך</h3>
-                </div>
-            <% } %>
-
-            <% if(data.user.admin) { %>
-                <form class="project-fields" hidden>
-                    <input name="name" value="<%= project.name.replace(/-/g," ") %>">
-                    <input name="englishName" value="<%= project.englishName %>">
-                    <input name="japaneseName" value="<%= project.japaneseName %>">
-                    <input name="genre" value="<%= project.genre %>">
-                    <input name="process" value="<%= project.process %>">
-                    <input name="episodesNumber" value="<%= project.episodesNumber %>">
-                    <input name="summary" value="<%= project.summary %>">
-                    <input name="coverImageName" value="<%= project.coverImageName %>">
-                </form>
-            <% } %>
-
-        </div>
-    </div>
+    
 
     <div class="project-showcase">
+
+        <div class="project-img">
+            <div class="cover-img-container project-img-size">
+                <img class="image-contains project-img-size" src="<%= project.coverImagePath %>" alt="<%= project.name.replace(/-/g," ") %>">
+            
+                <% if(data.user.admin) { %>
+                    <div class="img-text-bottom text-on-point edit-text edit-project">
+                        <h3><i class="fas fa-pen"></i> ערוך</h3>
+                    </div>
+                <% } %>
+    
+                <% if(data.user.admin) { %>
+                    <form class="project-fields" hidden>
+                        <input name="name" value="<%= project.name.replace(/-/g," ") %>">
+                        <input name="englishName" value="<%= project.englishName %>">
+                        <input name="japaneseName" value="<%= project.japaneseName %>">
+                        <input name="genre" value="<%= project.genre %>">
+                        <input name="process" value="<%= project.process %>">
+                        <input name="episodesNumber" value="<%= project.episodesNumber %>">
+                        <input name="summary" value="<%= project.summary %>">
+                        <input name="coverImageName" value="<%= project.coverImageName %>">
+                    </form>
+                <% } %>
+    
+            </div>
+        </div>
+
+
         <% if(data.user.admin) { %>
             <div class="secondary-button new-episode-btn">+ הוסף פרק</div>
         <% } %> 

@@ -1,0 +1,35 @@
+<% let navMenu = [ {name: 'home',hebName: 'ראשי'}, {name: 'projects',hebName: 'פרוייקטים',dropDown: true},{name: 'about',hebName: 'אודות',},{name: 'forum',hebName: 'פורום',} ] %>
+<% navMenu = [ {name: 'projects',hebName: 'פרוייקטים',dropDown: true} ] %>
+
+
+<div class="mobile-menu">
+
+
+    <div class="user-section">
+        <div class="user-name"><%= data.user.name %></div>
+        <% if(!data.user.verified) { %>
+            <ul class="user-options">
+                <li class="option-item sign-in"><a href="javascript:void(0)" onclick="login()">התחבר</a></li>
+                <li class="option-item register"><a href="javascript:void(0)" onclick="register()">הרשם</a></li>
+            </ul>
+        <% } else { %>  
+            <ul class="user-options">
+                <li class="option-item sign-in"><a href=/auth/logout>התנתק</a></li>
+                <li class="option-item register"><a href=/user/settings>הגדרות</a></li>
+            </ul>
+        <% } %>
+    </div>
+
+    <ul>
+        <% navMenu.forEach(item => { %>         
+            <% if(item.name === data.page.name) { %>
+                <li class="menu-item active"><a href=/<%= item.name %>><%= item.hebName%></a></li>
+            <% } else { %>
+                <li class="menu-item"><a href=/<%= item.name %>><%= item.hebName%></a></li>
+            <% } %>
+
+        <% }); %>
+    </ul>
+
+
+</div>

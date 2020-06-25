@@ -16,6 +16,23 @@ const uploadProject = multer({
     }
 });
 
+/*
+
+var FTPStorage = require('multer-ftp');
+ 
+var uploadProject = multer({
+  storage: new FTPStorage({
+    basepath: '/htdocs',
+    ftp: {
+        secure: false, // enables FTPS/FTP with TLS
+        host: 'ftpupload.net',
+        user: 'epiz_26092518',
+        password: '1xzkMfyxilj9',
+    }
+  })
+})
+*/
+
 const fs = require('fs');
 const removeImage = function(uploadPath, fileName) {
     if(fileName) {

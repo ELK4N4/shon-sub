@@ -177,7 +177,7 @@
 /* ------------ EPISODE -------------- */
 .episode-page {
     position: relative;
-    top: -3rem;
+    top: -2rem;
 }
 
 .episode-details {
@@ -223,4 +223,79 @@
 .episode-img-size {
 	width: 200px;
     height: 130px;
+}
+
+@media (max-width: 1000px) {
+
+    .project-details {
+        margin-bottom: 0rem;
+    }
+
+    .project-img {
+        position: relative;
+        display: inline;
+        margin: 1rem;
+        top: unset;
+        right: 0;
+        left: 0;
+        padding: 0 10rem;
+    }
+
+    .project-img .cover-img-container{
+        display: block;
+        transform: scale(1.4);
+        margin: 5rem auto !important;
+        top: unset;
+        right: 0;
+        left: 0;
+    }
+
+    .project-showcase {
+        padding: 1rem;
+    }
+
+    .project-showcase h1 {
+        display: block;
+        word-break: break-all;
+        margin: 0.3rem auto;
+        margin-bottom: 2rem;
+    }
+
+    .project-tiny-details {
+        display: flex;
+        flex-direction: row-reverse;
+        flex-wrap: wrap;
+        padding: .5rem;
+        max-width: 70rem;
+        background-color: black;
+        color: white;
+        border-bottom: 5px solid var(--primary-color);
+    }
+
+    .episode-details {
+        padding: 1rem 2rem;
+    }
+
+    .episode-details .project-title {
+        border-radius: 200px;
+        display: inline-block;
+        background-color:rgba(255, 255, 255, 0.3);
+        color: black;
+        word-break: break-all;
+        padding: .5rem 2rem;
+        margin-bottom: 1rem;
+    }
+
+    .episode-details .flex-container {
+        flex-direction: row;
+    }
+
+    .episode-item {
+        margin: .5rem;
+    }
+
+    .episode-img-size {
+        width: 160px;
+        height: 100px;
+    }
 }

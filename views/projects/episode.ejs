@@ -16,7 +16,7 @@
         <h2 dir="rtl">פרק <%= episode.episodeNumber %> - <%= episode.episodeName %> </h2>
         <br>
         <br>
-        <div>
+        <div class="flex-container">
             <p><i class="fas fa-eye"></i> צפיות: <%= episode.views %></p>
             &nbsp; &nbsp;
             <p><i class="fas fa-clock"></i> פורסם בתאריך: <%= episode.createdAt.toLocaleDateString().replace(/-/g, "/") %></i></p>

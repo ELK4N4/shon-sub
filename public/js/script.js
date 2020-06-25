@@ -13,6 +13,7 @@ window.onscroll = function() {
   scrollFunction()
 };
 
+
 function scrollFunction() {
   if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
     document.documentElement.style.setProperty('--header-height', '5rem');
@@ -20,6 +21,24 @@ function scrollFunction() {
     document.documentElement.style.setProperty('--header-height', '6.5rem');
   }
 }
+
+
+function closeMobileMenu() {
+  $('.mobile-nav').removeClass('nav-is-open');
+  $('.page').removeClass('nav-is-open');
+  $('.top').removeClass('nav-is-open');
+  $('.fa-bars').removeClass('nav-is-open');;
+  $('.fa-times').removeClass('nav-is-open');;
+}
+
+$('.nav-btn').on('click', function() {
+    $('.mobile-nav').toggleClass('nav-is-open');
+    $('.page').toggleClass('nav-is-open');
+    $('.top').toggleClass('nav-is-open');
+    $('.fa-bars').toggleClass('nav-is-open');;
+    $('.fa-times').toggleClass('nav-is-open');;
+});
+
 
 $(document).ready(function(){
 
@@ -104,6 +123,7 @@ function login() {
     registerForm.classList.remove("visible");
     blur.classList.add("visible");
     blur.classList.remove("invisible");
+    closeMobileMenu()
 };
 
 function register() {
@@ -113,6 +133,7 @@ function register() {
     registerForm.classList.remove("invisible");
     blur.classList.add("visible");
     blur.classList.remove("invisible");
+    closeMobileMenu()
 };
 
 

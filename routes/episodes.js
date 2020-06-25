@@ -17,6 +17,7 @@ const uploadEpisode = multer({
         callback(null, imageMimeTypes.includes(file.mimetype));
     }
 });
+
 const fs = require('fs');
 const removeImage = function(uploadPath, fileName) {
     if(fileName) {

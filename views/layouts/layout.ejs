@@ -39,13 +39,22 @@
         <%- include('../projects/__new_project_form.ejs') %>
         <%- include('../projects/__edit_project_form.ejs') %>
     <% } %>
+
+    <div class="mobile-nav">
+        <%- include('../partials/__mobile_nav_menu.ejs') %>
+    </div>
+    
+    
     <%- include('../partials/header.ejs') %>
-    <main>
-        <div class="content">
-            <%- body %>
-        </div>
-    </main>
-    <%- include('../partials/footer.ejs') %>
+
+    <div class="page">
+        <main>
+            <div class="content">
+                <%- body %>
+            </div>
+        </main>
+        <%- include('../partials/footer.ejs') %>
+    </div>
 
     <% if(data.user.admin) { %> 
         <script src="/js/admin.js"></script>
