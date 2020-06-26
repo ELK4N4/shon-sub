@@ -46,7 +46,12 @@ db.on('error', error => console.log(error));
 db.once('open', () => {console.log('Mongoose is connected');});
 
 
-
+app.use(function(req, res, next) {
+    if(!req.secure) {
+      return res.redirect(['https://', req.get('Host'), req.url].join(''));
+    }
+    next();
+});
 /* Middleware */
 app.use('/', indexRouter);
 app.use('/projects', projectsRouter); //פרוייקטים
