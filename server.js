@@ -50,15 +50,21 @@ db.once('open', () => {console.log('Mongoose is connected');});
 // dont change if you want http -> https
 // if you want https -> http change !req.secure to req.secure and https to http
 app.set('trust proxy', true); // <- required
-app.use((req, res, next) => {
-  if(!req.secure) {
-      console.log("req.secure:", req.secure);
-      console.log('https://' + req.get('host') + req.url);
-      return res.redirect('https://' + req.get('host') + req.url)
-    };
-    console.log('https://' + req.get('host') + req.url);
-  next();
-});
+function checkHttps(req, res, next){
+    // protocol check, if http, redirect to https
+    
+    if(req.get('X-Forwarded-Proto').indexOf("https")!=-1){
+      console.log("https, yo");
+      console.log('https://' + req.hostname + req.url);
+      return next()
+    } else {
+      console.log("just http");
+      console.log('https://' + req.hostname + req.url);
+      res.redirect('https://' + req.hostname + req.url);
+    }
+  }
+  
+  app.all('*', checkHttps)
 
 
 /* Middleware */
