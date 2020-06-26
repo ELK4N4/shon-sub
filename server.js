@@ -51,9 +51,14 @@ db.once('open', () => {console.log('Mongoose is connected');});
 // if you want https -> http change !req.secure to req.secure and https to http
 app.set('trust proxy', true); // <- required
 app.use((req, res, next) => {
-  if(!req.secure) return res.redirect('https://' + req.get('host') + req.url);
+  if(!req.secure) {
+      console.log("req.secure:", req.secure);
+      console.log('https://' + req.get('host') + req.url);
+      return res.redirect('https://' + req.get('host') + req.url)
+    };
   next();
 });
+
 
 /* Middleware */
 app.use('/', indexRouter);
