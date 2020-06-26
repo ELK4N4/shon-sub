@@ -24,6 +24,28 @@ const authRouter = require('./routes/auth/auth.js');
 const PORT = process.env.PORT || 3000;
 const DATABASE_URL = process.env.DATABASE_URL || "mongodb://localhost/test";
 
+
+
+// Make sure to put this directly after you define your app
+// dont change if you want http -> https
+// if you want https -> http change !req.secure to req.secure and https to http
+app.set('trust proxy', true); // <- required
+function checkHttps(req, res, next){
+    // protocol check, if http, redirect to https
+    
+    if(req.get('X-Forwarded-Proto').indexOf("https")!=-1){
+      console.log("https, yo");
+      console.log('https://' + req.hostname + req.url);
+      return next()
+    } else {
+      console.log("just http");
+      console.log('https://' + req.hostname + req.url);
+      res.redirect('https://' + req.hostname + req.url);
+    }
+  }
+  
+  app.all('*', checkHttps);
+
 /* Server Setup */
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
@@ -46,25 +68,6 @@ db.on('error', error => console.log(error));
 db.once('open', () => {console.log('Mongoose is connected');});
 
 
-// Make sure to put this directly after you define your app
-// dont change if you want http -> https
-// if you want https -> http change !req.secure to req.secure and https to http
-app.set('trust proxy', true); // <- required
-function checkHttps(req, res, next){
-    // protocol check, if http, redirect to https
-    
-    if(req.get('X-Forwarded-Proto').indexOf("https")!=-1){
-      console.log("https, yo");
-      console.log('https://' + req.hostname + req.url);
-      return next()
-    } else {
-      console.log("just http");
-      console.log('https://' + req.hostname + req.url);
-      res.redirect('https://' + req.hostname + req.url);
-    }
-  }
-  
-  app.all('*', checkHttps)
 
 
 /* Middleware */
