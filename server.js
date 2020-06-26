@@ -56,6 +56,7 @@ app.use((req, res, next) => {
       console.log('https://' + req.get('host') + req.url);
       return res.redirect('https://' + req.get('host') + req.url)
     };
+    console.log('https://' + req.get('host') + req.url);
   next();
 });
 
