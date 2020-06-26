@@ -20,12 +20,6 @@
         <link href="/css/404.css" rel="stylesheet" type="text/css">
     <% } %>
     <!-- SCRIPTS -->
-    <script type="module">
-          if (location.protocol != 'https:')
-            {
-            location.href = 'https:' + window.location.href.substring(window.location.protocol.length);
-            }
-    </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/66d330ff96.js" crossorigin="anonymous"></script>
 </head>
@@ -37,6 +31,13 @@
 <% } else { %> 
     <body style="background-image: url('https://m.media-amazon.com/images/M/MV5BN2UwOTMwMjMtZTE5MS00YmY4LTg4YjAtZDE3ZTg3YTU5MmQ2XkEyXkFqcGdeQXVyODEyMDIxNDY@._V1_.jpg') !important;">
 <% } %>
+
+<script type="module">
+    if (location.protocol != 'https:')
+      {
+      location.href = 'https:' + window.location.href.substring(window.location.protocol.length);
+      }
+</script>
 
     <div id="blur" class="closeForm"></div>
     <%- include('../partials/__login_form.ejs') %> 
