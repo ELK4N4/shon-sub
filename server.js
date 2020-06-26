@@ -10,7 +10,6 @@ const expressLayout = require('express-ejs-layouts');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const verifyUser = require('./routes/auth/verifyToken');
-const express = require('express');
 const secure = require('express-force-https');
 
 
