@@ -10,7 +10,6 @@ const expressLayout = require('express-ejs-layouts');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const verifyUser = require('./routes/auth/verifyToken');
-const secure = require('express-force-https');
 
 
 /* Import Routers */
@@ -34,7 +33,6 @@ app.use(express.static('public'));
 app.use(favicon(__dirname + '/public/images/favicon.png'));
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: false }));
 app.use(bodyParser.json());
-app.use(secure);
 app.use(cookieParser());
 app.use(verifyUser);
 
