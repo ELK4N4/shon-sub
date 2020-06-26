@@ -9,6 +9,12 @@ function closeAllForms() {
   $(".fixed-form").removeClass("visible");
 }
 
+//force HTTPS 
+if (location.protocol != 'https:')
+{
+ location.href = 'https:' + window.location.href.substring(window.location.protocol.length);
+}
+
 window.onscroll = function() {
   scrollFunction()
 };
