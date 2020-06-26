@@ -10,7 +10,7 @@ const jwt = require('jsonwebtoken');
 router.post('/login', async (req, res) => {
     const {error} = validation.loginValidation(req.body);
     if(error) {
-        return res.status(400).send(error.details[0].message);
+        return res.status(400).send(error.details[0].message + '<br> !שים לב: יש להקיש מייל ולא שם משתמש');
     }
 
     const user = await User.findOne({email: req.body.email});
