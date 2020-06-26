@@ -55,12 +55,6 @@ app.use((req, res, next) => {
   next();
 });
 
-// rest of this is just a demo
-app.use((req, res, next) => {
-  res.send(`HTTPS: ${req.secure}`); 
-  next();
-});
-
 /* Middleware */
 app.use('/', indexRouter);
 app.use('/projects', projectsRouter); //פרוייקטים
