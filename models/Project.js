@@ -50,7 +50,7 @@ const projectSchema = new mongoose.Schema({
 
 projectSchema.virtual('coverImagePath').get(function() {
     if (this.coverImageName != null) {
-        return coverImageLink + "/" + this.coverImageName;
+        return coverImageLink + this.coverImageName;
     } else {
         return path.join('/images', 'no-image.png');
     }
