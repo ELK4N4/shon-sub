@@ -4,6 +4,7 @@ if(process.env.NODE_ENV !== 'production') {
 }
 
 const express = require('express');
+const cors = require('cors');
 const favicon = require('serve-favicon');
 const app = express();
 const expressLayout = require('express-ejs-layouts');
@@ -38,7 +39,7 @@ app.use(bodyParser.urlencoded({ limit: '10mb', extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(verifyUser);
-
+app.use(cors());
 
 /* DataBase */
 
