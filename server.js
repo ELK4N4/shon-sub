@@ -4,7 +4,6 @@ if(process.env.NODE_ENV !== 'production') {
 }
 
 const express = require('express');
-const cors = require('cors');
 const favicon = require('serve-favicon');
 const app = express();
 const expressLayout = require('express-ejs-layouts');
@@ -26,7 +25,11 @@ const PORT = process.env.PORT || 3000;
 const DATABASE_URL = process.env.DATABASE_URL || "mongodb://localhost/test";
 
 
-
+app.all('/', function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    next();
+});
 
 /* Server Setup */
 app.set('view engine', 'ejs');
@@ -39,7 +42,6 @@ app.use(bodyParser.urlencoded({ limit: '10mb', extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(verifyUser);
-app.use(cors());
 
 /* DataBase */
 
