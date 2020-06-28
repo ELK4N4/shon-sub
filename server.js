@@ -48,7 +48,11 @@ const db = mongoose.connection;
 db.on('error', error => console.log(error));
 db.once('open', () => {console.log('Mongoose is connected');});
 
-
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
 
 
 /* Middleware */
