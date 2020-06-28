@@ -4,6 +4,7 @@ if(process.env.NODE_ENV !== 'production') {
 }
 
 const express = require('express');
+const cors = require('cors');
 const favicon = require('serve-favicon');
 const app = express();
 const expressLayout = require('express-ejs-layouts');
@@ -38,6 +39,7 @@ app.use(bodyParser.urlencoded({ limit: '10mb', extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(verifyUser);
+app.use(cors());
 
 /* DataBase */
 
@@ -48,11 +50,7 @@ const db = mongoose.connection;
 db.on('error', error => console.log(error));
 db.once('open', () => {console.log('Mongoose is connected');});
 
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-});
+
 
 
 /* Middleware */
