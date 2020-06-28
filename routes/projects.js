@@ -16,22 +16,27 @@ const uploadProject = multer({
     }
 });
 
-/*
-
-var FTPStorage = require('multer-ftp');
+const ftp = require("basic-ftp");
+const baseFTPPath = 'htdocs';
  
-var uploadProject = multer({
-  storage: new FTPStorage({
-    basepath: '/htdocs',
-    ftp: {
-        secure: false, // enables FTPS/FTP with TLS
-        host: 'ftpupload.net',
-        user: 'epiz_26092518',
-        password: '1xzkMfyxilj9',
+async function getClient() {
+    const client = new ftp.Client();
+    client.ftp.verbose = false; //logs out the communication
+    try {
+        await client.access({
+            host: "ftpupload.net",
+            user: "epiz_26092518",
+            password: "1xzkMfyxilj9",
+            secure: false
+        })
+        console.log("FTP connection is open");
     }
-  })
-})
-*/
+    catch(err) {
+        console.log(err);
+    }
+    return client;
+}
+
 
 const fs = require('fs');
 const removeImage = function(uploadPath, fileName) {
@@ -104,10 +109,6 @@ router.post('/', adminOnly, uploadProject.single('cover'), async (req, res) => {
         coverImageName: fileName
     });
 
-    if(!req.user.verified) {
-        removeImage(uploadProjectsPath, fileName);
-        return res.status(404).send("Not found");
-    }
     const projectExist = await Project.findOne({name: req.body.name});
 
     if(projectExist) {
@@ -118,6 +119,15 @@ router.post('/', adminOnly, uploadProject.single('cover'), async (req, res) => {
 
     try {
         const savedProject = await project.save();
+
+        const client = await getClient();
+        try {
+            await client.uploadFrom("./public/uploads/projectCovers/" + fileName, baseFTPPath + "/uploads/projectCovers/" + fileName);
+        } catch(err) {
+            console.log(err);
+        }
+        removeImage(uploadProjectsPath, fileName);
+
         res.status(200).redirect('/projects');
     } catch(err) {
         removeImage(uploadProjectsPath, fileName);
@@ -131,7 +141,12 @@ router.delete('/:project', adminOnly, async (req, res) => {
     const projectName = req.params.project.replace(/-/g," ");
     const deletedProject = await Project.findOneAndRemove({ name: projectName });
     if (deletedProject) {
-        removeImage(uploadProjectsPath, deletedProject.coverImageName);
+        const client = await getClient();
+        try {
+            await client.remove("htdocs/uploads/projectCovers/" + deletedProject.coverImageName);
+        } catch(err) {
+            console.log(err);
+        }
         res.status(200).send(deletedProject);
     }
     else {
@@ -157,11 +172,27 @@ router.put('/:project', adminOnly, uploadProject.single('cover'), async (req, re
         updatedProject.coverImageName = req.file.filename;
     }
 
-    updatedProject = await Project.findOneAndUpdate({name: projectName}, updatedProject, {new: true});
+    oldProject = await Project.findOneAndUpdate({name: projectName}, updatedProject);
 
-    if(!updatedProject){
+    if(!oldProject){
         return res.status(404).send('Project Not Found');
     }
+
+    const client = await getClient();
+
+    try {
+        await client.uploadFrom(path.join(uploadProjectsPath, updatedProject.coverImageName), "htdocs/uploads/projectCovers/" + updatedProject.coverImageName);
+        removeImage(uploadProjectsPath, updatedProject.coverImageName);
+    } catch(err) {
+        console.log(err);
+    }
+
+    try {
+        await client.remove("htdocs/uploads/projectCovers/" + oldProject.coverImageName);
+    } catch(err) {
+        console.log(err);
+    }
+
 
     res.status(200).send(updatedProject);
 });

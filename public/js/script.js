@@ -10,6 +10,24 @@ function closeAllForms() {
 }
 
 
+function setDriveImg(link) {
+  let src;
+  $.ajax({
+    url: link,
+    type: 'get',
+    dataType: 'html',
+    async: true,
+    success: function(data, status) {
+        console.log("Status: "+status+"\nData: "+data);
+        result = data;
+
+        /* creating image */
+        src = $('<img class="ndfHFb-c4YZDc-aTv5jf-bVEB4e-RJLb9c">').attr('src');
+
+    } 
+  });
+}
+
 
 window.onscroll = function() {
   scrollFunction()
@@ -44,9 +62,13 @@ $('.nav-btn').on('click', function() {
 
 $(document).ready(function(){
   //force HTTPS 
+  /*
   if (location.protocol != 'https:') {
     location.href = 'https:' + window.location.href.substring(window.location.protocol.length);
   }
+  */
+ $(".closeForm").click(function(){
+
 
   $(".closeForm").click(function(){
     closeAllForms();

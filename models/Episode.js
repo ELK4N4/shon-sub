@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const path = require('path');
-const coverImageBasePath = 'uploads/episodeCovers'
+const coverImageBasePath = 'uploads/episodeCovers';
+
 
 const episodeSchema = new mongoose.Schema({
     episodeNumber: {

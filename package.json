@@ -19,6 +19,7 @@
   "homepage": "https://github.com/elkanagit/ShonSub#readme",
   "dependencies": {
     "@hapi/joi": "^17.1.1",
+    "basic-ftp": "^4.6.1",
     "bcryptjs": "^2.4.3",
     "body-parse": "^0.1.0",
     "cookie-parser": "^1.4.5",

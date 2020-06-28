@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 const path = require('path');
 const episodeSchema = require('./Episode');
-const coverImageBasePath = 'uploads/projectCovers'
+const coverImageBasePath = 'uploads/projectCovers';
+const coverImageLink = 'http://shonsub.epizy.com/uploads/projectCovers/';
 
 const projectSchema = new mongoose.Schema({
     name: {
@@ -49,7 +50,7 @@ const projectSchema = new mongoose.Schema({
 
 projectSchema.virtual('coverImagePath').get(function() {
     if (this.coverImageName != null) {
-        return path.join('/', coverImageBasePath, this.coverImageName);
+        return coverImageLink + "/" + this.coverImageName;
     } else {
         return path.join('/images', 'no-image.png');
     }

@@ -26,6 +26,7 @@ const DATABASE_URL = process.env.DATABASE_URL || "mongodb://localhost/test";
 
 
 
+
 /* Server Setup */
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
