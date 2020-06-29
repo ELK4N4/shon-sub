@@ -20,15 +20,19 @@ c.connect({
 
 
 router.get('/projectCovers/:image', async (req, res) => {
-    console.log(req.params.image);
-    c.get('htdocs/uploads/projectCovers/' + req.params.image , function(err, stream) {
-        if (err) {
-            console.log(err);
-            return res.status(err.code).redirect('/images/no-image.png');
-        };
+    try {
+        c.get('htdocs/uploads/projectCovers/' + req.params.image , function(err, stream) {
+            if (err) {
+                return res.redirect('/images/no-image.png');
+            } else {
+                stream.pipe(res);
+            }
+        });
+    } catch (err) {
+        //return res.redirect('/images/no-image.png');
+    }
 
-        stream.pipe(res);
-    });
+
 
 });
 
