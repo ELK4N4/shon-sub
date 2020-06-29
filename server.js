@@ -19,17 +19,12 @@ const userRouter = require('./routes/user.js');
 const loginRouter = require('./routes/login.js');
 const registerRouter = require('./routes/register.js');
 const authRouter = require('./routes/auth/auth.js');
+const uploadsRouter = require('./routes/uploads');
 
 /* Constant Variables */
 const PORT = process.env.PORT || 3000;
 const DATABASE_URL = process.env.DATABASE_URL || "mongodb://localhost/test";
 
-
-app.all('/', function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "X-Requested-With");
-    next();
-});
 
 /* Server Setup */
 app.set('view engine', 'ejs');
@@ -62,6 +57,7 @@ app.use('/user', userRouter); //הגדרות
 app.use('/login', loginRouter);
 app.use('/register', registerRouter);
 app.use('/auth', authRouter);
+app.use('/uploads', uploadsRouter);
 
 const getData = require('./data');
 app.use(async function(req, res, next) {

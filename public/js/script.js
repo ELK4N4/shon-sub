@@ -50,6 +50,24 @@ $(document).ready(function(){
   }
   */
 
+
+
+ $('.image-contains').each(function(i, obj) {
+  console.log($(this).attr('src'));
+  let element = $(this);
+  let link = $(this).attr('src');
+  $.ajax({
+    url: link,
+    type: "GET",
+    crossDomain: true,
+    dataType: "jsonp",
+    async: true,
+    success: function (data) {
+        element.attr('src', data);
+    }
+});
+});
+
   $(".closeForm").click(function(){
     closeAllForms();
     /*
