@@ -144,17 +144,14 @@ router.delete('/:project', adminOnly, async (req, res) => {
 //UPDATE project - adminOnly
 router.put('/:project', adminOnly, uploadProject.single('filesUploaded'), async (req, res) => {
     delete req.body.image; //the client send AJAX call with "image" property that isn't needed
-    console.log(req.body.goFileCode);
     //const fileName = req.file != null ? req.file.filename : null;
-    const fileName = req.body.goFileCode != undefined ? req.body.goFileCode : null;
+    const fileName = req.body.img != undefined ? req.body.img : null;
 
     const projectName = req.params.project.replace(/-/g," ");
 
 
     let updatedProject = req.body;
-    if(req.file) {
-        updatedProject.coverImageName = fileName;
-    }
+    updatedProject.coverImageName = fileName;
 
     oldProject = await Project.findOneAndUpdate({name: projectName}, updatedProject);
 
