@@ -100,7 +100,6 @@ router.post('/', adminOnly, uploadEpisode.single('cover'), async (req, res) => {
     //const fileName = req.file != null ? req.file.filename : null;
     const fileName = req.body.img != '' ? req.body.img : null;
 
-    console.log(req.body);
 
     const {error} = validation.episodeValidation(req.body);
     if(error) {

@@ -116,7 +116,7 @@ $(document).ready(function(){
 
         formData.getAll('name');
         // Attach file
-        formData.append('image', $('input[type=file]')[0].files[0]);
+        //formData.append('image', $('input[type=file]')[0].files[0]);
 
         $.ajax({
             url: link,
