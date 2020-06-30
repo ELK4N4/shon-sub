@@ -68,7 +68,6 @@ app.use(async function(req, res, next) {
 
 
 
-
 /* Server Listening */
 app.listen(PORT, '0.0.0.0', () => {
     process.stdout.write('\033[2J');
