@@ -59,9 +59,13 @@ app.use('/auth', authRouter);
 
 const getData = require('./data');
 app.use(async function(req, res, next) {
+    if(req.originalUrl.includes('/uploads')) {
+        return res.redirect('/images/no-image.png');
+    }
     const data = await getData('404', req.user);
     res.render('404.ejs', {data});
 });
+
 
 
 
