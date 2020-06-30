@@ -69,8 +69,6 @@ $(document).ready(function(){
                             success: function(result) {
                             },
                             error: function (xhr, ajaxOptions, thrownError) {
-                                alert(thrownError);
-                                alert(xhr.responseText);
                             }
                         });
 
@@ -84,8 +82,6 @@ $(document).ready(function(){
                                 console.log(result);
                             },
                             error: function (xhr, ajaxOptions, thrownError) {
-                                alert(thrownError);
-                                alert(xhr.responseText);
                             }
                         });
                     },
