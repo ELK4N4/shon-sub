@@ -40,7 +40,8 @@ const episodeSchema = new mongoose.Schema({
 
 episodeSchema.virtual('coverImagePath').get(function() {
     if (this.coverImageName != null) {
-        return path.join('/', coverImageBasePath, this.coverImageName);
+        //return path.join('/', coverImageBasePath, this.coverImageName);
+        return this.coverImageName;
     } else {
         return path.join('/images', 'no-image.png');
     }

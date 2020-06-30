@@ -46,6 +46,7 @@ const episodeValidation = (data) => {
         episodeNumber: Joi.number().required(),
         link: Joi.string().uri().required(),
         post: Joi.string().allow(''),
+        img: Joi.string().uri().allow(''),
         coverImageName: Joi.string()
     });
 
