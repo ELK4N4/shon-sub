@@ -89,11 +89,11 @@ router.get('/:project', async (req, res) => {
 //POST new project - adminOnly
 router.post('/', adminOnly, uploadProject.single('filesUploaded'), async (req, res) => {
     
-    const fileName = req.file != null ? req.file.filename : null;
+    //const fileName = req.file != null ? req.file.filename : null;
+    const fileName = req.body.img != '' ? req.body.img : null;
 
     const {error} = validation.projectValidation(req.body);
     if(error) {
-        removeImage(uploadProjectsPath, fileName);
         return res.status(400).send(error.details[0].message);
     }
 
@@ -120,7 +120,7 @@ router.post('/', adminOnly, uploadProject.single('filesUploaded'), async (req, r
     try {
         const savedProject = await project.save();
 
-        removeImage(uploadProjectsPath, fileName);
+        //removeImage(uploadProjectsPath, fileName);
         res.status(200).redirect('/projects');
     } catch(err) {
         res.status(400).send(err);

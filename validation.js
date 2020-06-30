@@ -32,6 +32,7 @@ const projectValidation = (data) => {
         process: Joi.string().min(2).required(),
         episodesNumber: Joi.number().allow(''),
         summary: Joi.string().allow(''),
+        img: Joi.string().uri().allow(''),
         coverImageName: Joi.string().allow('')
     });
 
