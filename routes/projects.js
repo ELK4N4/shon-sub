@@ -87,7 +87,7 @@ router.get('/:project', async (req, res) => {
 
 
 //POST new project - adminOnly
-router.post('/', adminOnly, uploadProject.single('cover'), async (req, res) => {
+router.post('/', adminOnly, uploadProject.single('filesUploaded'), async (req, res) => {
     
     const fileName = req.file != null ? req.file.filename : null;
 
@@ -120,17 +120,9 @@ router.post('/', adminOnly, uploadProject.single('cover'), async (req, res) => {
     try {
         const savedProject = await project.save();
 
-        const client = await getClient();
-        try {
-            await client.uploadFrom("./public/uploads/projectCovers/" + fileName, baseFTPPath + "/uploads/projectCovers/" + fileName);
-        } catch(err) {
-            console.log(err);
-        }
         removeImage(uploadProjectsPath, fileName);
-
         res.status(200).redirect('/projects');
     } catch(err) {
-        removeImage(uploadProjectsPath, fileName);
         res.status(400).send(err);
     }
 
@@ -141,12 +133,6 @@ router.delete('/:project', adminOnly, async (req, res) => {
     const projectName = req.params.project.replace(/-/g," ");
     const deletedProject = await Project.findOneAndRemove({ name: projectName });
     if (deletedProject) {
-        const client = await getClient();
-        try {
-            await client.remove("htdocs/uploads/projectCovers/" + deletedProject.coverImageName);
-        } catch(err) {
-            console.log(err);
-        }
         res.status(200).send(deletedProject);
     }
     else {
@@ -154,43 +140,26 @@ router.delete('/:project', adminOnly, async (req, res) => {
     }
 });
 
-//UPDATE project - adminOnly
-router.put('/:project', adminOnly, uploadProject.single('cover'), async (req, res) => {
-    delete req.body.image; //the client send AJAX call with "image" property that isn't needed
 
-    const fileName = req.file != null ? req.file.filename : null;
+//UPDATE project - adminOnly
+router.put('/:project', adminOnly, uploadProject.single('filesUploaded'), async (req, res) => {
+    delete req.body.image; //the client send AJAX call with "image" property that isn't needed
+    console.log(req.body.goFileCode);
+    //const fileName = req.file != null ? req.file.filename : null;
+    const fileName = req.body.goFileCode != undefined ? req.body.goFileCode : null;
 
     const projectName = req.params.project.replace(/-/g," ");
-    const {error} = validation.projectValidation(req.body);
-    if(error) {
-        removeImage(uploadProjectsPath, fileName);
-        return res.status(400).send(error.details[0].message);
-    }
+
 
     let updatedProject = req.body;
     if(req.file) {
-        updatedProject.coverImageName = req.file.filename;
+        updatedProject.coverImageName = fileName;
     }
 
     oldProject = await Project.findOneAndUpdate({name: projectName}, updatedProject);
 
     if(!oldProject){
         return res.status(404).send('Project Not Found');
-    }
-
-    const client = await getClient();
-
-    try {
-        await client.uploadFrom(path.join(uploadProjectsPath, updatedProject.coverImageName), "htdocs/uploads/projectCovers/" + updatedProject.coverImageName);
-        removeImage(uploadProjectsPath, updatedProject.coverImageName);
-    } catch(err) {
-        console.log(err);
-    }
-
-    try {
-        await client.remove("htdocs/uploads/projectCovers/" + oldProject.coverImageName);
-    } catch(err) {
-        console.log(err);
     }
 
 

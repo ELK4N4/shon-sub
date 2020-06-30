@@ -50,7 +50,6 @@ $(document).ready(function(){
   }
   */
 
-
   $(".closeForm").click(function(){
     closeAllForms();
     /*

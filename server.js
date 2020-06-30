@@ -19,7 +19,6 @@ const userRouter = require('./routes/user.js');
 const loginRouter = require('./routes/login.js');
 const registerRouter = require('./routes/register.js');
 const authRouter = require('./routes/auth/auth.js');
-const uploadsRouter = require('./routes/uploads');
 
 /* Constant Variables */
 const PORT = process.env.PORT || 3000;
@@ -57,17 +56,12 @@ app.use('/user', userRouter); //הגדרות
 app.use('/login', loginRouter);
 app.use('/register', registerRouter);
 app.use('/auth', authRouter);
-app.use('/uploads', uploadsRouter);
 
 const getData = require('./data');
 app.use(async function(req, res, next) {
-    if(req.originalUrl.includes('/uploads')) {
-        return res.redirect('/images/no-image.png');
-    }
     const data = await getData('404', req.user);
     res.render('404.ejs', {data});
 });
-
 
 
 

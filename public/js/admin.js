@@ -6,6 +6,7 @@ const editEpisodeForm = document.getElementById("edit-episode-form");
 let projectName;
 let episodeNumber;
 
+
 $(document).ready(function(){
     $(".new-project-btn").click(function(){
         newProjectForm.classList.add("visible");
@@ -30,6 +31,65 @@ $(document).ready(function(){
 
         $("#edit-project-form").addClass("visible");
         $("#edit-project-form").removeClass("invisible");
+    });
+
+
+    $(".update-project").click(function(e){
+        e.preventDefault();
+        
+        let link = projectName.replace(/ /g,"-");
+
+        $.ajax({
+            url: 'https://helloacm.com/api/random/?n=50', //Generate random file name(50 chars)
+            type: 'GET',
+            async: false,
+            success: function(fileName) {
+                console.log(fileName);
+
+                var form = $("#edit-project-form")[0]; // Need to use standard javascript object here
+                var formData = new FormData(form);
+
+                formData.getAll('name');
+                // Attach file
+                var goFileData = new FormData();
+                goFileData.append('filesUploaded', $('input[type=file]')[0].files[0]);
+                $.ajax({
+                    url: 'https://srv-file1.gofile.io/upload',
+                    type: 'POST',
+                    data: formData,
+                    contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
+                    processData: false, // NEEDED, DON'T OMIT THIS
+                    success: function(result) {
+                        let goFileCode = result.data.code;
+                        formData.append('goFileCode', goFileCode);
+                        $.ajax({
+                            url: '/projects/' + link,
+                            type: 'PUT',
+                            data: formData,
+                            contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
+                            processData: false, // NEEDED, DON'T OMIT THIS
+                            success: function(result) {
+                                console.log(result);
+                            },
+                            error: function (xhr, ajaxOptions, thrownError) {
+                                alert(thrownError);
+                                alert(xhr.responseText);
+                            }
+                        });
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        alert(thrownError);
+                        alert(xhr.responseText);
+                    }
+                });
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                alert(thrownError);
+                alert(xhr.responseText);
+            }
+        });
+        return true;
+
     });
 
     $(".update-project").click(function(e){

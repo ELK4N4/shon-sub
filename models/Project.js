@@ -49,7 +49,8 @@ const projectSchema = new mongoose.Schema({
 
 projectSchema.virtual('coverImagePath').get(function() {
     if (this.coverImageName != null) {
-        return path.join('/', coverImageBasePath, this.coverImageName);
+        //return path.join('/', coverImageBasePath, this.coverImageName);
+        return `https://srv-file1.gofile.io/download/${this.coverImageName}/cover.png`;
     } else {
         return path.join('/images', 'no-image.png');
     }
