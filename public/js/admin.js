@@ -62,6 +62,18 @@ $(document).ready(function(){
                     success: function(result) {
                         let goFileCode = result.data.code;
                         formData.append('goFileCode', goFileCode);
+
+                        $.ajax({
+                            url: 'https://gofile.io/d/' + goFileCode,
+                            type: 'GET',
+                            success: function(result) {
+                            },
+                            error: function (xhr, ajaxOptions, thrownError) {
+                                alert(thrownError);
+                                alert(xhr.responseText);
+                            }
+                        });
+
                         $.ajax({
                             url: '/projects/' + link,
                             type: 'PUT',
