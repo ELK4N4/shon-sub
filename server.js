@@ -24,7 +24,7 @@ const authRouter = require('./routes/auth/auth.js');
 const PORT = process.env.PORT || 3000;
 const DATABASE_URL = process.env.DATABASE_URL || "mongodb://localhost/test";
 
-
+/* Force HTTPS */
 app.use((req, res, next) => {
     if (process.env.NODE_ENV === 'production') {
         if (!req.headers['x-forwarded-proto'] !== 'https')
