@@ -14,8 +14,6 @@
         </div>
         &nbsp; &nbsp;
         <h2 dir="rtl">פרק <%= episode.episodeNumber %> - <%= episode.episodeName %> </h2>
-        <br>
-        <br>
         <div class="container">
             <p><i class="fas fa-eye"></i> צפיות: <%= episode.views %></p>
             &nbsp; &nbsp;
@@ -35,6 +33,11 @@
     <% let counter = 0 %> 
 
     <div class="flex-container episodes-container">
+        <% if (recommendedEpisodes.length == 0) { %>
+            <h2 class="no-episodes">אין פרקים נוספים</h2>
+        <% } %>
+             
+
         <% recommendedEpisodes.forEach(episode => { %>
             <% if(counter < max) { %> 
 
