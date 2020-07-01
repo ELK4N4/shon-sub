@@ -25,6 +25,16 @@ const PORT = process.env.PORT || 3000;
 const DATABASE_URL = process.env.DATABASE_URL || "mongodb://localhost/test";
 
 
+app.use((req, res, next) => {
+    if (process.env.NODE_ENV === 'production') {
+        if (!req.headers['x-forwarded-proto'] !== 'https')
+            return res.redirect('https://www.shonsub.tk' + req.url);
+        else
+            return next();
+    } else
+        return next();
+});
+
 /* Server Setup */
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
