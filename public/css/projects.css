@@ -267,7 +267,6 @@
 
     .project-showcase h1 {
         display: block;
-        word-break: break-all;
         margin: 0.3rem auto;
         margin-bottom: 2rem;
     }
