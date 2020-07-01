@@ -98,7 +98,7 @@ router.get('/:episode', async (req, res) => {
 router.post('/', adminOnly, uploadEpisode.single('cover'), async (req, res) => {
 
     //const fileName = req.file != null ? req.file.filename : null;
-    const fileName = req.body.img != '' ? req.body.img : null;
+    const fileName = req.body.image != '' ? req.body.image : null;
 
 
     const {error} = validation.episodeValidation(req.body);
@@ -159,7 +159,6 @@ router.delete('/:episode', adminOnly, async (req, res) => {
         { safe: true },
     );
 
-    removeImage(uploadEpisodesPath, deleted.episodes[epidoseIndex]);
 
     res.send(deleted.episodes[epidoseIndex]);
 });
@@ -168,10 +167,9 @@ router.delete('/:episode', adminOnly, async (req, res) => {
 
 //UPDATE episode - adminOnly
 router.put('/:episode', adminOnly, uploadEpisode.single('cover'), async (req, res) => {
-    const fileName = req.body.img != '' ? req.body.img : null;
+    const fileName = req.body.image != '' ? req.body.image : null;
 
     const project = await Project.findOne({name: req.project});
-
 
     let newEpisode = req.body;
     newEpisode.coverImageName = fileName;

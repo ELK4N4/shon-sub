@@ -32,7 +32,7 @@ const projectValidation = (data) => {
         process: Joi.string().min(2).required(),
         episodesNumber: Joi.number().allow(''),
         summary: Joi.string().allow(''),
-        img: Joi.string().uri().allow(''),
+        image: Joi.string().uri().allow(''),
         coverImageName: Joi.string().allow('')
     });
 
@@ -46,7 +46,7 @@ const episodeValidation = (data) => {
         episodeNumber: Joi.number().required(),
         link: Joi.string().uri().required(),
         post: Joi.string().allow(''),
-        img: Joi.string().uri().allow(''),
+        image: Joi.string().uri().allow(''),
         coverImageName: Joi.string()
     });
 

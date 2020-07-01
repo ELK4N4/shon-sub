@@ -16,27 +16,6 @@ const uploadProject = multer({
     }
 });
 
-const ftp = require("basic-ftp");
-const baseFTPPath = 'htdocs';
- 
-async function getClient() {
-    const client = new ftp.Client();
-    client.ftp.verbose = false; //logs out the communication
-    try {
-        await client.access({
-            host: "ftpupload.net",
-            user: "epiz_26092518",
-            password: "1xzkMfyxilj9",
-            secure: false
-        })
-        console.log("FTP connection is open");
-    }
-    catch(err) {
-        console.log(err);
-    }
-    return client;
-}
-
 
 const fs = require('fs');
 const removeImage = function(uploadPath, fileName) {
@@ -90,7 +69,7 @@ router.get('/:project', async (req, res) => {
 router.post('/', adminOnly, uploadProject.single('filesUploaded'), async (req, res) => {
     
     //const fileName = req.file != null ? req.file.filename : null;
-    const fileName = req.body.img != '' ? req.body.img : null;
+    const fileName = req.body.image != '' ? req.body.image : null;
 
     const {error} = validation.projectValidation(req.body);
     if(error) {
@@ -143,9 +122,7 @@ router.delete('/:project', adminOnly, async (req, res) => {
 
 //UPDATE project - adminOnly
 router.put('/:project', adminOnly, uploadProject.single('filesUploaded'), async (req, res) => {
-    delete req.body.image; //the client send AJAX call with "image" property that isn't needed
-    //const fileName = req.file != null ? req.file.filename : null;
-    const fileName = req.body.img != '' ? req.body.img : null;
+    const fileName = req.body.image != '' ? req.body.image : null;
 
     const projectName = req.params.project.replace(/-/g," ");
 

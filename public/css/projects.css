@@ -227,6 +227,16 @@
 }
 
 @media (max-width: 1000px) {
+    .img-text-top {
+        transform: translate(0px, 0px);
+        transition: .6s ease;
+    }
+
+    .cover-img-container:hover .img-text-top {
+        opacity: 0;
+        transform: scale(2.5);
+    }
+
 
     .project-details {
         margin-bottom: 0rem;
