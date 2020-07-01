@@ -61,6 +61,7 @@
     background-color: rgba(0,0,0,0.7);
     transition: transform .4s ease;
     text-align: center;
+    z-index: 1;
 }
 
 .img-text-bottom {
@@ -222,6 +223,35 @@
 
 .episode-item {
     margin: 1rem 1rem;
+}
+
+.play-icon {
+    position: absolute;
+    color: white;
+    font-size: 1.5rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    opacity: 0.9;
+    z-index: 0;
+}
+
+
+.play-icon::after {
+    content: '';
+    position: absolute;
+    font-size: 2rem;
+    top: 50%;
+    left: 45%;
+    padding: 1.5rem;
+    border-radius: 200px;
+    background-color:  var(--primary-color);
+    transform: translate(-50%,-50%);
+    z-index: -2;
+}
+
+.episode-item:hover .play-icon {
+    opacity: 1;
 }
 
 .episode-img-size {
