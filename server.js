@@ -24,19 +24,6 @@ const authRouter = require('./routes/auth/auth.js');
 const PORT = process.env.PORT || 3000;
 const DATABASE_URL = process.env.DATABASE_URL || "mongodb://localhost/test";
 
-/* Force HTTPS */
-app.use((req, res, next) => {
-    if (process.env.NODE_ENV === 'production') {
-        if (req.headers['https'] !== true) {
-            res.cookie('https',true); //Adding custom https cookie
-            return res.redirect('https://www.shonsub.tk' + req.url);
-        } else {
-            return next();
-        }
-    } else {
-        return next();
-    }
-});
 
 /* Server Setup */
 app.set('view engine', 'ejs');
@@ -49,6 +36,22 @@ app.use(bodyParser.urlencoded({ limit: '10mb', extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(verifyUser);
+
+/* Force HTTPS */
+app.use((req, res, next) => {
+    if (process.env.NODE_ENV === 'production') {
+        if (req.cookies['https'] !== true) {
+            
+            res.cookie('https',true); //Adding custom https cookie
+            return res.redirect('https://www.shonsub.tk' + req.url);
+        } else {
+          console.log("https");
+            return next();
+        }
+    } else {
+        return next();
+    }
+});
 
 /* DataBase */
 
