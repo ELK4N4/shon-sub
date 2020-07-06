@@ -27,10 +27,12 @@ const DATABASE_URL = process.env.DATABASE_URL || "mongodb://localhost/test";
 /* Force HTTPS */
 app.use((req, res, next) => {
     if (process.env.NODE_ENV === 'production') {
-        if (!req.headers['x-forwarded-proto'] !== 'https')
+        if (req.headers['https'] !== true) {
+            res.append('https', true); //Adding custom https header
             return res.redirect('https://www.shonsub.tk' + req.url);
-        else
+        } else {
             return next();
+        }
     } else {
         return next();
     }
