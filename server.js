@@ -31,8 +31,9 @@ app.use((req, res, next) => {
             return res.redirect('https://www.shonsub.tk' + req.url);
         else
             return next();
-    } else
+    } else {
         return next();
+    }
 });
 
 /* Server Setup */
