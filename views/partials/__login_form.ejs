@@ -1,0 +1,28 @@
+<form class="fixed-form login-form-width" id="login-form" action="/auth/login" method="POST">
+
+  <a class="close-button closeForm" href="javascript:void(0)" onclick="closeForm(registerForm)"><i class="fas fa-times-circle"></i></a>
+
+  <h1>התחבר</h1>
+
+  <div class="flex-container">
+
+    <div class="input-container">
+      <input type="text" placeholder="מייל" name="email" autocomplete="false" autocomplete="off" required>
+    </div>
+
+    <div class="input-container">
+      <input type="password" placeholder="סיסמה" name="password" autocomplete="false" autocomplete="off" required>
+    </div>
+
+    <div class="input-container">
+      <label for="name"><b>זכור אותי</b></label>
+      <input type="checkbox" name="remember" value="true" checked>
+    </div>
+    
+
+    <button type="submit" class="primary-button">התחבר</button>
+    <p class="switch-log">אין לך חשבון? <a href="javascript:void(0)" onclick="register()">הירשם</a></p>
+  </div>
+
+  </div>
+</form>

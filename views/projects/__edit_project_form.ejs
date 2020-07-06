@@ -1,0 +1,76 @@
+<form class="fixed-form new-project-form-width" id="edit-project-form" action="/projects" method="GET" enctype="multipart/form-data">
+
+    <a class="close-button closeForm" href="javascript:void(0)"><i class="fas fa-times-circle"></i></a>
+  
+  
+    <h1>ערוך פרוייקט</h1>
+    <div class="flex-container">
+  
+      <div class="input-container">
+        <label for="name"><b>שם פרוייקט</b></label>
+        <br>
+        <br>
+        <input type="text" placeholder="שם פרוייקט" name="name" dir="rtl" required>
+      </div>
+
+      <div class="input-container">
+        <label for="name"><b>שם באנגלית</b></label>
+        <br>
+        <br>
+        <input type="text" placeholder="שם באנגלית" name="englishName"dir="rtl">
+      </div>
+
+      <div class="input-container">
+        <label for="name"><b>שם ביפנית</b></label>
+        <br>
+        <br>
+        <input type="text" placeholder="שם ביפנית" name="japaneseName" dir="rtl">
+      </div>
+
+
+      <div class="input-container">
+        <label for="name"><b>ז'אנר</b></label>
+        <br>
+        <br>
+        <input type="text" placeholder="ז'אנר" name="genre" dir="rtl">
+      </div>
+  
+      <div class="input-container">
+        <label for="episodesNumber"><b>מספר פרקים</b></label>
+        <br>
+        <br>
+        <input type="number" placeholder="מספר פרקים" name="episodesNumber" dir="rtl">
+      </div>
+      
+      <div class="input-container">
+        <label for="process"><b>תהליך פרוייקט</b></label>
+        <br>
+        <br>
+        <select name="process" dir="rtl">
+            <option value="active">פעיל</option>
+            <option value="done">הושלם</option>
+            <option value="freeze">מוקפא</option>
+            <option value="planned">מתוכנן</option>
+        </select>
+      </div>
+      
+      <div class="input-container">
+        <label for="episodesNumber"><b>תקציר</b></label>
+        <br>
+        <br>
+        <textarea name="summary" class="text-area" dir="rtl" placeholder="תקציר" value="sadfsda"></textarea>
+      </div>
+      
+      <div class="input-container">
+        <label for="img"><b>לינק לתמונה</b></label>
+        <br>
+        <br>
+        <input type="text" placeholder="לינק לתמונה" name="image" dir="rtl">
+      </div>
+      
+      
+    </div>
+    <button class="warning-button delete-project float-right" type="button">מחק פרוייקט</button>
+    <button class="confirm-button update-project" type="submit">שמור</button>
+    <button class="light-button closeForm" type="button">ביטול</button>
+  </form>

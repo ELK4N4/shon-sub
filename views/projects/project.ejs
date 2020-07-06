@@ -1,0 +1,132 @@
+<% if(data.user.admin) { %>
+    <%- include('../projects/__new_episode_form.ejs') %>
+    <%- include('../projects/__edit_episode_form.ejs') %>
+<% } %> 
+
+
+<div class="project-details">
+
+    
+
+    <div class="project-showcase">
+
+        <div class="project-img">
+            <div class="cover-img-container project-img-size">
+                <img class="image-contains project-img-size" src="<%= project.coverImagePath %>" alt="<%= project.name.replace(/-/g," ") %>">
+            
+                <% if(data.user.admin) { %>
+                    <div class="img-text-bottom text-on-point edit-text edit-project">
+                        <h3><i class="fas fa-pen"></i> ערוך</h3>
+                    </div>
+                <% } %>
+    
+                <% if(data.user.admin) { %>
+                    <form class="project-fields" hidden>
+                        <input name="name" value="<%= project.name.replace(/-/g," ") %>">
+                        <input name="englishName" value="<%= project.englishName %>">
+                        <input name="japaneseName" value="<%= project.japaneseName %>">
+                        <input name="genre" value="<%= project.genre %>">
+                        <input name="process" value="<%= project.process %>">
+                        <input name="episodesNumber" value="<%= project.episodesNumber %>">
+                        <input name="summary" value="<%= project.summary %>">
+                        <input name="image" value="<%= project.coverImageName %>">
+                    </form>
+                <% } %>
+    
+            </div>
+        </div>
+
+
+        <% if(data.user.admin) { %>
+            <div class="secondary-button new-episode-btn">+ הוסף פרק</div>
+        <% } %> 
+
+        <div class="project-title" dir="rtl">
+            <h1><%= project.name.replace(/-/g," ") %></h1>
+        </div>
+        <div class="project-summary" dir="rtl">
+            <h3>תקציר</h3>
+            <p><%= project.summary %></p>
+        </div>
+    </div>
+
+    <div class="project-tiny-details">
+        <div class="project-detail">
+            <h3> &nbsp;:שם באנגלית</h3>
+            <p dir="rtl"><%= project.englishName %></p>
+        </div>
+        &nbsp;
+        <div class="project-detail">
+            <h3> &nbsp;:שם ביפנית</h3>
+            <p dir="rtl"><%= project.japaneseName %></p>
+        </div>
+        &nbsp;
+        <div class="project-detail">
+            <h3> &nbsp;:מספר פרקים</h3>
+            <p dir="rtl"><%= project.episodesNumber %></p>
+        </div>
+        &nbsp;
+        <div class="project-detail">
+            <h3> &nbsp;:ז'אנר</h3>
+            <p dir="rtl"><%= project.genre %></p>
+        </div>
+
+    </div>
+</div>
+
+<h1 class="title">פרקים</h1>
+
+<% if(project.episodes.length === 0) { %>
+    <h2>אין פרקים כרגע</h2>
+<% } %>
+
+<div class="flex-container">
+<% project.episodes.forEach(episode => { %>
+
+    <div class="episode-item">
+
+        <div class="cover-img-container episode-img-size clicked">
+            
+            <% if(data.user.verified) { %> 
+                <a href=/projects/<%= project.name.replace(/ /g,"-") %>/<%= episode.episodeNumber %>>
+                    <img class="image-contains episode-img-size" src="<%= episode.coverImagePath %>" alt="<%= episode.episodeName %>">
+                    <div class="img-text-top text-on-point">
+                        <h3><%= episode.episodeNumber %> פרק</h3>
+                    </div>
+                    <div class="play-icon"><i class="fas fa-play"></i></div>
+                </a>
+
+            <% } else { %>
+                <a href="javascript:void(0)" onclick="login()">
+                    <img class="image-contains episode-img-size" src="<%= episode.coverImagePath %>" alt="<%= episode.episodeName %>">
+                    <div class="img-text-top text-on-point">
+                        <h3><%= episode.episodeNumber %> פרק</h3>
+                    </div>
+                    <div class="play-icon"><i class="fas fa-play"></i></div>
+                </a>
+            <% } %> 
+            
+            <% if(data.user.admin) { %>
+            <div class="img-text-bottom text-on-point edit-text edit-episode">
+                <h3><i class="fas fa-pen"></i> ערוך</h3>
+            </div>
+            <% } %>
+
+        </div>
+
+        <% if(data.user.admin) { %>
+        <form class="episode-fields" hidden>
+            <input name="episodeNumber" value="<%= episode.episodeNumber %>">
+            <input name="episodeName" value="<%= episode.episodeName %>">
+            <input name="link" value="<%= episode.link %>">
+            <input name="post" value="<%= episode.post %>">
+            <input name="image" value="<%= episode.coverImageName %>">
+        </form>
+        <% } %> 
+    
+    </div>
+    
+<% }); %>
+</div>
+
+

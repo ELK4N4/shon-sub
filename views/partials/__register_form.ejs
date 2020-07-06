@@ -1,0 +1,38 @@
+<form class="fixed-form register-form-width" id="register-form" action="/auth/register" method="POST">
+
+  <a class="close-button closeForm" href="javascript:void(0)"><i class="fas fa-times-circle"></i></a>
+
+  <h1>צור חשבון</h1>
+
+  <div class="flex-container">
+
+
+
+    <div class="input-container">
+      <input type="text" placeholder="מייל" name="email" required>
+    </div>
+
+
+    <div class="input-container">
+      <input type="text" placeholder="שם משתמש" name="name" required>
+    </div>
+
+    <div class="input-container">
+      <input type="password" placeholder="סיסמה" id="pass" name="password" required>
+    </div>
+
+    <div class="input-container">
+      <input type="password" placeholder="אימות סיסמה" id="confirm-pass" required>
+      <span id="message"></span>
+    </div>
+    
+
+    <button type="submit" class="primary-button">הירשם</button>
+    <p class="switch-log">יש לך כבר חשבון? <a href="javascript:void(0)" onclick="login()">התחבר</a></p>
+
+  </div>
+  
+
+  <div class="container">
+  </div>
+</form>

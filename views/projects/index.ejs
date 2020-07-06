@@ -1,0 +1,197 @@
+<div class="active-projects">
+    <h1 class="title">פרוייקטים פעילים</h1>
+
+
+    <div class="flex-container projects-container">
+    <% if (data.allProjects.activeProjects.length === 0) { %>
+        <h2>אין פרוייקטים כרגע</h2>
+    <% } %>
+    
+    
+        
+        <% data.allProjects.activeProjects.forEach(project => { %> 
+            <% if (project.process === 'active') { %>
+
+                <div class="project-item">
+
+                    <div class="cover-img-container project-img-size clicked" dir="rtl">
+                        <a href=/projects/<%= project.name.replace(/ /g,"-") %>>
+                            <img class="image-contains project-img-size" src="<%= project.coverImagePath %>" alt="<%= project.name.replace(/-/g," ") %>">
+                            <div class="img-text-top">
+                                <h3><%= project.name.replace(/-/g," ") %></h3>
+                            </div>
+                        </a>
+
+                        <% if(data.user.admin) { %> 
+                            <div class="img-text-bottom text-on-point edit-text edit-project">
+                                <h3><i class="fas fa-pen"></i> ערוך</h3>
+                            </div>
+                        <% } %>
+
+                        </div>
+
+                        <% if(data.user.admin) { %>
+                        <form class="project-fields" dir="rtl" hidden>
+                            <input name="name" value="<%= project.name.replace(/-/g," ") %>">
+                            <input name="englishName" value="<%= project.englishName %>">
+                            <input name="japaneseName" value="<%= project.japaneseName %>">
+                            <input name="genre" value="<%= project.genre %>">
+                            <input name="process" value="<%= project.process %>">
+                            <input name="episodesNumber" value="<%= project.episodesNumber %>">
+                            <input name="summary" value="<%= project.summary %>">
+                            <input name="image" value="<%= project.coverImageName %>">
+                        </form>
+                        <% } %>
+
+                </div>
+            <% } %>
+        <%  }); %> 
+    </div>
+</div>
+<div class="done-projects">
+    <h1 class="title">פרוייקטים שהושלמו</h1>
+
+    <div class="flex-container projects-container">
+        <% if (data.allProjects.doneProjects.length === 0) { %>
+            <h2>אין פרוייקטים כרגע</h2>
+        <% } %>
+        
+        
+            
+            <% data.allProjects.doneProjects.forEach(project => { %> 
+                <% if (project.process === 'done') { %>
+    
+                    <div class="project-item">
+    
+                        <div class="cover-img-container project-img-size clicked" dir="rtl">
+                            <a href=/projects/<%= project.name.replace(/ /g,"-") %>>
+                                <img class="image-contains project-img-size" src="<%= project.coverImagePath %>" alt="<%= project.name.replace(/-/g," ") %>">
+                                <div class="img-text-top">
+                                    <h3><%= project.name.replace(/-/g," ") %></h3>
+                                </div>
+                            </a>
+
+                            <% if(data.user.admin) { %> 
+                                <div class="img-text-bottom text-on-point edit-text edit-project">
+                                    <h3><i class="fas fa-pen"></i> ערוך</h3>
+                                </div>
+                                <% } %>
+
+                            </div>
+
+                            <% if(data.user.admin) { %>
+                            <form class="project-fields" hidden>
+                                <input name="name" value="<%= project.name.replace(/-/g," ") %>">
+                                <input name="englishName" value="<%= project.englishName %>">
+                                <input name="japaneseName" value="<%= project.japaneseName %>">
+                                <input name="genre" value="<%= project.genre %>">
+                                <input name="process" value="<%= project.process %>">
+                                <input name="episodesNumber" value="<%= project.episodesNumber %>">
+                                <input name="summary" value="<%= project.summary %>">
+                                <input name="image" value="<%= project.coverImageName %>">
+                            </form>
+                            <% } %>
+    
+                    </div>
+                <% } %>
+            <%  }); %> 
+    
+</div>
+<div class="freeze-projects">
+    <h1 class="title">פרוייקטים מוקפאים</h1>
+    <div class="flex-container projects-container">
+        <% if (data.allProjects.freezeProjects.length === 0) { %>
+            <h2>אין פרוייקטים כרגע</h2>
+        <% } %>
+        
+        
+            
+            <% data.allProjects.freezeProjects.forEach(project => { %> 
+                <% if (project.process === 'freeze') { %>
+    
+                    <div class="project-item">
+    
+                        
+                            <div class="cover-img-container project-img-size clicked" dir="rtl">
+                                <a href=/projects/<%= project.name.replace(/ /g,"-") %>>
+                                    <img class="image-contains project-img-size" src="<%= project.coverImagePath %>" alt="<%= project.name.replace(/-/g," ") %>">
+                                    <div class="img-text-top">
+                                        <h3><%= project.name.replace(/-/g," ") %></h3>
+                                    </div>
+                                </a>
+
+                                <% if(data.user.admin) { %> 
+                                    <div class="img-text-bottom text-on-point edit-text edit-project">
+                                        <h3><i class="fas fa-pen"></i> ערוך</h3>
+                                    </div>
+                                    <% } %>
+    
+                                </div>
+    
+                                <% if(data.user.admin) { %>
+                                <form class="project-fields" hidden>
+                                    <input name="name" value="<%= project.name.replace(/-/g," ") %>">
+                                    <input name="englishName" value="<%= project.englishName %>">
+                                    <input name="japaneseName" value="<%= project.japaneseName %>">
+                                    <input name="genre" value="<%= project.genre %>">
+                                    <input name="process" value="<%= project.process %>">
+                                    <input name="episodesNumber" value="<%= project.episodesNumber %>">
+                                    <input name="summary" value="<%= project.summary %>">
+                                    <input name="image" value="<%= project.coverImageName %>">
+                                </form>
+                                <% } %>
+    
+                    </div>
+                <% } %>
+            <%  }); %> 
+</div>
+
+<div class="freeze-projects">
+    <h1 class="title">פרוייקטים מתוכננים</h1>
+    <div class="flex-container projects-container">
+        <% if (data.allProjects.plannedProjects.length === 0) { %>
+            <h2>אין פרוייקטים כרגע</h2>
+        <% } %>
+        
+        
+            
+            <% data.allProjects.plannedProjects.forEach(project => { %> 
+                <% if (project.process === 'planned') { %>
+    
+                    <div class="project-item">
+    
+                        
+                            <div class="cover-img-container project-img-size clicked" dir="rtl">
+                                <a href=/projects/<%= project.name.replace(/ /g,"-") %>>
+                                    <img class="image-contains project-img-size" src="<%= project.coverImagePath %>" alt="<%= project.name.replace(/-/g," ") %>">
+                                    <div class="img-text-top">
+                                        <h3><%= project.name.replace(/-/g," ") %></h3>
+                                    </div>
+                                </a>
+
+                                <% if(data.user.admin) { %> 
+                                <div class="img-text-bottom text-on-point edit-text edit-project">
+                                    <h3><i class="fas fa-pen"></i> ערוך</h3>
+                                </div>
+                                <% } %>
+
+                            </div>
+
+                            <% if(data.user.admin) { %>
+                            <form class="project-fields" hidden>
+                                <input name="name" value="<%= project.name.replace(/-/g," ") %>">
+                                <input name="englishName" value="<%= project.englishName %>">
+                                <input name="japaneseName" value="<%= project.japaneseName %>">
+                                <input name="genre" value="<%= project.genre %>">
+                                <input name="process" value="<%= project.process %>">
+                                <input name="episodesNumber" value="<%= project.episodesNumber %>">
+                                <input name="summary" value="<%= project.summary %>">
+                                <input name="image" value="<%= project.coverImageName %>">
+                            </form>
+                            <% } %>
+    
+                    </div>
+                <% } %>
+            <%  }); %> 
+</div>
+

@@ -1,0 +1,58 @@
+<% let navMenu = [ {name: 'home',hebName: 'ראשי'}, {name: 'projects',hebName: 'פרוייקטים',dropDown: true},{name: 'about',hebName: 'אודות',},{name: 'forum',hebName: 'פורום',} ] %>
+<% navMenu = [ {name: 'projects',hebName: 'פרוייקטים',dropDown: true} ] %>
+
+
+<header class="top">
+        <div class="nav-btn">
+            <i class="fas fa-bars open-icon"></i>
+            <i class="fas fa-times close-icon"></i>
+        </div>
+
+    <div class="user-section">
+        <div class="user-name"><%= data.user.name %></div>
+        <% if(!data.user.verified) { %>
+            <ul class="user-options">
+                <li class="option-item sign-in"><a href="javascript:void(0)" onclick="login()">התחבר</a></li>
+                <li class="option-item register"><a href="javascript:void(0)" onclick="register()">הרשם</a></li>
+            </ul>
+        <% } else { %>  
+            <ul class="user-options">
+                <li class="option-item sign-in"><a href=/auth/logout>התנתק</a></li>
+                <li class="option-item register"><a href=/user/settings>הגדרות</a></li>
+            </ul>
+        <% } %>
+    </div>
+    <ul class="menu">
+
+        <% navMenu.forEach(item => { %>
+
+            <% if(item.name === 'projects') { %> 
+                <div class="dropdown-projects">
+                    <% if(item.name === data.page.name) { %>
+                        <li class="menu-item active"><a href=/projects><i class="fas fa-sort-down" style="position:relative; bottom: 0.1rem;"></i> פרוייקטים</i></a></li>
+                    <% } else { %>
+                        <li class="menu-item"><a href=/projects><i class="fas fa-sort-down" style="position:relative; bottom: 0.1rem;"></i> פרוייקטים</i></a></li>
+                    <% } %>
+                    <div class="dropdown-content" dir="rtl">
+                        <% data.allProjects.activeProjects.forEach(project => { %>
+                            <a href="/projects/<%= project.name.replace(/ /g,"-") %>"><%= project.name.replace(/-/g," ") %></a>
+                        <% }); %>
+                        <% data.allProjects.doneProjects.forEach(project => { %>
+                            <a href="/projects/<%= project.name.replace(/ /g,"-") %>"><%= project.name.replace(/-/g," ") %></a>
+                        <% }); %>
+                        <% if(data.user.admin) { %>
+                            <a href="javascript:void(0)" class="new-project-btn"><strong>פרוייקט חדש +</strong></a>
+                        <% } %>
+                    </div>
+                </div>
+            <% } else if(item.name === data.page.name) { %>
+                <li class="menu-item active"><a href=/<%= item.name %>><%= item.hebName%></a></li>
+            <% } else { %>
+                <li class="menu-item"><a href=/<%= item.name %>><%= item.hebName%></a></li>
+            <% } %>
+
+        <% }); %>
+
+    </ul>
+    <div class="logo"><a href=/><strong>S</strong>hon<strong>S</strong>ub<span class="beta">BETA</span></a></div>
+</header>

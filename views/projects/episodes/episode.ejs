@@ -1,0 +1,83 @@
+<% if(data.user.admin) { %>
+    <%- include('../projects/__new_episode_form.ejs') %>
+    <%- include('../projects/__edit_episode_form.ejs') %>
+<% } %>
+ 
+
+<div class="episode-page">
+
+    <div class="watch">
+        <iframe sandbox="allow-forms allow-pointer-lock allow-same-origin allow-scripts allow-top-navigation" src="<%= episode.link.split("view")[0] %>preview" frameborder="0" allowfullscreen=""></iframe>
+    </div>
+
+
+    <div class="episode-details" dir="rtl">
+        <div class="project-title">
+            <h1 dir="rtl"><%= project.name.replace(/-/g," ") %></h1>
+        </div>
+        <h2 dir="rtl">פרק <%= episode.episodeNumber %> - <%= episode.episodeName %> </h2>
+        <div class="container">
+            <p><i class="fas fa-eye"></i> צפיות: <%= episode.views %></p>
+            &nbsp; &nbsp;
+            <p><i class="fas fa-clock"></i> פורסם בתאריך: <%= episode.createdAt.toLocaleDateString().replace(/-/g, "/") %></i></p>
+            &nbsp; &nbsp;
+            <% if (episode.post) { %> 
+                <br>
+                <br>
+                <p><i class="fas fa-user-edit"></i> פוסט: </i></p>
+                <br>
+                <p class="episode-post" dir="rtl"><%= episode.post %></i></p>
+            <% } %> 
+        </div>
+    </div>
+
+    <% let max = 4 %> 
+    <% let counter = 0 %> 
+
+    <div class="flex-container episodes-container">
+        <% if (recommendedEpisodes.length == 0) { %>
+            <h2 class="no-episodes">אין פרקים נוספים</h2>
+        <% } %>
+             
+
+        <% recommendedEpisodes.forEach(episode => { %>
+            <% if(counter < max) { %> 
+
+            <div class="episode-item">
+        
+                <div class="cover-img-container episode-img-size clicked">
+                    <a href=/projects/<%= project.name.replace(/ /g,"-") %>/<%= episode.episodeNumber %>>
+                        <img class="image-contains episode-img-size" src="<%= episode.coverImagePath %>" alt="<%= episode.episodeName %>">
+                        <div class="img-text-top text-on-point">
+                            <h3><%= episode.episodeNumber %> פרק</h3>
+                        </div>
+                        <div class="play-icon"><i class="fas fa-play"></i></div>
+                    </a>
+            
+
+                    <% if(data.user.admin) { %> 
+                    <div class="img-text-bottom text-on-point edit-text edit-episode">
+                        <h3><i class="fas fa-pen"></i> ערוך</h3>
+                    </div>
+                    <% } %> 
+
+                </div>
+        
+        
+                <form class="episode-fields" hidden>
+                    <input name="episodeNumber" value="<%= episode.episodeNumber %>">
+                    <input name="episodeName" value="<%= episode.episodeName %>">
+                    <input name="link" value="<%= episode.link %>">
+                    <input name="post" value="<%= episode.post %>">
+                    <input name="image" value="<%= episode.coverImageName %>">
+                </form>
+            </div>
+
+            <% counter++ %> 
+            <% } %>
+
+        <% }); %>
+        
+    </div>
+
+</div>
