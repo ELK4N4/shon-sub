@@ -1,0 +1,41 @@
+:root {
+    --primary-color: #967e14;
+    --secondary-color: white;
+    --light-color: white;
+}
+
+/* -Projects- */
+.edit-text {
+    max-height: 100%;
+    cursor: pointer;
+    color: rgb(36, 36, 36);
+    background-color: white;
+    padding: 0.7rem 0;
+    transition: .2s ease;
+}
+
+.edit-text:hover {
+    padding: 1.1rem 0;
+}
+
+.new-project-form-width {
+    width: 65vw;
+}
+
+
+/* episodes */
+
+.episode-form-width {
+    max-width: 20rem;
+}
+
+.new-episode-btn {
+    position: relative;
+    top: -2rem;
+    left: 2rem;
+}
+
+.episodes-container {
+    position: relative;
+    top: 1rem;
+}
