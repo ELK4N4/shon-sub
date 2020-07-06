@@ -88,7 +88,7 @@ router.get('/:episode', async (req, res) => {
 
         recommendedEpisodes.reverse();
 
-        return res.status(200).render('projects/episode.ejs',{data, project, episode, recommendedEpisodes});
+        return res.status(200).render('projects/episodes/episode.ejs',{data, project, episode, recommendedEpisodes});
     }
 
     return res.status(404).send('Episode Not Found');

@@ -39,17 +39,6 @@ router.get('/', async (req, res) => {
     res.render('projects/index.ejs', {data});
 });
 
-//GET "new-project" Page - adminOnly
-router.get('/new-project', adminOnly, async (req, res) => {
-
-    if(!req.user.verified) {
-        return res.status(404).send("Not found");
-    }
-    
-    const data = await getData('projects', req.user);
-    res.render('projects/newProject.ejs', {data});
-});
-
 //GET all episodes of exist project
 router.get('/:project', async (req, res) => {
     const data = await getData('project', req.user);

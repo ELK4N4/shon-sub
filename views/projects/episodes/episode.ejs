@@ -1,5 +1,8 @@
-<%- include('../projects/__new_episode_form.ejs') %>
-<%- include('../projects/__edit_episode_form.ejs') %>
+<% if(data.user.admin) { %>
+    <%- include('../projects/__new_episode_form.ejs') %>
+    <%- include('../projects/__edit_episode_form.ejs') %>
+<% } %>
+ 
 
 <div class="episode-page">
 
