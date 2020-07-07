@@ -768,7 +768,7 @@ footer {
 
         
     .page {
-        transition: transform .7s;
+        transition: transform .5s;
     }
     
     .page.nav-is-open {
@@ -885,7 +885,7 @@ footer {
         overflow: auto;
         background-color: rgb(31, 31, 31);
         transform: translate(70vw, 0);
-        transition: transform .7s;
+        transition: transform .5s;
     }
 
     .mobile-nav .mobile-menu {
