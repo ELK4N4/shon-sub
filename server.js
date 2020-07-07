@@ -39,7 +39,8 @@ app.use(verifyUser);
 
 /* Force HTTPS */
 app.use((req, res, next) => {
-    if (process.env.NODE_ENV === 'production') {
+    if (process.env.NODE_ENV === 'production') {c
+        console.log('production');
         if (req.cookies['https'] !== 'true') {
             res.cookie('https','true'); //Adding custom https cookie
             return res.redirect('https://www.shonsub.tk' + req.url);
@@ -47,7 +48,7 @@ app.use((req, res, next) => {
             return next();
         }
     } else {
-        console.log("http");
+        console.log('!production');
         return next();
     }
 });
