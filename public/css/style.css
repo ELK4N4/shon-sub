@@ -110,16 +110,16 @@ a {
 }
 
 #blur {
-    display: none;
+    visibility: hidden;
     opacity: 0;
     position: absolute;
-    z-index: 5;
+    z-index: 20;
     width: 100%;
     height: 100%;
     color: white;
     backdrop-filter: saturate(180%) blur(5px);
     position: fixed;
-    transition: opacity 2s;
+    transition: opacity.5s;
 }
 
 .visible {
@@ -128,11 +128,22 @@ a {
     transition: .5s;
 }
 
+.invisible.fixed-form {
+    transform: translate(-50%, -40%) !important;
+}
+
+.invisible#blur {
+    transition: .1s !important;
+}
+
+.visible#blur {
+    transition: .1s !important;
+}
+
 .invisible {
     opacity: 0 !important;
     visibility: hidden !important;
-    transform: translate(-50%, -40%) !important;
-    transition: .5s;
+    transition: .5s !important;
 }
 
 /* ------------ BUTTONS -------------- */
@@ -496,7 +507,7 @@ form .switch-log {
 }
 
 .fixed-form {
-    z-index: 10;
+    z-index: 20;
     background-color: white;
     padding: 1rem 1rem;
     border-radius: 10px;
