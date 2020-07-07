@@ -150,7 +150,9 @@ function register() {
 
  // Get all elements with class="tabcontent" and hide them
  tabcontent = document.getElementsByClassName("tab-content");
- tabcontent[0].style.display = "block";
+ if(tabcontent[0]) { //prevent an error on another pages
+  tabcontent[0].style.display = "block";
+ }
 function openTab(evt, tabName) {
   for (i = 0; i < tabcontent.length; i++) {
     tabcontent[i].style.display = "none";
