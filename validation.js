@@ -55,6 +55,5 @@ const episodeValidation = (data) => {
 
 module.exports.loginValidation = loginValidation;
 module.exports.registerValidation = registerValidation;
-module.exports.newProjectValidation = projectValidation;
 module.exports.projectValidation = projectValidation;
 module.exports.episodeValidation = episodeValidation;
