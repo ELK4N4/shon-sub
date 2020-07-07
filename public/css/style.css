@@ -123,17 +123,16 @@ a {
 }
 
 .visible {
-    display: block !important;
     opacity: 1 !important;
     visibility: visible !important;
-    transition: opacity 2s;
+    transition: .5s;
 }
 
 .invisible {
-    display: none !important;
     opacity: 0 !important;
     visibility: hidden !important;
-    transition: opacity 2s;
+    transform: translate(-50%, -40%) !important;
+    transition: .5s;
 }
 
 /* ------------ BUTTONS -------------- */
@@ -491,12 +490,12 @@ form .switch-log {
 .register-form-width {
     width: 19rem;
 }
+
 .login-form-width {
     width: 19rem;
 }
 
 .fixed-form {
-    display: none;
     z-index: 10;
     background-color: white;
     padding: 1rem 1rem;
