@@ -1,10 +1,10 @@
 const loginForm = document.getElementById("login-form");
 const registerForm = document.getElementById("register-form");
-const blur = document.getElementById("blur");
+const blur = document.getElementsByClassName("blur");
 
 function closeAllForms() {
-  blur.classList.add("invisible");
-  blur.classList.remove("visible");
+  $(".blur").addClass("invisible");
+  $(".blur").addClass("visible");
   $(".fixed-form").addClass("invisible");
   $(".fixed-form").removeClass("visible");
 }
@@ -52,20 +52,6 @@ $(document).ready(function(){
 
   $(".closeForm").click(function(){
     closeAllForms();
-    /*
-    if($(this).attr("id") == "blur") {
-        $(".fixed-form").addClass("invisible");
-        $(".fixed-form").removeClass("visible");
-        blur.classList.add("invisible");
-        blur.classList.remove("visible");
-    } 
-    else {
-        $(this).parent().addClass("invisible");
-        $(this).parent().removeClass("visible");
-        blur.classList.add("invisible");
-        blur.classList.remove("visible");
-    }
-    */
   });
 
 
@@ -129,8 +115,8 @@ function login() {
     loginForm.classList.remove("invisible");
     registerForm.classList.add("invisible");
     registerForm.classList.remove("visible");
-    blur.classList.add("visible");
-    blur.classList.remove("invisible");
+    $(".blur").addClass("visible");
+    $(".blur").removeClass("invisible");
     closeMobileMenu()
 };
 
@@ -139,8 +125,8 @@ function register() {
     loginForm.classList.remove("visible");
     registerForm.classList.add("visible");
     registerForm.classList.remove("invisible");
-    blur.classList.add("visible");
-    blur.classList.remove("invisible");
+    $(".blur").addClass("visible");
+    $(".blur").removeClass("invisible");
     closeMobileMenu()
 };
 
