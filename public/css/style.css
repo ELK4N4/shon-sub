@@ -810,21 +810,32 @@ footer {
         cursor: pointer;
     }
 
-    .open-icon.nav-is-open {
-        display: block;
+    .open-icon {
+        position: absolute;
+        right: 1rem;
+        visibility: visible;
+        opacity: 1;
+        transition: .4s;
     }
 
     .open-icon.nav-is-open {
-        display: none;
+        transform: rotate(-180deg) scale(0.5);
+        opacity: 0;
+        visibility: hidden;
     }
 
-    .close-icon{
+    .close-icon {
+        transform: rotate(0deg) scale(0.5);
         font-size: 2.2rem;
-        display: none !important;
+        opacity: 0;
+        visibility: hidden;
+        transition: .4s;
     }
 
     .close-icon.nav-is-open {
-        display: block !important;
+        transform: rotate(-180deg) scale(1);
+        visibility: visible;
+        opacity: 1;
     }
 
     .mobile-nav {
