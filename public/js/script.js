@@ -4,7 +4,7 @@ const blur = document.getElementsByClassName("blur");
 
 function closeAllForms() {
   $(".blur").addClass("invisible");
-  $(".blur").addClass("visible");
+  $(".blur").removeClass("visible");
   $(".fixed-form").addClass("invisible");
   $(".fixed-form").removeClass("visible");
 }

@@ -123,25 +123,26 @@ a {
 .visible {
     opacity: 1 !important;
     visibility: visible !important;
-    transition: .5s;
+    transition: .2s;
+}
+
+.blur.visible{
+    transition: opacity .1s !important;
 }
 
 .invisible.fixed-form {
     transform: translate(-50%, -40%) !important;
 }
 
-.invisible.blur {
+.blur.invisible{
     transition: opacity .1s !important;
 }
 
-.visible.blur {
-    transition: opacity .1s !important;
-}
 
 .invisible {
     opacity: 0 !important;
     visibility: hidden !important;
-    transition: .5s !important;
+    transition: .2s !important;
 }
 
 /* ------------ BUTTONS -------------- */
