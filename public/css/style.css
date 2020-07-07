@@ -824,6 +824,7 @@ footer {
     
     .nav-blur {
         cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
 
         opacity: 0;
         visibility: hidden;
