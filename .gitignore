@@ -1,4 +1,4 @@
 node_modules
 .env
-//.glitch-assets
-//shrinkwrap.yaml
+.glitch-assets
+shrinkwrap.yaml
