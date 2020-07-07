@@ -808,6 +808,7 @@ footer {
         font-size: 2rem;
         color: var(--secondary-color);
         cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
     }
 
     .open-icon {
