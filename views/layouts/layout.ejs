@@ -33,8 +33,9 @@
 <% } %>
 
 
-    <div class="blur closeForm invisible"></div>
-    <%- include('../partials/__login_form.ejs') %> 
+<div class="blur closeForm invisible"></div>
+<div class="nav-blur"></div>
+<%- include('../partials/__login_form.ejs') %> 
     <%- include('../partials/__register_form.ejs') %>
     <% if(data.user.admin) { %> 
         <%- include('../projects/__new_project_form.ejs') %>
