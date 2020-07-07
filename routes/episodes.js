@@ -18,19 +18,6 @@ const uploadEpisode = multer({
     }
 });
 
-const fs = require('fs');
-const removeImage = function(uploadPath, fileName) {
-    if(fileName) {
-        fs.unlink(path.join(uploadPath, fileName), (err) => {
-            if (err) {
-                console.log("failed to delete local image:" + err);
-            } else {
-                console.log('successfully deleted local image');                                
-            }
-        });  
-    }
-};
-
 
 /// SPECIFIC EPISODES OF SPECIFIC PROJECT ///
 
@@ -120,14 +107,12 @@ router.post('/', adminOnly, uploadEpisode.single('cover'), async (req, res) => {
 
     const project = await Project.findOne({name: projectName});
     if(!project){
-        removeImage(uploadEpisodesPath, newEpisode);
         return res.status(404).send('Project Not Found');
     }
 
     const epidoseExist = project.episodes.find(episode => episode.episodeNumber == req.body.episodeNumber);
 
     if(epidoseExist && project.episodes.length > 0) { 
-        removeImage(uploadEpisodesPath, newEpisode);
         return res.status(404).send('Episode ' + req.body.episodeNumber + ' is exist');
     }
 
@@ -175,14 +160,12 @@ router.put('/:episode', adminOnly, uploadEpisode.single('cover'), async (req, re
     newEpisode.coverImageName = fileName;
 
     if(!project){
-        removeImage(uploadEpisodesPath, newEpisode);
         return res.status(404).send('Project Not Found');
     }
 
     let epidoseExist = project.episodes.find(episode => episode.episodeNumber == req.params.episode);
 
     if(!epidoseExist) {
-        removeImage(uploadEpisodesPath, newEpisode);
         return res.status(404).send('Episode ' + req.params.episode + ' not found');
     }
 
@@ -201,7 +184,6 @@ router.put('/:episode', adminOnly, uploadEpisode.single('cover'), async (req, re
         return res.send(updatedEpisode);
     }
 
-    removeImage(uploadEpisodesPath, newEpisode);
     res.status(404).send('Error');
 });
 

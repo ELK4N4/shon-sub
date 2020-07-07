@@ -16,20 +16,6 @@ const uploadProject = multer({
     }
 });
 
-
-const fs = require('fs');
-const removeImage = function(uploadPath, fileName) {
-    if(fileName) {
-        fs.unlink(path.join(uploadPath, fileName), (err) => {
-            if (err) {
-                console.log("failed to delete local image:" + err);
-            } else {
-                console.log('successfully deleted local image');                                
-            }
-        });  
-    }
-};
-
 /*** ALL PROJECTS ***/
 
 //GET all projects
@@ -80,7 +66,6 @@ router.post('/', adminOnly, uploadProject.single('filesUploaded'), async (req, r
     const projectExist = await Project.findOne({name: req.body.name});
 
     if(projectExist) {
-        removeImage(uploadProjectsPath, fileName);
         return res.status(400).send('Project already exist');
     }
 
@@ -88,7 +73,6 @@ router.post('/', adminOnly, uploadProject.single('filesUploaded'), async (req, r
     try {
         const savedProject = await project.save();
 
-        //removeImage(uploadProjectsPath, fileName);
         res.status(200).redirect('/projects');
     } catch(err) {
         res.status(400).send(err);
