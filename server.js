@@ -1,9 +1,8 @@
 /* Import Modules */
 if(process.env.NODE_ENV !== 'production') {
     require('dotenv').config();
+    console.log("sdf");
 }
-
-//testing
 
 const express = require('express');
 const favicon = require('serve-favicon');
