@@ -834,15 +834,16 @@ footer {
         width: 100%;
         height: 100%;
         color: white;
-        backdrop-filter: saturate(200%) blur(15px);
+        background-color: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(15px);
         position: fixed;
-        transition: .7s;
+        transition: .4s;
     }
 
     .nav-blur.nav-is-open {
         opacity: 1;
         visibility: visible;
-        transition: .7s;
+        transition: .4s;
     }
 
     .open-icon {
