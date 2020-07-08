@@ -259,7 +259,7 @@
     height: 130px;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 800px) {
     .img-text-top {
         transform: translate(0px, 0px);
         transition: .6s ease;
