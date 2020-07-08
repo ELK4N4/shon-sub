@@ -24,6 +24,8 @@
 
 .showcase {
     position: absolute;
+    width: 100%;
+    height: auto;
     top: 55%;
     left: 50%;
     transform: translate(-50%,-50%);
@@ -40,6 +42,13 @@
     text-align: center !important;
 }
 
+.showcase .showcase-logo {
+    font-family: logo-font;
+    font-weight: 100;
+    margin-right: .5rem;
+    font-size: 6rem;
+}
+
 .showcase h3 {
     display: block;
     margin: 1rem 0;
@@ -48,18 +57,22 @@
     text-align: center !important;
 }
 
-.showcase .logo {
-    font-family: logo-font;
-    font-weight: 100;
-    margin-right: .5rem;
-    font-size: 6rem;
-}
-
 .showcase-btn {
     text-align: center !important;
     margin: 1rem 0;
     display: inline-block;
-    min-width: 30vw;
+    min-width: 25vw;
+    max-width: 30vw;
     background-color: black;
     font-size: 1.5rem;
+}
+
+@media (max-width: 800px) {
+    .showcase h3 {
+        font-size: 1.2rem;
+    }
+    
+    .showcase-btn {
+        max-width: 50vw;
+    }
 }
