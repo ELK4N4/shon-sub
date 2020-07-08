@@ -10,6 +10,9 @@
     <title>ShonSub</title>
     <!-- CCS -->
     <link href="/css/style.css" rel="stylesheet" type="text/css">
+    <% if(data.page.name === "home") { %> 
+        <link href="/css/home.css" rel="stylesheet" type="text/css">
+    <% } %>
     <link href="/css/projects.css" rel="stylesheet" type="text/css">
     <% if(data.user.admin) { %> 
         <link href="/css/admin.css" rel="stylesheet" type="text/css">
@@ -19,9 +22,6 @@
     <% } %>
     <% if(data.page.name === "404") { %> 
         <link href="/css/404.css" rel="stylesheet" type="text/css">
-    <% } %>
-    <% if(data.page.name === "home") { %> 
-        <link href="/css/home.css" rel="stylesheet" type="text/css">
     <% } %>
     <!-- SCRIPTS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
