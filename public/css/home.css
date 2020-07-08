@@ -50,10 +50,9 @@
 
 .showcase-btn {
     text-align: center !important;
-    margin: 0;
     margin: 1rem 0;
     display: inline-block;
-    width: 30vw;
+    min-width: 30vw;
     background-color: black;
     font-size: 1.5rem;
 }
