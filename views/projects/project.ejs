@@ -38,7 +38,7 @@
 
 
         <% if(data.user.admin) { %>
-            <div class="secondary-button new-episode-btn">+ הוסף פרק</div>
+            <div class="secondary-button new-episode-btn">הוסף פרק +</div>
         <% } %> 
 
         <div class="project-title" dir="rtl">
@@ -52,22 +52,22 @@
 
     <div class="project-tiny-details">
         <div class="project-detail">
-            <h3> &nbsp;:שם באנגלית</h3>
-            <p dir="rtl"><%= project.englishName %></p>
+            <h3> שם באנגלית:&nbsp;</h3>
+            <p class="ltr"><%= project.englishName %></p>
         </div>
         &nbsp;
         <div class="project-detail">
-            <h3> &nbsp;:שם ביפנית</h3>
-            <p dir="rtl"><%= project.japaneseName %></p>
+            <h3> שם ביפנית:&nbsp;</h3>
+            <p class="ltr"><%= project.japaneseName %></p>
         </div>
         &nbsp;
         <div class="project-detail">
-            <h3> &nbsp;:מספר פרקים</h3>
+            <h3> מספר פרקים:&nbsp;</h3>
             <p dir="rtl"><%= project.episodesNumber %></p>
         </div>
         &nbsp;
         <div class="project-detail">
-            <h3> &nbsp;:ז'אנר</h3>
+            <h3> ז'אנר:&nbsp;</h3>
             <p dir="rtl"><%= project.genre %></p>
         </div>
 
@@ -91,7 +91,7 @@
                 <a href=/projects/<%= project.name.replace(/ /g,"-") %>/<%= episode.episodeNumber %>>
                     <img class="image-contains episode-img-size" src="<%= episode.coverImagePath %>" alt="<%= episode.episodeName %>">
                     <div class="img-text-top text-on-point">
-                        <h3><%= episode.episodeNumber %> פרק</h3>
+                        <h3>פרק <%= episode.episodeNumber %></h3>
                     </div>
                     <div class="play-icon"><i class="fas fa-play"></i></div>
                 </a>
@@ -100,7 +100,7 @@
                 <a href="javascript:void(0)" onclick="login()">
                     <img class="image-contains episode-img-size" src="<%= episode.coverImagePath %>" alt="<%= episode.episodeName %>">
                     <div class="img-text-top text-on-point">
-                        <h3><%= episode.episodeNumber %> פרק</h3>
+                        <h3>פרק <%= episode.episodeNumber %></h3>
                     </div>
                     <div class="play-icon"><i class="fas fa-play"></i></div>
                 </a>

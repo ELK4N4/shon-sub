@@ -56,6 +56,7 @@
     box-sizing: border-box;
     text-align: right;
     outline: none;
+    direction: rtl;
 }
 
 html,
@@ -144,6 +145,14 @@ a {
     opacity: 0 !important;
     visibility: hidden !important;
     transition: .2s !important;
+}
+
+.ltr {
+    direction: ltr !important;
+}
+
+.rtl {
+    direction: rtl !important;
 }
 
 /* ------------ BUTTONS -------------- */
@@ -303,8 +312,8 @@ header {
     grid-template-columns: 30% 1fr 30%;
     align-items: center;
     justify-content: center;
-    flex-direction: row-reverse;
     transition: .5s;
+    direction: ltr;
 }
 
 .user-section {
@@ -338,7 +347,7 @@ header {
     padding: 0;
     margin: auto;
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: row;
 }
 
 .option-item {
@@ -379,7 +388,7 @@ header {
     padding: 0;
     margin: auto; /*remove it in small screens*/
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: row;
 }
 
 .menu-item {
@@ -536,7 +545,7 @@ form .switch-log {
 
 .flex-container {
     display: flex;
-    flex-direction: row-reverse;
+    flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
     align-items: space-between;
@@ -725,6 +734,7 @@ footer {
     background-color: var(--primary-color);
     height: 3rem;
     display: flex;
+    flex-direction: row-reverse;
     align-items: center;
     justify-content: space-between;
 }
@@ -764,6 +774,7 @@ footer {
 
     body {
       background-color: white;
+      overflow-x: hidden; /* may cause a problems */
     }
 
         
@@ -805,6 +816,7 @@ footer {
         margin: 0;
         height: var(--header-height);
         display: flex;
+        flex-direction: row-reverse;
         transition: .5s;
     }
 

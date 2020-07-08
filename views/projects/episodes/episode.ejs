@@ -16,11 +16,11 @@
         <div class="project-title">
             <h1 dir="rtl"><%= project.name.replace(/-/g," ") %></h1>
         </div>
-        <h2 dir="rtl">פרק <%= episode.episodeNumber %> - <%= episode.episodeName %> </h2>
+        <h2>פרק <%= episode.episodeNumber %> - <%= episode.episodeName %> </h2>
         <div class="container">
             <p><i class="fas fa-eye"></i> צפיות: <%= episode.views %></p>
             &nbsp; &nbsp;
-            <p><i class="fas fa-clock"></i> פורסם בתאריך: <%= episode.createdAt.toLocaleDateString().replace(/-/g, "/") %></i></p>
+            <p><i class="fas fa-clock"></i> פורסם בתאריך: <%= episode.createdAt.toLocaleDateString().split("-").reverse().join("/") %></i></p>
             &nbsp; &nbsp;
             <% if (episode.post) { %> 
                 <br>
@@ -50,7 +50,7 @@
                     <a href=/projects/<%= project.name.replace(/ /g,"-") %>/<%= episode.episodeNumber %>>
                         <img class="image-contains episode-img-size" src="<%= episode.coverImagePath %>" alt="<%= episode.episodeName %>">
                         <div class="img-text-top text-on-point">
-                            <h3><%= episode.episodeNumber %> פרק</h3>
+                            <h3>פרק <%= episode.episodeNumber %></h3>
                         </div>
                         <div class="play-icon"><i class="fas fa-play"></i></div>
                     </a>

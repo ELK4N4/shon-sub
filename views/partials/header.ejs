@@ -1,12 +1,12 @@
 <% let navMenu = [ {name: 'home',hebName: 'ראשי'}, {name: 'projects',hebName: 'פרוייקטים',dropDown: true},{name: 'about',hebName: 'אודות',},{name: 'forum',hebName: 'פורום',} ] %>
-<% navMenu = [ {name: 'projects',hebName: 'פרוייקטים',dropDown: true} ] %>
+<% navMenu = [ {name: 'home',hebName: 'ראשי'}, {name: 'projects',hebName: 'פרוייקטים',dropDown: true} ] %>
 
 
 <header class="top">
-        <div class="nav-btn">
-            <i class="fas fa-bars open-icon"></i>
-            <i class="fas fa-times close-icon"></i>
-        </div>
+    <div class="nav-btn">
+        <i class="fas fa-bars open-icon"></i>
+        <i class="fas fa-times close-icon"></i>
+    </div>
 
     <div class="user-section">
         <div class="user-name"><%= data.user.name %></div>
@@ -29,9 +29,9 @@
             <% if(item.name === 'projects') { %> 
                 <div class="dropdown-projects">
                     <% if(item.name === data.page.name) { %>
-                        <li class="menu-item active"><a href=/projects><i class="fas fa-sort-down" style="position:relative; bottom: 0.1rem;"></i> פרוייקטים</i></a></li>
+                        <li class="menu-item active"><a href=/projects>פרוייקטים <i class="fas fa-sort-down" style="position:relative; bottom: 0.1rem;"></i></a></li>
                     <% } else { %>
-                        <li class="menu-item"><a href=/projects><i class="fas fa-sort-down" style="position:relative; bottom: 0.1rem;"></i> פרוייקטים</i></a></li>
+                        <li class="menu-item"><a href=/projects>פרוייקטים <i class="fas fa-sort-down" style="position:relative; bottom: 0.1rem;"></i></a></li>
                     <% } %>
                     <div class="dropdown-content" dir="rtl">
                         <% data.allProjects.activeProjects.forEach(project => { %>

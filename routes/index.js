@@ -6,7 +6,7 @@ const getData = require('../data');
 router.get('/', async (req, res) => {
 
     const data = await getData('home', req.user);
-    res.redirect('/projects');
+    res.render('index.ejs', {data});
 
 });
 
