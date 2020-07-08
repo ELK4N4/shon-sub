@@ -20,6 +20,9 @@
     <% if(data.page.name === "404") { %> 
         <link href="/css/404.css" rel="stylesheet" type="text/css">
     <% } %>
+    <% if(data.page.name === "home") { %> 
+        <link href="/css/home.css" rel="stylesheet" type="text/css">
+    <% } %>
     <!-- SCRIPTS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/66d330ff96.js" crossorigin="anonymous"></script>
@@ -29,7 +32,8 @@
     <body style="background-image: url('<%= project.coverImagePath.replace(/\\/g, "/") %>') !important;
                                             background-position: top;
                                             background-size: 800px !important;">
-<% } else { %> 
+<% } else { %>
+      
     <body style="background-image: url('https://m.media-amazon.com/images/M/MV5BN2UwOTMwMjMtZTE5MS00YmY4LTg4YjAtZDE3ZTg3YTU5MmQ2XkEyXkFqcGdeQXVyODEyMDIxNDY@._V1_.jpg') !important;">
 <% } %>
 
