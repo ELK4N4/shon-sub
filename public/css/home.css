@@ -48,6 +48,13 @@
     text-align: center !important;
 }
 
+.showcase .logo {
+    font-family: logo-font;
+    font-weight: 100;
+    margin-right: .5rem;
+    font-size: 6rem;
+}
+
 .showcase-btn {
     text-align: center !important;
     margin: 1rem 0;
