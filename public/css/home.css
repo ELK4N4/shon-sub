@@ -1,0 +1,59 @@
+.home-img {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/28402147-92a1-4060-be7f-0444dbae3bf8/dbhehvt-db573295-0c15-47b1-b271-cffb86b6f241.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOiIsImlzcyI6InVybjphcHA6Iiwib2JqIjpbW3sicGF0aCI6IlwvZlwvMjg0MDIxNDctOTJhMS00MDYwLWJlN2YtMDQ0NGRiYWUzYmY4XC9kYmhlaHZ0LWRiNTczMjk1LTBjMTUtNDdiMS1iMjcxLWNmZmI4NmI2ZjI0MS5qcGcifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6ZmlsZS5kb3dubG9hZCJdfQ.9moMQMMKwodukjkBW6DU9ECGpx0NdRalbVsqlhLq35g");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    z-index: 0;
+}
+
+.home-img::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 0;
+}
+
+.showcase {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    color: white;
+    text-align: center !important;
+    z-index: 1;
+}
+
+.showcase h1 {
+    display: block;
+    text-shadow: 0px 0px 10px #000000;
+    margin: 1rem 0;
+    font-size: 2.5rem;
+    text-align: center !important;
+}
+
+.showcase h3 {
+    display: block;
+    margin: 1rem 0;
+    font-size: 1.5rem;
+    font-weight: 100;
+    text-align: center !important;
+}
+
+.showcase-btn {
+    text-align: center !important;
+    margin: 0;
+    margin: 1rem 0;
+    display: inline-block;
+    width: 30vw;
+    background-color: black;
+    font-size: 1.5rem;
+}
