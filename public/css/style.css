@@ -773,8 +773,8 @@ footer {
     }
 
     body {
-      background-color: white;
-      overflow-x: hidden; /* may cause a problems */
+        direction: ltr; /* Fix the nav bug. Now it speeder and not overflowing */
+        background-color: white;
     }
 
         
