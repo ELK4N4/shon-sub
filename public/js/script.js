@@ -192,17 +192,20 @@ function register() {
 
 //Alerts//
 function showAlert(alert, message) {
-  var newAlert = $(`<div class='alert ${alert}'></div>`).text(message);   // Create with jQuery
+  var newAlert = $(`<div class='alert ${alert}'></div>`);
+  var alertText = $(`<div class='alert-text'></div>`).text(message);
+  newAlert.append(alertText);
+
   var closeBtn = $(`<span class='close-alert'>&times;</span>`).on("click", function(){
-      cleanAlert(newAlert);
+    cleanAlert(newAlert);
   });
-  ;
   newAlert.append(closeBtn);
   $(".alerts-container").append(newAlert);      // Append the new elements
   setTimeout(function(){ cleanAlert(newAlert)}, 5000); //clean after 5s
 }
 
 function cleanAlert(alert) {
+  console.log(alert);
   alert.addClass('invisible');
   setTimeout(function(){ alert.css("display", "none")}, 600);
 }

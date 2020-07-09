@@ -300,6 +300,7 @@ a {
 }
 
 .alert {
+    direction: ltr;
     text-align: center;
     font-weight: bold;
     margin: 0 1rem;
@@ -311,7 +312,10 @@ a {
     opacity: 1;
     transition: opacity 0.6s;
     margin-bottom: .5rem;
-    bottom: 0;
+    display: grid;
+    grid-template-areas: "message close";
+    grid-template-columns: 1fr 2rem;
+    align-items: center;
 }
 
 .alert.error {
@@ -329,11 +333,13 @@ a {
     background-color: #ff9800;
 }
 
+.alert-text {
+    margin: auto;
+    grid-area: message;
+}
+
 .close-alert {
-    position: absolute;
-    right: 1.2rem;
-    top: 45%;
-    transform: translate(-50%,-50%);
+    grid-area: close;
     text-align: right !important;
     margin-left: 15px;
     color: white;
@@ -345,7 +351,7 @@ a {
 }
 
 .close-alert:hover {
-    color: black;
+    color: rgb(43, 43, 43);
 }
 
 
