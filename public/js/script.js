@@ -64,18 +64,65 @@ $(document).ready(function(){
     closeAllForms();
   });
 
+  $("#login-form").submit(function(e){
+    e.preventDefault();
+
+    let email = $(this).find('input[name=email]').val();
+    let password = $(this).find('input[name=password]').val();
+    
+    let data = {
+      email: email,
+      password: password
+    }
+
+    $.ajax({
+      url: '/auth/login',
+      type: 'POST',
+      data: JSON.stringify(data),
+      contentType: 'application/json',
+      dataType: 'json',
+      success: function(result) {
+        showAlert('success', 'מתחבר...');
+        location.reload();
+      },
+      error: function (error) {
+        showAlert('error', error.responseText);
+      }
+    });
+  });
+
 
   $("#register-form").submit(function(e){
+    e.preventDefault();
+
+    let email = $(this).find('input[name=email]').val();
+    let name = $(this).find('input[name=name]').val();
     let pass = $("#pass").val();
     let confirmPass = $("#confirm-pass").val();
-    console.log(confirmPass);
-    console.log(confirmPass);
     if(pass !== confirmPass) {
       $("#message").html('הסיסמאות אינן תואמות, הקש שנית').css('color', 'red')
-      e.preventDefault();
     } else {
       $("#message").html('');
-      $(this).submit();
+      let data = {
+        name: name,
+        email: email,
+        password: pass
+      }
+      $.ajax({
+        url: '/auth/register',
+        type: 'POST',
+        data: JSON.stringify(data),
+        contentType: 'application/json',
+        dataType: 'json',
+        success: function(result) {
+          showAlert('success', 'הרשמתך לאתר בוצעה בהצלחה! אין צורך לאמת משתמש במייל');
+          closeAllForms();
+          login();
+        },
+        error: function (error) {
+          showAlert('error', error.responseText);
+        }
+    });
     }
   });
 
@@ -105,18 +152,19 @@ $(document).ready(function(){
         contentType: 'application/json',
         dataType: 'json',
         success: function(result) {
-          console.log(result);
+          showAlert('success', 'הפרופיל עודכן בהצלחה!');
           location.reload();
         },
-        error: function (xhr, ajaxOptions, thrownError) {
-          alert(thrownError);
-          alert(xhr.responseText);
+        error: function (error) {
+          showAlert('error', error.responseText);
         }
     });
     return true;
 
   });
 
+
+  
 });
 
 
@@ -141,6 +189,27 @@ function register() {
     $(".nav-blur").removeClass("nav-is-open");
     closeMobileMenu()
 };
+
+//Alerts//
+function showAlert(alert, message) {
+  var newAlert = $(`<div class='alert ${alert}'></div>`).text(message);   // Create with jQuery
+  var closeBtn = $(`<span class='close-alert'>&times;</span>`).on("click", function(){
+      cleanAlert(newAlert);
+  });
+  ;
+  newAlert.append(closeBtn);
+  $(".alerts-container").append(newAlert);      // Append the new elements
+  setTimeout(function(){ cleanAlert(newAlert)}, 5000); //clean after 5s
+}
+
+function cleanAlert(alert) {
+  alert.addClass('invisible');
+  setTimeout(function(){ alert.css("display", "none")}, 600);
+}
+
+$(".close-alert").on("click", function(){
+  cleanAlert($(this).parent());
+});
 
 
  // Declare all variables

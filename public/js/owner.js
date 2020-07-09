@@ -5,12 +5,11 @@ $(document).ready(function(){
         type: 'GET',
         success: function(admins) {
           admins.forEach(admin => {
-            $(".admins-list").append(`<li><span class='admin-name'>${admin.name}</span> <i class="fas fa-times-circle remove-admin-btn"></i>`);
+            $(".admins-list").append(`<li class="ltr"><span class='admin-name'>${admin.name}</span>  <i class="fas fa-times-circle remove-admin-btn ltr"></i>`);
           });
         },
-        error: function (xhr, ajaxOptions, thrownError) {
-          alert(thrownError);
-          alert(xhr.responseText);
+        error: function (error) {
+          showAlert('error', error.responseText)
         }
     });
 
@@ -61,11 +60,11 @@ $(document).on('click', '.remove-admin-btn', function() {
         contentType: 'application/json',
         dataType: 'json',
         success: function(result) {
-            adminElement.remove();
+          adminElement.remove();
+          showAlert('success', "נמחק בהצלחה!");
         },
-        error: function (xhr, ajaxOptions, thrownError) {
-          alert(thrownError);
-          alert(xhr.responseText);
+        error: function (error) {
+          showAlert('error', error.responseText);
         }
     });
     return true;

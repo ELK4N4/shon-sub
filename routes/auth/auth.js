@@ -10,8 +10,9 @@ const jwt = require('jsonwebtoken');
 router.post('/login', async (req, res) => {
     const {error} = validation.loginValidation(req.body);
     if(error) {
-        return res.status(400).send(error.details[0].message + '<br> !שים לב: יש להקיש מייל ולא שם משתמש');
+        return res.status(400).send(error.details[0].message + ' שים לב: יש להקיש מייל ולא שם משתמש!');
     }
+
 
     const user = await User.findOne({email: req.body.email});
 
@@ -34,7 +35,7 @@ router.post('/login', async (req, res) => {
     res.cookie('auth-token', token, {
         expires: cookieExpires,
         httpOnly: true
-    }).status(200).redirect('/');
+    }).status(200).json({status:"ok"});;
 });
 
 //Register
@@ -70,9 +71,10 @@ router.post('/register', async (req, res) => {
     });
     try {
         const savedUser = await user.save();
-        res.status(200).redirect('/');
+        console.log('bla');
+        return res.status(200).json({status:"ok"});
     } catch(err) {
-        res.status(400).send(err);
+        return res.status(400).send(err);
     }
 
 });

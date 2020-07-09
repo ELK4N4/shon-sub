@@ -75,10 +75,12 @@ router.post('/admins', ownerOnly, async (req, res) => {
         user.role = user.role + " admin";
         user.save();
         return res.status(200).redirect('/user/settings');
+    } else if (user) {
+        return res.status(200).send('User already admin');
     }
 
 
-    res.status(400).send('User already admin');
+    res.status(400).send('User not found');
 
 });
 
@@ -86,6 +88,8 @@ router.delete('/admins', ownerOnly, async (req, res) => {
 
     const user = await User.findOne( {name: req.body.name } ); //Check if the username is exist with ignoring case sensitive
     
+    console.log(req.body.name);
+
     if(user && isAdmin(user)) {
         user.role = user.role.replace(" admin", '');
         user.save();
@@ -93,7 +97,7 @@ router.delete('/admins', ownerOnly, async (req, res) => {
     }
 
 
-    res.status(400).send(user);
+    res.status(400).send('User not found or not admin');
 
 });
 
