@@ -35,6 +35,10 @@ const episodeSchema = new mongoose.Schema({
     coverImageName: {
         type: String,
         default: null
+    },
+    comments: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Comment'
     }
 });
 

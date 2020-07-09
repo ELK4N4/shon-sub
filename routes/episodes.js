@@ -6,6 +6,7 @@ const Project = require('../models/Project');
 const Episode = require('../models/Episode');
 const getData = require('../data');
 const adminOnly = require('./auth/adminOnly');
+const usersOnly = require('./auth/usersOnly');
 //Setup Upload IMGs
 const path = require('path');
 const uploadEpisodesPath = path.join('public', Episode.coverImageBasePath);
@@ -22,7 +23,7 @@ const uploadEpisode = multer({
 /// SPECIFIC EPISODES OF SPECIFIC PROJECT ///
 
 
-//GET specific episode of exist project
+//GET specific episode of exist project - usersOnly
 router.get('/:episode', async (req, res) => {
     const data = await getData('projects', req.user);
     
@@ -186,5 +187,16 @@ router.put('/:episode', adminOnly, uploadEpisode.single('cover'), async (req, re
 
     res.status(404).send('Error');
 });
+
+
+/*** COMMENTS ***/
+
+commentsRouter = require('./comments');
+router.use('/:episode/comments/', (req, res, next) => {
+    const episodeNumber = req.params.episode;
+    req.episode = episodeNumber;
+    next();
+}, commentsRouter);
+
 
 module.exports = router;

@@ -156,6 +156,13 @@ a {
     direction: rtl !important;
 }
 
+.contact-btn {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 3;
+}
+
 /* ------------ BUTTONS -------------- */
 
 .primary-button {
@@ -791,6 +798,14 @@ main {
   padding-bottom: 3rem;
   border: 1px solid #ccc;
   border-top: none;
+}
+
+/*** ABOUT ***/
+p.about {
+    display: block;
+    margin: 2rem;
+    text-align: right !important;
+    white-space: pre-line;
 }
 
 /* /////////////////////////////////// */
