@@ -97,7 +97,7 @@
                 </a>
 
             <% } else { %>
-                <a href="javascript:void(0)" onclick="login()">
+                <a href="javascript:void(0)" onclick="login();showAlert('info', 'עליך להתחבר לאתר לצפייה בפרקים');">
                     <img class="image-contains episode-img-size" src="<%= episode.coverImagePath %>" alt="<%= episode.episodeName %>">
                     <div class="img-text-top text-on-point">
                         <h3>פרק <%= episode.episodeNumber %></h3>
