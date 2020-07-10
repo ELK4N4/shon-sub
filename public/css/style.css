@@ -170,12 +170,6 @@ h1.logo {
     color: var(--primary-color);
 }
 
-h1.logo {
-    padding: 3rem;
-    color: white;
-    background-color: var(--primary-color);
-}
-
 /* ------------ BUTTONS -------------- */
 
 .primary-button {
