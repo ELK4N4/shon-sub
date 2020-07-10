@@ -163,6 +163,13 @@ a {
     z-index: 3;
 }
 
+h1.logo {
+    font-family: logo-font;
+    font-weight: 500;
+    font-size: 8rem;
+    color: var(--primary-color);
+}
+
 /* ------------ BUTTONS -------------- */
 
 .primary-button {
@@ -803,7 +810,7 @@ main {
 /*** ABOUT ***/
 p.about {
     display: block;
-    margin: 2rem;
+    margin: 1rem 2rem;
     text-align: right !important;
     white-space: pre-line;
 }
@@ -876,7 +883,6 @@ footer {
 
     .logo {
         margin-left: 1rem;
-        float: left;
     }
 
     .logo a{
