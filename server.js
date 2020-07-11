@@ -39,7 +39,8 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(verifyUser);
 
-/* Force HTTPS */
+
+/* Force HTTPS 
 app.use((req, res, next) => {
     if (process.env.NODE_ENV !== 'dev') {
         if (req.cookies['https'] !== 'true') {
@@ -52,6 +53,7 @@ app.use((req, res, next) => {
         return next();
     }
 });
+*/
 
 
 
