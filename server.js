@@ -16,6 +16,7 @@ const verifyUser = require('./routes/auth/verifyToken');
 const indexRouter = require('./routes/index.js');
 const aboutRouter = require('./routes/about.js');
 const teamRouter = require('./routes/team.js');
+const jobsRouter = require('./routes/jobs.js');
 const projectsRouter = require('./routes/projects.js');
 const userRouter = require('./routes/user.js');
 const loginRouter = require('./routes/login.js');
@@ -74,6 +75,7 @@ db.once('open', () => {console.log('Mongoose is connected');});
 app.use('/', indexRouter);
 app.use('/about', aboutRouter);
 app.use('/team', teamRouter);
+app.use('/jobs', jobsRouter);
 app.use('/projects', projectsRouter); //פרוייקטים
 app.use('/user', userRouter); //הגדרות
 app.use('/login', loginRouter);
