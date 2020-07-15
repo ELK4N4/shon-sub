@@ -53,23 +53,34 @@ router.get('/:episode', async (req, res) => {
             return false
         });;
 
-        let recommendedEpisodes = [];
-        let counter = 1;
-        let rotations = 0;
-        while(counter <= 4 && rotations < project.episodes.length) {
-            let index = counter;
 
-            if (project.episodes[episodeIndex + index]) {
-                recommendedEpisodes.push(project.episodes[episodeIndex + index]);
-            }
-            if (project.episodes[episodeIndex - index]) {
-                recommendedEpisodes.push(project.episodes[episodeIndex - index]);
-            }
-            if (project.episodes[episodeIndex - index] || project.episodes[episodeIndex + index]) {
-                counter++;
+        let recommendedEpisodes = [];
+        let toggle = true;
+        let rotations = 0;
+        let rightIndex = 0;
+        let leftIndex = 0;
+        let counter = 0;
+        while (counter < 4 && rotations <= project.episodes.length) {
+
+            if (toggle) {
+                rightIndex++;
+                if (project.episodes[episodeIndex + rightIndex]) {
+                    recommendedEpisodes.push(project.episodes[episodeIndex + rightIndex]);
+                    counter++;
+                }
+                toggle = !toggle;
+            } //PAY ATTENTION: There is no Else ↓ here ↓ in purpose
+            if (!toggle) {
+                leftIndex--;
+                if (project.episodes[episodeIndex + leftIndex]) {
+                    recommendedEpisodes.push(project.episodes[episodeIndex + leftIndex]);
+                    counter++;
+                }
+                toggle = !toggle;
             }
             rotations++;
         }
+
         recommendedEpisodes.sort(function(a, b){
             return b.episodeNumber - a.episodeNumber
         });
