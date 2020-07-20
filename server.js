@@ -12,6 +12,7 @@ const cookieParser = require('cookie-parser');
 const verifyUser = require('./routes/auth/verifyToken');
 
 
+
 /* Import Routers */
 const indexRouter = require('./routes/index.js');
 const aboutRouter = require('./routes/about.js');
@@ -55,7 +56,6 @@ app.use((req, res, next) => {
     }
 });
 */
-
 
 
 

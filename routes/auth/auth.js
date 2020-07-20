@@ -4,7 +4,15 @@ const User = require('../../models/User');
 const validation = require('../../validation');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const nodemailer = require('nodemailer');
 
+let transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+    user: process.env.MAIL_USER,
+    pass: process.env.MAIL_PASS
+    }
+});
 
 //Login
 router.post('/login', async (req, res) => {
@@ -71,6 +79,26 @@ router.post('/register', async (req, res) => {
     });
     try {
         const savedUser = await user.save();
+        
+        let welcomeMail = {
+            from: '"Shon Sub" <support@shonsub.tk>',
+            to: savedUser.email,
+            subject: 'ברוכים הבאים לShon Sub!',
+            text: `שלום ${savedUser.name},
+אנו שמחים על הרשמתך לאתרינו והצטרפותך לקהילה.
+באתרינו תוכל/י לצפות באנימות מתורגמות לעברית ללא פשרות, צפייה מהנה!
+
+לתשומת ליבכם, אין צורך באימות משתמש`
+        };
+
+        transporter.sendMail(welcomeMail, function(error, info){
+            if (error) {
+                console.log(error);
+            } else {
+                
+            }
+        });
+
         return res.status(200).json({status:"ok"});
     } catch(err) {
         return res.status(400).send(err);
