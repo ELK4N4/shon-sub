@@ -94,8 +94,6 @@ $(document).ready(function(){
 
   $("#register-form").submit(function(e){
     e.preventDefault();
-    
-    showAlert('info', 'המתן...');
 
     let email = $(this).find('input[name=email]').val();
     let name = $(this).find('input[name=name]').val();
@@ -105,6 +103,8 @@ $(document).ready(function(){
       $("#message").html('הסיסמאות אינן תואמות, הקש שנית').css('color', 'red')
     } else {
       $("#message").html('');
+      showAlert('info', 'טוען...');
+
       let data = {
         name: name,
         email: email,
