@@ -94,6 +94,8 @@ $(document).ready(function(){
 
   $("#register-form").submit(function(e){
     e.preventDefault();
+    
+    showAlert('info', 'המתן...');
 
     let email = $(this).find('input[name=email]').val();
     let name = $(this).find('input[name=name]').val();
