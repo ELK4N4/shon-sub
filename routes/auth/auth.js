@@ -81,7 +81,7 @@ router.post('/register', async (req, res) => {
         const savedUser = await user.save();
         
         let welcomeMail = {
-            from: '"Shon Sub" <support@shonsub.tk>',
+            from: '"Shon Sub" <no-reply@shonsub.tk>',
             to: savedUser.email,
             subject: 'ברוכים הבאים לShon Sub!',
             text: `שלום ${savedUser.name},
