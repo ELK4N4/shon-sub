@@ -34,7 +34,7 @@ $(document).ready(function(){
 
     $(".update-project").click(function(e){
         e.preventDefault();
-        let link = projectName.replace(/ /g,"-").replace(/(\?)/g,"%3F").replace(/\//g,"%2F").replace(/\\/g, '%5C') ;
+        let link = projectName.replace(/ /g,"-").replace(/(\?)/g,"%3F").replace(/\//g,"%2F").replace(/\\/g, '%5C');
 
         var form = $("#edit-project-form")[0]; // Need to use standard javascript object here
         var formData = new FormData(form);
@@ -63,7 +63,7 @@ $(document).ready(function(){
 
     $(".delete-project").click(function(e){
         e.preventDefault();
-        let link = projectName.replace(/ /g,"-");
+        let link = projectName.replace(/ /g,"-").replace(/ /g,"-").replace(/(\?)/g,"%3F").replace(/\//g,"%2F").replace(/\\/g, '%5C');
         console.log(link);
         $.ajax({
             url: '/projects/' + link,
