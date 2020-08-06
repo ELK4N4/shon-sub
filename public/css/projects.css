@@ -1,7 +1,7 @@
 /*PROJECTS*/
 .cover-img-container {
     position: relative;
-    object-fit: contain;
+    object-fit: cover;
     background-color:black;
     transform: scale(1);
     overflow: hidden;
@@ -13,7 +13,7 @@
 }
 
 .image-contains {
-    object-fit: contain;
+    object-fit: cover;
 }
 
 .clicked {
