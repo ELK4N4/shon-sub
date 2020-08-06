@@ -109,13 +109,13 @@
 
 .project-img {
     position: absolute;
-    top: 4rem;
+    top: 6rem;
     right: 3rem;
     transform: scale(1.2);
 }
 
 .project-showcase {
-    min-height: 18rem;
+    min-height: 21rem;
     padding-top: 4rem;
     padding-bottom: 1rem;
     padding-right: 19rem;
