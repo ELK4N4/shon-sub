@@ -109,14 +109,14 @@
 
 .project-img {
     position: absolute;
-    top: 6rem;
+    top: 5rem;
     right: 3rem;
     transform: scale(1.2);
 }
 
 .project-showcase {
-    min-height: 21rem;
-    padding-top: 4rem;
+    min-height: 20rem;
+    padding-top: 3.5rem;
     padding-bottom: 1rem;
     padding-right: 19rem;
     background: linear-gradient(to top left,var(--primary-color)  0%,  #000000 100%);
