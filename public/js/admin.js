@@ -34,7 +34,7 @@ $(document).ready(function(){
 
     $(".update-project").click(function(e){
         e.preventDefault();
-        let link = projectName.replace(/ /g,"-");
+        let link = projectName.replace(/ /g,"-").replace(/(\?)/g,"%3F").replace(/\//g,"%2F").replace(/\\/g, '%5C') ;
 
         var form = $("#edit-project-form")[0]; // Need to use standard javascript object here
         var formData = new FormData(form);
@@ -49,7 +49,7 @@ $(document).ready(function(){
             contentType: false, // NEEDED, DON'T OMIT THIS (requires jQuery 1.6+)
             processData: false, // NEEDED, DON'T OMIT THIS
             success: function(result) {
-                window.location.replace("/projects/" + $('#edit-project-form').find('[name=name]').val());
+                window.location.replace("/projects/" + $('#edit-project-form').find('[name=name]').val().replace(/ /g,"-").replace(/(\?)/g,"%3F").replace(/\//g,"%2F").replace(/\\/g, '%5C') );
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 alert(thrownError);

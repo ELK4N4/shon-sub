@@ -35,10 +35,10 @@
                     <% } %>
                     <div class="dropdown-content" dir="rtl">
                         <% data.allProjects.activeProjects.forEach(project => { %>
-                            <a href="/projects/<%= project.name.replace(/ /g,"-") %>"><%= project.name.replace(/-/g," ") %></a>
+                            <a href="/projects/<%= project.name.replace(/ /g,"-").replace(/(\?)/g,"%3F").replace(/\//g,"%2F").replace(/\\/g, '%5C')  %>"><%= project.name.replace(/-/g," ") %></a>
                         <% }); %>
                         <% data.allProjects.doneProjects.forEach(project => { %>
-                            <a href="/projects/<%= project.name.replace(/ /g,"-") %>"><%= project.name.replace(/-/g," ") %></a>
+                            <a href="/projects/<%= project.name.replace(/ /g,"-").replace(/(\?)/g,"%3F").replace(/\//g,"%2F").replace(/\\/g, '%5C')   %>"><%= project.name.replace(/-/g," ") %></a>
                         <% }); %>
                         <% if(data.user.admin) { %>
                             <a href="javascript:void(0)" class="new-project-btn"><strong>פרוייקט חדש +</strong></a>

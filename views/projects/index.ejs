@@ -11,14 +11,15 @@
         
         <% data.allProjects.activeProjects.forEach(project => { %> 
             <% if (project.process === 'active') { %>
+                <% let projectName = project.name %> 
 
                 <div class="project-item">
 
                     <div class="cover-img-container project-img-size clicked" dir="rtl">
-                        <a href=/projects/<%= project.name.replace(/ /g,"-") %>>
+                        <a href=/projects/<%= project.name.replace(/ /g,"-").replace(/(\?)/g,"%3F").replace(/\//g,"%2F").replace(/\\/g, '%5C')  %>>
                             <img class="image-contains project-img-size" src="<%= project.coverImagePath %>" alt="<%= project.name.replace(/-/g," ") %>">
                             <div class="img-text-top">
-                                <h3><%= project.name.replace(/-/g," ") %></h3>
+                                <h3><%= projectName %></h3>
                             </div>
                         </a>
 
@@ -32,7 +33,7 @@
 
                         <% if(data.user.admin) { %>
                         <form class="project-fields" dir="rtl" hidden>
-                            <input name="name" value="<%= project.name.replace(/-/g," ") %>">
+                            <input name="name" value="<%= projectName %>">
                             <input name="englishName" value="<%= project.englishName %>">
                             <input name="japaneseName" value="<%= project.japaneseName %>">
                             <input name="genre" value="<%= project.genre %>">
@@ -60,14 +61,15 @@
             
             <% data.allProjects.doneProjects.forEach(project => { %> 
                 <% if (project.process === 'done') { %>
-    
+                    <% projectName = project.name %> 
+
                     <div class="project-item">
     
                         <div class="cover-img-container project-img-size clicked" dir="rtl">
-                            <a href=/projects/<%= project.name.replace(/ /g,"-") %>>
+                            <a href=/projects/<%= project.name.replace(/ /g,"-").replace(/(\?)/g,"%3F").replace(/\//g,"%2F").replace(/\\/g, '%5C')  %>>
                                 <img class="image-contains project-img-size" src="<%= project.coverImagePath %>" alt="<%= project.name.replace(/-/g," ") %>">
                                 <div class="img-text-top">
-                                    <h3><%= project.name.replace(/-/g," ") %></h3>
+                                    <h3><%= projectName %></h3>
                                 </div>
                             </a>
 
@@ -81,7 +83,7 @@
 
                             <% if(data.user.admin) { %>
                             <form class="project-fields" hidden>
-                                <input name="name" value="<%= project.name.replace(/-/g," ") %>">
+                                <input name="name" value="<%= projectName %>">
                                 <input name="englishName" value="<%= project.englishName %>">
                                 <input name="japaneseName" value="<%= project.japaneseName %>">
                                 <input name="genre" value="<%= project.genre %>">
@@ -108,15 +110,16 @@
             
             <% data.allProjects.freezeProjects.forEach(project => { %> 
                 <% if (project.process === 'freeze') { %>
-    
+                    <% projectName = project.name %> 
+
                     <div class="project-item">
     
                         
                             <div class="cover-img-container project-img-size clicked" dir="rtl">
-                                <a href=/projects/<%= project.name.replace(/ /g,"-") %>>
+                                <a href=/projects/<%= project.name.replace(/ /g,"-").replace(/(\?)/g,"%3F").replace(/\//g,"%2F").replace(/\\/g, '%5C')  %>>
                                     <img class="image-contains project-img-size" src="<%= project.coverImagePath %>" alt="<%= project.name.replace(/-/g," ") %>">
                                     <div class="img-text-top">
-                                        <h3><%= project.name.replace(/-/g," ") %></h3>
+                                        <h3><%= projectName %></h3>
                                     </div>
                                 </a>
 
@@ -130,7 +133,7 @@
     
                                 <% if(data.user.admin) { %>
                                 <form class="project-fields" hidden>
-                                    <input name="name" value="<%= project.name.replace(/-/g," ") %>">
+                                    <input name="name" value="<%= projectName %>">
                                     <input name="englishName" value="<%= project.englishName %>">
                                     <input name="japaneseName" value="<%= project.japaneseName %>">
                                     <input name="genre" value="<%= project.genre %>">
@@ -157,15 +160,15 @@
             
             <% data.allProjects.plannedProjects.forEach(project => { %> 
                 <% if (project.process === 'planned') { %>
-    
+                    <% projectName = project.name %> 
                     <div class="project-item">
     
                         
                             <div class="cover-img-container project-img-size clicked" dir="rtl">
-                                <a href=/projects/<%= project.name.replace(/ /g,"-") %>>
+                                <a href=/projects/<%= project.name.replace(/ /g,"-").replace(/(\?)/g,"%3F").replace(/\//g,"%2F").replace(/\\/g, '%5C')  %>>
                                     <img class="image-contains project-img-size" src="<%= project.coverImagePath %>" alt="<%= project.name.replace(/-/g," ") %>">
                                     <div class="img-text-top">
-                                        <h3><%= project.name.replace(/-/g," ") %></h3>
+                                        <h3><%= projectName %></h3>
                                     </div>
                                 </a>
 
@@ -179,7 +182,7 @@
 
                             <% if(data.user.admin) { %>
                             <form class="project-fields" hidden>
-                                <input name="name" value="<%= project.name.replace(/-/g," ") %>">
+                                <input name="name" value="<%= projectName %>">
                                 <input name="englishName" value="<%= project.englishName %>">
                                 <input name="japaneseName" value="<%= project.japaneseName %>">
                                 <input name="genre" value="<%= project.genre %>">

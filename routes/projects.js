@@ -27,6 +27,7 @@ router.get('/', async (req, res) => {
 
 //GET all episodes of exist project
 router.get('/:project', async (req, res) => {
+
     const data = await getData('projects', req.user);
     
     const projectName = req.params.project.replace(/-/g," ");
