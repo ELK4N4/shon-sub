@@ -85,7 +85,10 @@ router.post('/', usersOnly, async (req, res) => {
             from: '"Shon Sub - NoReply" <no-reply@shonsub.tk>',
             to: 'shonsubweb@gmail.com',
             subject: 'תגובה חדשה באתר',
-            text: `המשתמש ${req.user.name} הגיב ${req.body.message} ב ${project.name} ${episode.episodeNumber}`
+            text: `המשתמש ${req.user.name} הגיב: ${req.body.message} 
+בפרויקט:
+${project.name} פרק ${episode.episodeNumber}
+https://www.shonsub.tk/`
         };
 
         transporter.sendMail(commentMail, function(error, info){
