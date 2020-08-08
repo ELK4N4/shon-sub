@@ -19,12 +19,22 @@ const uploadEpisode = multer({
     }
 });
 
+let transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+    user: process.env.MAIL_USER,
+    pass: process.env.MAIL_PASS
+    }
+});
+
 
 
 /// SPECIFIC COMMENTS OF SPECIFIC EPISODE ///
 
 //GET all comments of exist episode - usersOnly
 router.get('/', usersOnly, async (req, res) => {
+    
+
     const project = await Project.findOne({name: req.project});
     if(!project){
         return res.status(404).send('Project Not Found');
@@ -46,6 +56,11 @@ router.get('/', usersOnly, async (req, res) => {
 
 //POST comments of exist episode - usersOnly
 router.post('/', usersOnly, async (req, res) => {
+    const {error} = validation.commentValidation(req.body);
+    if(error) {
+        return res.status(400).send(error.details[0].message);
+    }
+
     const project = await Project.findOne({name: req.project});
     if(!project){
         return res.status(404).send('Project Not Found');
@@ -62,6 +77,22 @@ router.post('/', usersOnly, async (req, res) => {
     if(episode) {
         episode.comments.push({addedBy: req.user.name, message: req.body.message});
         project.save();
+
+        let commentMail = {
+            from: '"Shon Sub - NoReply" <no-reply@shonsub.tk>',
+            to: 'shonsubweb@gmail.com',
+            subject: 'תגובה חדשה באתר',
+            text: `המשתמש ${req.user.name} הגיב ${req.body.message} ב ${project.name} ${episode.episodeNumber}`
+        };
+
+        transporter.sendMail(commentMail, function(error, info){
+            if (error) {
+                console.log(error);
+            } else {
+                
+            }
+        });
+
         return res.status(200).json(episode.comments);
     }
 

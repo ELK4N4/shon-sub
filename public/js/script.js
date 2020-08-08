@@ -184,9 +184,8 @@ $(document).ready(function(){
         success: function(result) {
             location.reload();
         },
-        error: function (xhr, ajaxOptions, thrownError) {
-            alert(thrownError);
-            alert(xhr.responseText);
+        error: function (error) {
+            showAlert('error', error.responseText);
         }
     });
     return true;

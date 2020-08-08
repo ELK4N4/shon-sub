@@ -53,7 +53,17 @@ const episodeValidation = (data) => {
     return episodeSchema.validate(data);
 };
 
+//Comment Validation
+const commentValidation = (data) => {
+    const episodeSchema = Joi.object({
+        message: Joi.string().required()
+    });
+
+    return episodeSchema.validate(data);
+};
+
 module.exports.loginValidation = loginValidation;
 module.exports.registerValidation = registerValidation;
 module.exports.projectValidation = projectValidation;
 module.exports.episodeValidation = episodeValidation;
+module.exports.commentValidation = commentValidation;
