@@ -288,7 +288,7 @@
 .comment .message {
     padding: .5rem 0;
     white-space: pre;
-    overflow-wrap: normal;
+    word-wrap: normal;
 }
 
 .comment-text-area {
