@@ -163,6 +163,11 @@ router.delete('/:episode', adminOnly, async (req, res) => {
 
 //UPDATE episode - adminOnly
 router.put('/:episode', adminOnly, uploadEpisode.single('cover'), async (req, res) => {
+    const {error} = validation.episodeValidation(req.body);
+    if(error) {
+        return res.status(400).send(error.details[0].message);
+    }
+
     const fileName = req.body.image != '' ? req.body.image : null;
 
     const project = await Project.findOne({name: req.project});

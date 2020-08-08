@@ -34,6 +34,9 @@ router.get('/:project', async (req, res) => {
 
     const project = await Project.findOne({name: projectName});
     if(project){
+        project.episodes.sort(function(a, b){
+            return a.episodeNumber - b.episodeNumber
+        });
         return res.render('projects/project.ejs',{data, project});
     }
     

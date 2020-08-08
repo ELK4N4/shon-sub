@@ -85,7 +85,8 @@ router.post('/', usersOnly, async (req, res) => {
             from: '"Shon Sub - NoReply" <no-reply@shonsub.tk>',
             to: 'shonsubweb@gmail.com',
             subject: `תגובה חדשה באתר - ${project.name}`,
-            text: `המשתמש ${req.user.name} הגיב: ${req.body.message} 
+            text: `המשתמש ${req.user.name} הגיב:
+            ${req.body.message} 
 בפרויקט:
 ${project.name} פרק ${episode.episodeNumber}
 https://www.shonsub.tk/`
