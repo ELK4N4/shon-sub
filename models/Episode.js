@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const path = require('path');
+const commentSchema = require('./Comment');
 const coverImageBasePath = 'uploads/episodeCovers';
 
 
@@ -37,8 +38,7 @@ const episodeSchema = new mongoose.Schema({
         default: null
     },
     comments: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Comment'
+        type: [commentSchema]
     }
 });
 

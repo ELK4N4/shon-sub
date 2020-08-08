@@ -165,7 +165,33 @@ $(document).ready(function(){
 
   });
 
+  $(".new-comment-btn").click(function(){
+      $("#new-comment-form").addClass("visible");
+      $("#new-comment-form").removeClass("invisible");
+  });
 
+  $(".add-comment").click(function(e){
+    e.preventDefault();
+
+    let link = `${window.location.pathname}/comments`;
+    message = $(`#new-comment-form textarea[name=message]`).val();
+
+    $.ajax({
+        url: link,
+        type: 'POST',
+        data: JSON.stringify({message: message}),
+        contentType: 'application/json',
+        success: function(result) {
+            location.reload();
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+            alert(thrownError);
+            alert(xhr.responseText);
+        }
+    });
+    return true;
+
+});
   
 });
 

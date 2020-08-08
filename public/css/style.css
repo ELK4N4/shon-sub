@@ -688,12 +688,13 @@ input[type=checkbox]:checked:after {
     float: right;
 }
 
-.text-area {
+textarea {
     position: relative;
     min-width: 40vw;
     max-width: 40vw;
     min-height: 5rem;
     font-size: 1rem;
+    font-family: Arial, Helvetica, sans-serif;
     border-radius: 10px;
     padding: .6rem 1rem;
     box-sizing: border-box;

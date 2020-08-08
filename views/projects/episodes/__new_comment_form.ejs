@@ -1,0 +1,20 @@
+<form class="fixed-form comment-form-width invisible" id="new-comment-form" action="/projects/<%= project.name.replace(/ /g,"-") %>/<%= episode.episodeNumber %>/comments " method="POST">
+  
+    <a class="close-button closeForm" href="javascript:void(0)"><i class="fas fa-times-circle"></i></a>
+    
+    <h1>תגובה חדשה</h1>
+        <div class="flex-container">
+  
+  
+            <div class="input-container">
+                <label for="message"><b>הודעה</b></label>
+                <br>
+                <textarea name="message" class="comment-text-area" dir="rtl" placeholder="הודעה" required></textarea>
+            </div>
+
+        </div>
+
+      <button class="confirm-button add-comment" type="submit">הוסף</button>
+      <button class="light-button closeForm" type="button">ביטול</button>
+  
+  </form>

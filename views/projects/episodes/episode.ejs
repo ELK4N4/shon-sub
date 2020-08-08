@@ -81,4 +81,22 @@
         
     </div>
 
+
+    <%- include('./__new_comment_form.ejs') %>
+    
+    <div class="comments-container">
+        <div class="comments-header">
+            <h2>תגובות (<%= episode.comments.length %>)</h2>
+            <div class="secondary-button new-comment-btn">הוסף תגובה +</div>
+        </div>
+        <% episode.comments.forEach(comment => { %>
+            <div class="comment">
+                <div class="username">
+                    <%= comment.addedBy %> 
+                </div>
+<div class="message"><%= comment.message %></div>
+            </div>
+        <% }) %> 
+    </div>
+
 </div>

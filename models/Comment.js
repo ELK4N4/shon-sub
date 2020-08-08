@@ -1,12 +1,11 @@
 const mongoose = require('mongoose');
 
 const commentSchema = new mongoose.Schema({
-    comment: {
+    message: {
         type: String
     },
     addedBy: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User'
+        type: String
     },
     createdAt: {
         type: Date,

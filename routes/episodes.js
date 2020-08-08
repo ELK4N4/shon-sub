@@ -24,7 +24,7 @@ const uploadEpisode = multer({
 
 
 //GET specific episode of exist project - usersOnly
-router.get('/:episode', async (req, res) => {
+router.get('/:episode', usersOnly, async (req, res) => {
     const data = await getData('projects', req.user);
     
 
@@ -112,7 +112,6 @@ router.post('/', adminOnly, uploadEpisode.single('cover'), async (req, res) => {
         coverImageName: fileName
     };
 
-    
 
 
     const projectName = req.project;
