@@ -175,6 +175,8 @@ $(document).ready(function(){
 
     let link = `${window.location.pathname}/comments`;
     let message = $(`#new-comment-form textarea[name=message]`).val();
+    $("#new-comment-form").removeClass("visible");
+    $("#new-comment-form").addClass("invisible");
 
     $.ajax({
         url: link,
@@ -182,10 +184,13 @@ $(document).ready(function(){
         data: JSON.stringify({message: message}),
         contentType: 'application/json',
         success: function(result) {
-            location.reload();
+          showAlert('success', 'מוסיף...');
+          location.reload();
         },
         error: function (error) {
             showAlert('error', error.responseText);
+            $("#new-comment-form").addClass("visible");
+            $("#new-comment-form").removeClass("invisible");
         }
     });
     return true;
@@ -197,8 +202,8 @@ $(document).ready(function(){
 
       let id = $(this).parent().parent().parent().find('.comment-fields [name=id]').val();
       let link = `${window.location.pathname}/comments/${id}`;
-      console.log(link);
 
+      
       $.ajax({
           url: link,
           type: 'DELETE',
@@ -229,6 +234,8 @@ $(document).ready(function(){
     $(".update-comment").click(function(e){
       e.preventDefault();
 
+      $("#edit-comment-form").removeClass("visible");
+      $("#edit-comment-form").addClass("invisible");
       let newMessage = $(`#edit-comment-form textarea[name=message]`).val();
       $.ajax({
         url: link,
@@ -239,10 +246,13 @@ $(document).ready(function(){
         }),
         contentType: 'application/json',
         success: function(result) {
-            location.reload();
+          showAlert('success', 'מעדכן...');
+          location.reload();
         },
         error: function (error) {
             showAlert('error', error.responseText);
+            $("#edit-comment-form").addClass("visible");
+            $("#edit-comment-form").removeClass("invisible");
         }
       });
       return true;
