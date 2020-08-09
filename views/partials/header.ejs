@@ -25,8 +25,27 @@
     <ul class="menu">
 
         <% navMenu.forEach(item => { %>
-
-            
+            <!--
+            <% if(item.name === 'projects') { %> 
+                <div class="dropdown-projects">
+                    <% if(item.name === data.page.name) { %>
+                        <li class="menu-item active"><a href=/projects>פרוייקטים <i class="fas fa-sort-down" style="position:relative; bottom: 0.1rem;"></i></a></li>
+                    <% } else { %>
+                        <li class="menu-item"><a href=/projects>פרוייקטים <i class="fas fa-sort-down" style="position:relative; bottom: 0.1rem;"></i></a></li>
+                    <% } %>
+                    <div class="dropdown-content" dir="rtl">
+                        <% data.allProjects.activeProjects.forEach(project => { %>
+                            <a href="/projects/<%= project.name.replace(/ /g,"-").replace(/(\?)/g,"%3F").replace(/\//g,"%2F").replace(/\\/g, '%5C')  %>"><%= project.name.replace(/-/g," ") %></a>
+                        <% }); %>
+                        <% data.allProjects.doneProjects.forEach(project => { %>
+                            <a href="/projects/<%= project.name.replace(/ /g,"-").replace(/(\?)/g,"%3F").replace(/\//g,"%2F").replace(/\\/g, '%5C')   %>"><%= project.name.replace(/-/g," ") %></a>
+                        <% }); %>
+                        <% if(data.user.admin) { %>
+                            <a href="javascript:void(0)" class="new-project-btn"><strong>פרוייקט חדש +</strong></a>
+                        <% } %>
+                    </div>
+                </div>
+            <% } else %> -->
             <% if(item.name === data.page.name) { %>
                 <li class="menu-item active"><a href=/<%= item.name %>><%= item.hebName%></a></li>
             <% } else { %>
