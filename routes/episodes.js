@@ -4,6 +4,7 @@ const router = express.Router();
 const validation = require('../validation');
 const Project = require('../models/Project');
 const Episode = require('../models/Episode');
+const User = require('../models/User');
 const getData = require('../data');
 const adminOnly = require('./auth/adminOnly');
 const usersOnly = require('./auth/usersOnly');
@@ -40,6 +41,8 @@ router.get('/:episode', usersOnly, async (req, res) => {
         }
         return false
     });
+
+    
 
 
     if(episode) {
@@ -86,6 +89,11 @@ router.get('/:episode', usersOnly, async (req, res) => {
         });
 
         recommendedEpisodes.reverse();
+
+        
+        for (let index = 0; index < episode.comments.length; index++) {
+            episode.comments[index].user = await User.findOne({_id: episode.comments[index].addedBy});
+        }
 
         return res.status(200).render('projects/episodes/episode.ejs',{data, project, episode, recommendedEpisodes});
     }

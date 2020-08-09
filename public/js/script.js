@@ -174,7 +174,7 @@ $(document).ready(function(){
     e.preventDefault();
 
     let link = `${window.location.pathname}/comments`;
-    message = $(`#new-comment-form textarea[name=message]`).val();
+    let message = $(`#new-comment-form textarea[name=message]`).val();
 
     $.ajax({
         url: link,
@@ -190,7 +190,64 @@ $(document).ready(function(){
     });
     return true;
 
-});
+    });
+
+    $(".delete-comment").click(function(e){
+      e.preventDefault();
+
+      let id = $(this).parent().parent().parent().find('.comment-fields [name=id]').val();
+      let link = `${window.location.pathname}/comments/${id}`;
+      console.log(link);
+
+      $.ajax({
+          url: link,
+          type: 'DELETE',
+          success: function(result) {
+              location.reload();
+          },
+          error: function (error) {
+              showAlert('error', error.responseText);
+          }
+      });
+      return true;
+
+    });
+
+    let id;
+    let link;
+    let message;
+    $(".edit-comment").click(function(e){
+
+      id = $(this).parent().parent().parent().find('.comment-fields [name=id]').val();
+      link = `${window.location.pathname}/comments/`;
+      message = $(this).parent().parent().parent().find('.message').text();
+      $(`#edit-comment-form textarea[name=message]`).val(message);
+      $("#edit-comment-form").addClass("visible");
+      $("#edit-comment-form").removeClass("invisible");
+    });
+
+    $(".update-comment").click(function(e){
+      e.preventDefault();
+
+      let newMessage = $(`#edit-comment-form textarea[name=message]`).val();
+      $.ajax({
+        url: link,
+        type: 'PUT',
+        data: JSON.stringify({
+          id: id,
+          message: newMessage
+        }),
+        contentType: 'application/json',
+        success: function(result) {
+            location.reload();
+        },
+        error: function (error) {
+            showAlert('error', error.responseText);
+        }
+      });
+      return true;
+
+    });
   
 });
 

@@ -83,16 +83,40 @@
 
 
     <%- include('./__new_comment_form.ejs') %>
+    <%- include('./__edit_comment_form.ejs') %>
     
     <div class="comments-container">
         <div class="comments-header">
             <h2>תגובות (<%= episode.comments.length %>)</h2>
-            <!--<div class="secondary-button new-comment-btn">הוסף תגובה +</div>-->
+            <div class="secondary-button new-comment-btn">הוסף תגובה +</div>
         </div>
         <% episode.comments.forEach(comment => { %>
             <div class="comment">
-                <div class="username">
-                    <%= comment.addedBy %> 
+                <form class="comment-fields" hidden>
+                    <input name="id" value="<%= comment._id %>">
+                    <input name="message" value="<%= comment.message %>">
+                </form>
+
+                <div class="comment-header">
+                    <% if(comment.user._id.toString() === user._id.toString()) { %>
+                    <div class="comment-options">
+                        <div class="warning-button delete-comment">מחק <i class="fas fa-trash"></i></div>
+                        <div class="light-button edit-comment">ערוך <i class="fas fa-edit"></i></div>
+                    </div>
+                    <% } else if(user.admin) { %>
+                        <div class="comment-options">
+                            <div class="warning-button delete-comment">מחק <i class="fas fa-trash"></i></div>
+                        </div>
+                    <% } %>
+                    <% if(comment.user.role.includes('admin')) { %>
+                        <div class="username admin">
+                            <%= comment.user.name %> 
+                        </div>
+                    <% } else { %> 
+                        <div class="username">
+                            <%= comment.user.name %> 
+                        </div>
+                    <% } %>
                 </div>
 <div class="message"><%= comment.message %></div>
             </div>

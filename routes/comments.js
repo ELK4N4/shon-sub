@@ -78,7 +78,7 @@ router.post('/', usersOnly, async (req, res) => {
 
 
     if(episode) {
-        episode.comments.push({addedBy: req.user.name, message: req.body.message});
+        episode.comments.push({addedBy: req.user._id, message: req.body.message});
         project.save();
 
         let commentMail = {
@@ -86,7 +86,7 @@ router.post('/', usersOnly, async (req, res) => {
             to: 'shonsubweb@gmail.com',
             subject: `תגובה חדשה באתר - ${project.name}`,
             text: `המשתמש ${req.user.name} הגיב:
-            ${req.body.message} 
+${req.body.message} 
 בפרויקט:
 ${project.name} פרק ${episode.episodeNumber}
 https://www.shonsub.tk/`
@@ -108,7 +108,7 @@ https://www.shonsub.tk/`
 });
 
 //PUT comment of exist episode - usersOnly
-router.put('/', async (req, res) => {
+router.put('/', usersOnly, async (req, res) => {
     const project = await Project.findOne({name: req.project});
     if(!project){
         return res.status(404).send('Project Not Found');
@@ -116,6 +116,14 @@ router.put('/', async (req, res) => {
 
     const episode = project.episodes.find(episode => {
         if(episode.episodeNumber == req.episode) {
+            const comment = episode.comments.find(comment => {
+                if(comment._id == req.body.id && (comment.addedBy.toString() === req.user._id.toString() || user.admin )) {
+                    comment.message = req.body.message;
+                    return true;
+                }
+                return false;
+            });
+
             return true;
         }
         return false;
@@ -123,27 +131,15 @@ router.put('/', async (req, res) => {
 
 
     if(episode) {
-        const comment = episode.comments.find(comment => {
-            if(comment._id == req.body.id) {
-                comment.message = req.body.message;
-                return true;
-            }
-            return false;
-        });
-        if(comment) {
-            project.save();
-            return res.status(200).json(episode.comments);
-        } else {
-            return res.status(404).send('Comment Not Found');
-        }
+        project.save();
+        return res.status(200).json(episode.comments);
     }
-
-
     return res.status(404).send('Episode Not Found');
+
 });
 
 //DELETE comment of exist episode - usersOnly
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', usersOnly, async (req, res) => {
     const project = await Project.findOne({name: req.project});
     if(!project){
         return res.status(404).send('Project Not Found');
@@ -153,6 +149,9 @@ router.delete('/:id', async (req, res) => {
         if(episode.episodeNumber == req.episode) {
             episode.comments = episode.comments.filter(comment => {
                 if(comment._id != req.params.id) {
+                    return true;
+                }
+                if(comment.addedBy.toString() !== req.user._id.toString() && !user.admin) {
                     return true;
                 }
                 return false;

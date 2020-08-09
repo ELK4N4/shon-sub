@@ -276,13 +276,26 @@
     background-color: rgb(221, 221, 221);
 }
 
-.comment .username {
-    color: var(--primary-color);
+.comment-header {
     padding-bottom: .5rem;
-    font-size: 1.2rem;
-    font-weight: 700;
     margin-bottom: 1rem;
     border-bottom: 2px solid var(--primary-color);
+}
+
+.comment-options {
+    position: relative;
+    bottom: .7rem;
+}
+
+.comment .username {
+    margin: .5rem 0;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.comment .username.admin {
+    color: #967e14;
 }
 
 .comment .message {
