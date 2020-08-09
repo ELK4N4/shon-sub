@@ -294,6 +294,21 @@
     color: var(--primary-color);
 }
 
+.profile-img img{
+    border-radius: 100%;
+    object-fit: cover;
+    background-color: var(--primary-color);
+}
+
+.comment .profile-img img{
+    position: relative;
+    width: 2.5rem;
+    height: 2.5rem;
+    float: right;
+    margin-left: 1rem;
+    bottom: .6rem;
+}
+
 .comment .username.admin {
     color: #967e14;
 }

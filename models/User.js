@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const path = require('path');
 
 const userSchema = new mongoose.Schema({
     name: {
@@ -23,9 +24,21 @@ const userSchema = new mongoose.Schema({
         type: String,
         default: 'user'
     },
+    profileImage: {
+        type: String,
+        default: null
+    },
     Date: {
         type: Date,
         default: Date.now
+    }
+});
+
+userSchema.virtual('profileImgPath').get(function() {
+    if (this.profileImage != null && this.profileImage != "") {
+        return this.profileImage;
+    } else {
+        return path.join('/images', 'no-profile.png');
     }
 });
 

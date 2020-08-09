@@ -26,6 +26,16 @@
                     <br>
                     <input type="password" placeholder="סיסמא" name="password" dir="rtl">
                 </div>
+
+                <div class="input-container">
+                    <label for="password"><b>תמונת פרופיל</b></label>
+                    <br>
+                    <% if(data.user.profileImage) { %> 
+                        <input type="text" placeholder="קישור לתמונה" name="profileImage" dir="rtl" value="<%= data.user.profileImage %>">
+                    <% } else { %>
+                        <input type="text" placeholder="קישור לתמונה" name="profileImage" dir="rtl">
+                    <% } %>
+                </div>
                 
             </div>
             <button class="primary-button update-profile" type="submit">עדכן</button>

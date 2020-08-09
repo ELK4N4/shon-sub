@@ -62,8 +62,19 @@ const commentValidation = (data) => {
     return episodeSchema.validate(data);
 };
 
+//User Validation
+const userValidation = (data) => {
+    const userValidation = Joi.object({
+        name: Joi.string().min(3).max(16).required(),
+        password: Joi.string().min(6).max(255).allow(''),
+        profileImage: Joi.string().uri().allow('')
+    });
+    return userValidation.validate(data);
+};
+
 module.exports.loginValidation = loginValidation;
 module.exports.registerValidation = registerValidation;
 module.exports.projectValidation = projectValidation;
-module.exports.episodeValidation = episodeValidation;
 module.exports.commentValidation = commentValidation;
+module.exports.userValidation = userValidation;
+module.exports.episodeValidation = episodeValidation;

@@ -6,6 +6,8 @@ const bcrypt = require('bcryptjs');
 const isAdmin = require('./auth/isAdmin');
 const adminOnly = require('./auth/adminOnly');
 const ownerOnly = require('./auth/ownerOnly');
+const validation = require('../validation');
+
 
 
 router.get('/', async (req, res) => {
@@ -22,6 +24,10 @@ router.get('/settings', async (req, res) => {
 });
 
 router.put('/profile', async (req, res) => {
+    const {error} = validation.userValidation(req.body);
+    if(error) {
+        return res.status(400).send(error.details[0].message);
+    }
 
     if(req.user.verified) {
 
@@ -34,7 +40,8 @@ router.put('/profile', async (req, res) => {
         }
 
         let updatedUser = {
-            name: req.body.name
+            name: req.body.name,
+            profileImage: req.body.profileImage
         };
 
         

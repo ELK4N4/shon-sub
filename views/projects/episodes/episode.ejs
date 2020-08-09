@@ -108,6 +108,9 @@
                             <div class="warning-button delete-comment">מחק <i class="fas fa-trash"></i></div>
                         </div>
                     <% } %>
+                    <div class="profile-img">
+                        <img src="<%= comment.user.profileImgPath %> " alt="<%= comment.user.name %>"" onerror="this.src = '/images/no-profile.png';">
+                    </div>
                     <% if(comment.user.role.includes('admin')) { %>
                         <div class="username admin">
                             <%= comment.user.name %> 

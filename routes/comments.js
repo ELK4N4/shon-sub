@@ -109,6 +109,10 @@ https://www.shonsub.tk/`
 
 //PUT comment of exist episode - usersOnly
 router.put('/', usersOnly, async (req, res) => {
+    const {error} = validation.commentValidation(req.body);
+    if(error) {
+        return res.status(400).send(error.details[0].message);
+    }
     const project = await Project.findOne({name: req.project});
     if(!project){
         return res.status(404).send('Project Not Found');
