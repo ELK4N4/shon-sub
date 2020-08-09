@@ -184,7 +184,7 @@ $(document).ready(function(){
         data: JSON.stringify({message: message}),
         contentType: 'application/json',
         success: function(result) {
-          showAlert('success', 'מוסיף...');
+          showAlert('success', 'טוען...');
           location.reload();
         },
         error: function (error) {
