@@ -89,7 +89,7 @@ router.post('/', usersOnly, async (req, res) => {
 ${req.body.message} 
 בפרויקט:
 ${project.name} פרק ${episode.episodeNumber}
-https://www.shonsub.tk/`
+https://www.shonsub.tk${req.originalUrl.replace('/comments','')}`
         };
 
         transporter.sendMail(commentMail, function(error, info){
