@@ -56,7 +56,8 @@ const episodeValidation = (data) => {
 //Comment Validation
 const commentValidation = (data) => {
     const episodeSchema = Joi.object({
-        message: Joi.string().required()
+        message: Joi.string().required(),
+        id: Joi.string()
     });
 
     return episodeSchema.validate(data);
