@@ -89,7 +89,8 @@ router.post('/', usersOnly, async (req, res) => {
 ${req.body.message} 
 בפרויקט:
 ${project.name} פרק ${episode.episodeNumber}
-קישור:
+
+קישור ישיר:
 https://www.shonsub.tk${req.originalUrl.replace('/comments','')}`
         };
 
