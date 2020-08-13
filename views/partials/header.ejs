@@ -25,7 +25,6 @@
     <ul class="menu">
 
         <% navMenu.forEach(item => { %>
-            <!--
             <% if(item.name === 'projects') { %> 
                 <div class="dropdown-projects">
                     <% if(item.name === data.page.name) { %>
@@ -45,8 +44,8 @@
                         <% } %>
                     </div>
                 </div>
-            <% } else %> -->
-            <% if(item.name === data.page.name) { %>
+            <% } else %>
+            <%if(item.name === data.page.name) { %>
                 <li class="menu-item active"><a href=/<%= item.name %>><%= item.hebName%></a></li>
             <% } else { %>
                 <li class="menu-item"><a href=/<%= item.name %>><%= item.hebName%></a></li>
