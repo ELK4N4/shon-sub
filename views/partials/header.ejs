@@ -25,6 +25,26 @@
     <ul class="menu">
 
         <% navMenu.forEach(item => { %>
+
+            <% if(item.name === 'projects' && data.user.admin) { %> 
+                <div class="dropdown-projects">
+                    <% if(item.name === data.page.name) { %>
+                        <li class="menu-item active"><a href=/projects>פרוייקטים <i class="fas fa-sort-down" style="position:relative; bottom: 0.1rem;"></i></a></li>
+                    <% } else { %>
+                        <li class="menu-item"><a href=/projects>פרוייקטים <i class="fas fa-sort-down" style="position:relative; bottom: 0.1rem;"></i></a></li>
+                    <% } %>
+                    <div class="dropdown-content" dir="rtl">
+                        <a href="javascript:void(0)" class="new-project-btn"><strong>פרוייקט חדש +</strong></a>
+                    </div>
+                </div>
+            <% } else if(item.name === data.page.name) { %>
+                <li class="menu-item active"><a href=/<%= item.name %>><%= item.hebName%></a></li>
+            <% } else { %>
+                <li class="menu-item"><a href=/<%= item.name %>><%= item.hebName%></a></li>
+            <% } %>
+
+
+            <!--
             <% if(item.name === 'projects') { %> 
                 <div class="dropdown-projects">
                     <% if(item.name === data.page.name) { %>
@@ -44,12 +64,12 @@
                         <% } %>
                     </div>
                 </div>
-            <% } else %>
-            <%if(item.name === data.page.name) { %>
+            <% } else if(item.name === data.page.name) { %>
                 <li class="menu-item active"><a href=/<%= item.name %>><%= item.hebName%></a></li>
             <% } else { %>
                 <li class="menu-item"><a href=/<%= item.name %>><%= item.hebName%></a></li>
             <% } %>
+            -->
             
         <% }); %>
         <li class="menu-item"><a target="_blank" href="https://discord.gg/9ka6w7g"><i class="fab fa-discord"></i> דיסקורד</a></li>
