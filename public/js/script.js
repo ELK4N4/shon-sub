@@ -69,10 +69,12 @@ $(document).ready(function(){
 
     let email = $(this).find('input[name=email]').val();
     let password = $(this).find('input[name=password]').val();
+    let remember = $(this).find('input[name=remember]').val();
     
     let data = {
       email: email,
-      password: password
+      password: password,
+      remember
     }
 
     $.ajax({
