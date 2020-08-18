@@ -7,9 +7,6 @@ MVC
 
 ![MVC Diagram](https://www.researchgate.net/publication/330140206/figure/fig8/AS:711336036151302@1546607135603/Model-View-ControlMVC-design-pattern.png)
 
-### DBs Scratch
-Link to Plectica - 
-
 ## First Setup
 
 1. Install **MongoDB Service** from [Here](https://www.mongodb.com/download-center/community)
@@ -31,17 +28,14 @@ Link to Plectica -
 ### Prerequisites
 
 * NPM
-* dotenv
-* MongoAtlas
-* Heroku
+* Node.js
+* Express.js
+* MongoDB
+* Ejs
 
 ## NPM Scripts
 * "start": `node server.js`
 * "devStart": `nodemon server.js`
-
-### Running the tests
-
-We use **Nodemon** module to run the server
 
 ## Built With
 ### FrontEnd
@@ -55,7 +49,6 @@ We use **Nodemon** module to run the server
 * Express.js
 * Mongoose.js
 * MongoDB
-* fs module
 * EJS
 
 ## Main Coder
