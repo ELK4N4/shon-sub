@@ -1,4 +1,4 @@
 User-agent: *
-allow: *
+Allow: /
 
 Sitemap: http://www.shonsub.tk/sitemap.xml
