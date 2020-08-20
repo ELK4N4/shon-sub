@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: http://www.shonsub.tk/sitemap.xml
+Sitemap: https://www.shonsub.tk/sitemap.xml
