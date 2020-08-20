@@ -86,7 +86,7 @@
     <div class="episode-item">
 
         <div class="cover-img-container episode-img-size clicked">
-            
+            <!--
             <% if(data.user.verified) { %> 
                 <a href=/projects/<%= project.name.replace(/ /g,"-").replace(/(\?)/g,"%3F").replace(/\//g,"%2F").replace(/\\/g, '%5C'); %>/<%= episode.episodeNumber %>>
                     <img class="image-contains episode-img-size" src="<%= episode.coverImagePath %>" alt="<%= episode.episodeName %>">
@@ -104,7 +104,16 @@
                     </div>
                     <div class="play-icon"><i class="fas fa-play"></i></div>
                 </a>
-            <% } %> 
+            <% } %>
+            -->
+
+            <a href=/projects/<%= project.name.replace(/ /g,"-").replace(/(\?)/g,"%3F").replace(/\//g,"%2F").replace(/\\/g, '%5C'); %>/<%= episode.episodeNumber %>>
+                <img class="image-contains episode-img-size" src="<%= episode.coverImagePath %>" alt="<%= episode.episodeName %>">
+                <div class="img-text-top text-on-point">
+                    <h3>פרק <%= episode.episodeNumber %></h3>
+                </div>
+                <div class="play-icon"><i class="fas fa-play"></i></div>
+            </a>
             
             <% if(data.user.admin) { %>
             <div class="img-text-bottom text-on-point edit-text edit-episode">

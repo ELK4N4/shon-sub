@@ -88,7 +88,11 @@
     <div class="comments-container">
         <div class="comments-header">
             <h2>תגובות (<%= episode.comments.length %>)</h2>
-            <div class="secondary-button new-comment-btn">הוסף תגובה +</div>
+            <% if(data.user.verified) { %> 
+                <div class="secondary-button new-comment-btn">הוסף תגובה +</div>
+            <% } else { %>
+                <a href="javascript:void(0)" class="secondary-button" onclick="login();showAlert('info', 'עליך להתחבר לאתר להוספת תגובות');">הוסף תגובה +</a>
+            <% } %>
         </div>
         <% episode.comments.forEach(comment => { %>
             <div class="comment">
@@ -98,12 +102,12 @@
                 </form>
 
                 <div class="comment-header">
-                    <% if(comment.user._id.toString() === user._id.toString()) { %>
+                    <% if(data.user.verified && comment.user._id.toString() === data.user._id.toString()) { %>
                     <div class="comment-options">
                         <div class="warning-button delete-comment">מחק <i class="fas fa-trash"></i></div>
                         <div class="light-button edit-comment">ערוך <i class="fas fa-edit"></i></div>
                     </div>
-                    <% } else if(user.admin) { %>
+                    <% } else if(data.user.admin) { %>
                         <div class="comment-options">
                             <div class="warning-button delete-comment">מחק <i class="fas fa-trash"></i></div>
                         </div>

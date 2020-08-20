@@ -24,8 +24,8 @@ const uploadEpisode = multer({
 /// SPECIFIC EPISODES OF SPECIFIC PROJECT ///
 
 
-//GET specific episode of exist project - usersOnly
-router.get('/:episode', usersOnly, async (req, res) => {
+//GET specific episode of exist project - //usersOnly
+router.get('/:episode', async (req, res) => {
     const data = await getData('projects', req.user);
     
 
