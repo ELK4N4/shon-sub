@@ -16,7 +16,7 @@ router.get('/', async (req, res) => {
 
 router.get('/settings', async (req, res) => {
     if(req.user.verified) {
-        const data = await getData('settings', req.user);
+        const data = await getData('settings', 'הגדרות', req.user);
         res.render('user/settings.ejs', {data});
     } else {
         res.status(403).redirect('/');

@@ -20,15 +20,14 @@ const uploadProject = multer({
 
 //GET all projects
 router.get('/', async (req, res) => {
-
-    const data = await getData('projects', req.user);
+    const data = await getData('projects', 'פרוייקטים', req.user);
     res.render('projects/index.ejs', {data});
 });
 
 //GET all episodes of exist project
 router.get('/:project', async (req, res) => {
 
-    const data = await getData('projects', req.user);
+    const data = await getData('projects', 'פרוייקטים', req.user);
     
     const projectName = req.params.project.replace(/-/g," ");
 

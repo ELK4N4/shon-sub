@@ -8,7 +8,7 @@ router.get('/',verify , async (req, res) => {
 
     if(req.user.verified) {return res.redirect('/')}
 
-    const data = await getData('login', req.user);
+    const data = await getData('login', 'התחבר', req.user);
     res.render('login.ejs', {data});
 });
 

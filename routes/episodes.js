@@ -26,7 +26,7 @@ const uploadEpisode = multer({
 
 //GET specific episode of exist project - //usersOnly
 router.get('/:episode', async (req, res) => {
-    const data = await getData('projects', req.user);
+    const data = await getData('projects', 'פרוייקטים', req.user);
     
 
     const project = await Project.findOne({name: req.project});

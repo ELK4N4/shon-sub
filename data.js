@@ -3,7 +3,7 @@ const User = require('./models/User');
 let data = {};
 
 
-module.exports = async (pageName, user) => {
+module.exports = async (pageName, pageHebName, user) => {
     const activeProjects = await Project.find({process: "active"});
     const doneProjects = await Project.find({process: "done"});
     const freezeProjects = await Project.find({process: "freeze"});
@@ -17,7 +17,8 @@ module.exports = async (pageName, user) => {
 
     data = {
         page: {
-            name: pageName
+            name: pageName,
+            hebName: pageHebName
         },
         user: user,
         allProjects: allProjects,
