@@ -11,7 +11,7 @@ MVC
 
 1. Install **MongoDB Service** from [Here](https://www.mongodb.com/download-center/community)
 2. Install **Node.js** from [Here](https://nodejs.org/en/)
-3. Clone this repo to your local machine using `git clone https://github.com/ELK4N4/ShonSub.git`
+3. Clone this repo to your local machine using `git clone https://github.com/ELK4N4/shon-sub.git`
 4. Go to the path of your local repo and run `npm i`
 5. Create a new file in the main directory that called `.env` and put there `DATABASE_URL=mongodb://localhost/test`
 6. The party is begin!
