@@ -47,7 +47,7 @@
             <div class="episode-item">
         
                 <div class="cover-img-container episode-img-size clicked">
-                    <a href=/projects/<%= project.name.replace(/ /g,"-") %>/<%= episode.episodeNumber %>>
+                    <a href=/projects/<%= project.name.replace(/ /g,"-").replace(/,/g,"%2C") %>/<%= episode.episodeNumber %>>
                         <img class="image-contains episode-img-size" src="<%= episode.coverImagePath %>" alt="<%= episode.episodeName %>">
                         <div class="img-text-top text-on-point">
                             <h3>פרק <%= episode.episodeNumber %></h3>
