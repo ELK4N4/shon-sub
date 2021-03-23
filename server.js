@@ -26,7 +26,7 @@ const authRouter = require('./routes/auth/auth.js');
 
 /* Constant Variables */
 const PORT = process.env.PORT || 3000;
-const DATABASE_URL = process.env.DATABASE_URL || "mongodb://localhost/test";
+const DATABASE_URL = process.env.DATABASE_URL || "mongodb://localhost/test2";
 
 
 /* Server Setup */
